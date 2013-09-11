@@ -21,5 +21,5 @@ setup app
 # Start the server if the app has been run directly
 return unless module is require.main
 app.listen PORT, ->
-  console.log "Microgravity listening on port " + PORT
+  console.log "Flare listening on port " + PORT
   process.send? 'listening'

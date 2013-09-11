@@ -11,7 +11,6 @@ asssetMiddleware = require './assets/middleware'
 backboneServerSync = require './backbone_server_sync'
 gravityXapp = require './gravity_xapp'
 localsMiddleware = require './locals_middleware'
-redirectToGravity = require './redirect_to_gravity'
 { pageNotFound, internalError } = require '../components/error_handler'
 { PORT, GRAVITY_URL, SESSION_SECRET } = config = require '../config'
 
@@ -21,7 +20,6 @@ module.exports = (app) ->
   Backbone.sync = backboneServerSync
 
   # General settings
-  app.use redirectToGravity.forDesktopBrowser
   app.use express.favicon()
   app.use express.logger('dev')
   app.use express.bodyParser()
@@ -53,20 +51,9 @@ module.exports = (app) ->
   sd[key] = config[key] ? val for key, val of sd
   
   # Mount apps
-  app.use require '../apps/page'
-  app.use require '../apps/profile'
-  app.use require '../apps/password'
   app.use require '../apps/home'
-  app.use require '../apps/artwork'
-  app.use require '../apps/feature'
-  app.use require '../apps/artist'
-  app.use require '../apps/post'
-  app.use require '../apps/fair'
-  app.use require '../apps/search'
-  app.use require '../apps/show'
   
   # More general middleware
   app.use express.static path.resolve __dirname, '../public'
-  app.use redirectToGravity.forUnsupportedRoute
   app.use pageNotFound
   app.use internalError

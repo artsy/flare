@@ -1,14 +1,14 @@
 # Writing Tests
 
-Microgravity uses a couple different tools and patterns for tests. This document will explain how to use these and outline best practices.
+Flare uses a couple different tools and patterns for tests. This document will explain how to use these and outline best practices.
 
 ## Project-level vs. App-level tests
 
-Because Microgravity modularizes features into individual express apps, it makes sense to separate what tests are meant to be app-level and what are project-level (see [the overview doc](https://github.com/artsy/microgravity/blob/master/doc/overview.md) for more explanation of project vs apps). App level tests should live inside /test in the individual app, e.g. apps/artwork/test. These should test any files inside that app, and shouldn't crawl backwards to test other modules (although crawling back to include dependencies is fine). Project level tests live under /test and are used to test project-level modules such as /components and /lib.
+Because Flare modularizes features into individual express apps, it makes sense to separate what tests are meant to be app-level and what are project-level (see [the overview doc](https://github.com/artsy/flare/blob/master/doc/overview.md) for more explanation of project vs apps). App level tests should live inside /test in the individual app, e.g. apps/artwork/test. These should test any files inside that app, and shouldn't crawl backwards to test other modules (although crawling back to include dependencies is fine). Project level tests live under /test and are used to test project-level modules such as /components and /lib.
 
 ## 3rd Party Tools
 
-Microgravity uses the following tools for testing:
+Flare uses the following tools for testing:
 
 * [Mocha](http://visionmedia.github.io/mocha/) with [should.js](https://github.com/visionmedia/should.js/) - BDD testing DSL.
 * [Zombie](http://zombie.labnotes.org/) - Headless integration testing library.
@@ -51,4 +51,4 @@ Simply a function used to create fixture data for Gravity API json responses.
 
 ### servers.coffee
 
-Creates an express server that act's like Gravity for integration tests and mounts that to the project server to be run in "test" mode. 
+Creates an express server that act's like Gravity for integration tests and mounts that to the project server to be run in "test" mode.

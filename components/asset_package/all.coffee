@@ -10,51 +10,6 @@ require '../../lib/zepto/index.coffee'
 
 hash =
   
-  '^/artwork/.*/contact_gallery': ->
-    require('../../apps/artwork/client/submit_inquiry/bootstrap.coffee') true
-  
-  '^/artwork/.*/ask_specialist': ->
-    require('../../apps/artwork/client/submit_inquiry/bootstrap.coffee') false
-  
-  '^/artwork/.*': ->
-    require '../../apps/artwork/client/main_page.coffee'
-  
-  '^/search': ->
-    require '../../apps/search/client.coffee'
-  
-  '^/artist/.*': ->
-    require '../../apps/artist/client/index.coffee'
-  
-  '^/post/.*': ->
-    require '../../apps/post/client.coffee'
-    
-  '^/feature/.*': ->
-    require '../../apps/feature/client.coffee'
-    
-  '^/profile/.*': ->
-    require '../../apps/profile/client.coffee'
-  
-  '^/show/.*': ->
-    require('../../apps/show/client.coffee').init()
-  
-  '^/reset_password': ->
-    require('../../apps/password/client.coffee').init()
-  
-  '^/.*/.*/browse/((artist|show)/.*)|shows': ->
-    require('../../apps/fair/client/exhibitors.coffee').init()
-  
-  '^/.*/browse/filter/.*': ->
-    require('../../apps/fair/client/artworks.coffee').init()
-  
-  '(^/.*/browse/exhibitors)|(^/.*/browse/artists)': ->
-    require('../../apps/fair/client/main_page.coffee').init()
-  
-  '^/([^/]+)$': ->
-    if BOOTSTRAP.FAIR?
-      require('../../apps/fair/client/main_page.coffee').init()
-    else if BOOTSTRAP.PROFILE?
-      require '../../apps/profile/client.coffee'
-    
   '^/$': ->
     require '../../apps/home/client/index.coffee'
 
