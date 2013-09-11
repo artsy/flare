@@ -1,25 +1,3 @@
 extends ../../../components/layout/templates/main
 
 block content
-  ul#home-page-hero-units
-    for heroUnit in heroUnits
-      li( class=heroUnit.cssClass() )
-        img( src=heroUnit.get('background_image_mobile_url') )
-        a( href=heroUnit.get('link') )
-          .home-page-hero-unit-details
-            h2!= heroUnit.mdToHtml('heading')
-            h1.home-page-hero-unit-title.avant-garde-header= heroUnit.get('mobile_title')
-            h2!= heroUnit.mdToHtml('mobile_description')
-  nav#home-page-hero-unit-dots
-    a.home-page-hero-unit-dot-active
-    for x, i in new Array(heroUnits.length - 1)
-      a
-  section.main-side-margin.home-page-section
-    h1.avant-garde-header-center Explore Artsy
-    nav#home-page-featured-list.chevron-nav-list
-      a#home-page-featured-works( href='/home/featured_works' ) Featured Artworks
-      a#home-page-featured-posts( href='/home/featured_posts' ) Featured Posts
-  section.main-side-margin.home-page-section
-    h1.avant-garde-header-center Current Shows
-    ul#home-page-current-shows
-    .loading-spinner
