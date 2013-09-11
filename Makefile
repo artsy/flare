@@ -42,9 +42,9 @@ assets-to-cdn:
 # Runs all the necessary build tasks to push to staging or production
 deploy:
 	make assets-production
-	APPLICATION_NAME=microgravity-$(env) make assets-to-cdn
-	heroku config:add CDN_URL=//s3.amazonaws.com/microgravity-$(env)/assets/$(shell git rev-parse --short HEAD)/ --app=microgravity-$(env)
-	git push git@heroku.com:microgravity-$(env).git master
+	APPLICATION_NAME=flare-$(env) make assets-to-cdn
+	heroku config:add CDN_URL=//s3.amazonaws.com/flare-$(env)/assets/$(shell git rev-parse --short HEAD)/ --app=flare-$(env)
+	git push git@heroku.com:flare-$(env).git master
 
 deploy-staging:
 	make deploy env=staging

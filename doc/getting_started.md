@@ -1,8 +1,8 @@
-# Getting Started with Microgravity
+# Getting Started with Flare
 
-*Microgravity* is the codename for the mobile website m.artsy.net.
+*Flare* is the codename for the iphone splash page website iphone.artsy.net.
 
-Before you can set up Microgravity for development you will need to set up [Gravity](https://github.com/artsy/gravity) which will provide the Artsy API Microgravity consumes. This doc will assume you've set up XCode and common development tools such after getting started with Gravity.
+Before you can set up Flare for development you will need to set up [Gravity](https://github.com/artsy/gravity) which will provide the Artsy API Flare consumes. This doc will assume you've set up XCode and common development tools such after getting started with Gravity.
 
 ## Install Node.js
 
@@ -41,7 +41,7 @@ npm install coffee-script -g
 
 ## Run the Server
 
-Make sure Gravity is running on localhost:3000, then run the server, and open microgravity at [localhost:3003](http://localhost:3003).
+Make sure Gravity is running on localhost:3000, then run the server, and open flare at [localhost:3003](http://localhost:3003).
 
 ````
 make s
