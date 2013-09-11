@@ -378,21 +378,13 @@ input:focus {
   margin: 40px 0;
   border-top: 1px solid #ccc;
 }
-.profile-icon-img-circle {
-  -webkit-border-radius: 150px;
-  border-radius: 150px;
-}
-.artsy-logo-large {
+.header-logo {
   -webkit-background-size: contain;
   -moz-background-size: contain;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
   height: 60px;
-}
-html.artsy-mobile-app .login-signup,
-html.artsy-mobile-app #main-header {
-  display: none;
 }
 html.wf-loading {
   visibility: hidden;
@@ -412,11 +404,37 @@ html.wf-loading {
   -ms-mask-image: url("/images/chevron_arrow.svg") !important;
   mask-image: url("/images/chevron_arrow.svg") !important;
 }
-#main-header-logo-icon {
+.header-logo {
   background-image: url("/images/logo_square.svg") !important;
+  width: 60px;
+  float: left;
 }
-.artsy-logo-large {
-  background-image: url("/images/logo_large.svg") !important;
+.large-header {
+  background: #000;
+  height: 800px;
+  color: #fff;
+}
+header {
+  clear: both;
+  background: #000;
+}
+header .links {
+  text-align: center;
+}
+header .links a {
+  font-family: 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0px 20px;
+  padding: 0px 20px;
+  display: inline-block;
+  border-top: 2px solid #fff;
+  color: #fff;
 }
 #error-handler {
   margin: 0;

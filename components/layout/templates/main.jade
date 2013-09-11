@@ -1,27 +1,27 @@
 extends ./scaffold
 
-mixin login-signup
-  .login-signup
-    .login-signup-button-container
-      a.avant-garde-box-button.avant-garde-box-button-gray( href='/sign_up' ) Sign up
-    .login-signup-button-container
-      a.avant-garde-box-button.avant-garde-box-button-gray( href='/log_in' ) Log in
+mixin header
+  mixin large-header
+  header
+    .header-logo
+    .links
+      a( href= "/#browse" ) Browse Shows & Fairs
+      a( href= "/#explore" ) Explore 60,000 Artworks
+      a( href= "/#collect" ) Collect With Artsy
+    .app_store
+
+mixin large-header
+  .large-header
+    .large-img
+    h1 The artwork in your pocket
+    h2 Introducing Artsy for iPhone
+    .sms
+      .heading send a link to your phone
+      input.bordered-input( placeholder= "Enter your phone number" )
+      button.avant-garde-box-button.avant-garde-box-button-grey( type= "submit" ) OK
 
 block body
   #content
-    mixin login-signup
-    header#main-header
-      a#main-header-logo( href= '/' )
-        #main-header-logo-icon
-      form#main-header-search-form( action='/search', method='GET' )
-        input#main-header-search-box(
-          placeholder='Search',
-          name='term',
-          value=mainHeaderSearchBoxValue,
-          type='search'
-        )
-        button#main-header-search-button.avant-garde-box-button Search
-        if mainHeaderSearchBoxValue 
-          #main-header-search-box-cancel ×
+    mixin header
     block content
-    mixin login-signup
+    mixin header
