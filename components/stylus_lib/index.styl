@@ -1,0 +1,64 @@
+// 
+// A library of mixins and variables commonly used throughout stylesheets.
+// 
+// Do NOT put any actual style declarations here. We don't want this to impact
+// CSS size.
+// 
+
+@import '../../node_modules/nib'
+
+default-font-size = 16px
+avant-garde-font-size = 14px
+large-font-size = 22px
+light-gray-border-color = #CCC
+highlight-color = #6a0bc1
+bad-red-color = rgb(199, 48, 48)
+dark-gray-text-color = #555
+
+mask-repeat()
+  vendor('mask-repeat', arguments)
+
+mask-size()
+  vendor('mask-size', arguments)
+
+mask-image()
+  vendor('mask-image', arguments)
+
+font-smoothing()
+  vendor('font-smoothing', arguments)
+
+font-face(family, filename, style = normal, weight = normal)
+  @font-face
+    font-family family
+    font-weight weight
+    font-style style
+    src url("/fonts/" + filename + ".woff") format("woff")
+    
+avant-garde()
+  font-family 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif'
+  font-smoothing antialiased
+  text-transform uppercase
+  
+serif()
+  font-family 'adobe-garamond-pro', 'AGaramondPro-Regular', 'Times New Roman', 'Times', 'serif'
+  font-smoothing antialiased
+  
+faux-underline(spacing=5px)
+  display inline-block
+  position relative
+  &::after
+    content ''
+    position absolute
+    left 0
+    display inline-block
+    height 1em
+    width 100%
+    border-bottom 1px solid
+    margin-top spacing
+  &:hover
+    text-decoration none
+  
+ellipsis()
+  text-overflow ellipsis
+  white-space nowrap
+  overflow hidden

@@ -1,0 +1,60 @@
+// 
+// Styles for the main header at the top of almost every page.
+// 
+
+@import '../../stylus_lib'
+
+#main-header
+  width 100%
+  border-bottom 1px solid #ccc
+  background white
+  
+#main-header-search-box
+  padding 18px 14px 14px 70px
+  border 0
+  margin 0
+  background transparent
+  width 100%
+  
+#main-header-logo
+  padding 10px
+  position absolute
+  border-right 1px solid #ccc
+  z-index 1
+
+#main-header-logo-icon
+  background no-repeat center center
+  background-size contain
+  width 34px
+  height @width
+
+#main-header form
+  position relative
+
+#main-header-search-box-cancel
+  background #bbb
+  color white
+  border-radius 10px
+  font-size 15px
+  padding 2px 4px 6px 4px
+  position absolute
+  right 13px
+  top 21px
+  font-family Helvetica
+  font-weight bold
+  line-height 8px
+  border none
+  font-smoothing antialiased
+
+#main-header-search-box::-webkit-search-cancel-button
+  display none
+  
+#main-header-search-button
+  position absolute
+  top 0
+  right 0
+  width 100px
+  height 100%
+  border-top 0
+  border-bottom 0
+  display none

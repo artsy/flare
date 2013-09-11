@@ -1,0 +1,55 @@
+// 
+// Styling for the hero units at the top of the homepage
+// 
+
+@import '../../../components/stylus_lib'
+
+#home-page-hero-units
+  li
+    position relative
+    width 100%
+    display none
+    background-size cover
+    background-position left center
+    img
+      width 100%
+      display block
+    &:first-child
+      display block
+    &.home-page-hero-unit-black
+      background-color black
+      color white
+      a
+        color white
+    a
+      display block
+      width 100%
+      height 100%
+
+.home-page-hero-unit-title
+  font-size 26px !important
+  margin 10px 0
+
+.home-page-hero-unit-details
+  position absolute
+  z-index 2
+  padding 20px
+  bottom 0
+  
+.home-page-hero-unit-title-img
+  width 100%
+  margin 10px 0
+  
+#home-page-hero-unit-dots
+  margin 7px 0 20px 0
+  text-align center
+  a
+    background #ccc
+    padding 4px
+    border-radius 100px
+    margin-right 12px
+    display inline-block
+    &:last-child
+      margin-right 0
+    &.home-page-hero-unit-dot-active
+      background black
