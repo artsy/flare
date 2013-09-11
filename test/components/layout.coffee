@@ -17,18 +17,3 @@ describe 'Bootstrapping client-side environment', ->
     
   it 'adds the XAPP token to ajax requests', ->
     $.ajaxSettings.headers['X-XAPP-TOKEN'].should.equal 'xappfoobar'
-
-describe 'Html class from user agent', ->
-  
-  before (done) ->
-    servers.setup -> done()
-  
-  after ->
-    servers.teardown()
-  
-  it 'adds the hide header/footer artsy-mobile class to the html tag', (done) ->
-    browser = new Browser(userAgent: 'Artsy-Mobile')
-    browser.visit 'http://localhost:5000/artwork/foo', ->
-      browser.wait ->
-        browser.querySelector('html').className.should.include 'artsy-mobile-app'
-        done()

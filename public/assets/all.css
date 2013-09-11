@@ -1,0 +1,439 @@
+.avant-garde-header,
+.avant-garde-header-center {
+  font-family: 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.avant-garde-header-center {
+  width: 100%;
+  text-align: center;
+}
+.h2-margin {
+  margin: 20px 0;
+}
+.circle-border-icon-button {
+  border: 2px solid #ccc;
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  background: transparent;
+}
+.chevron-arrow-button {
+  background: transparent;
+  padding: 0;
+  height: 26px;
+  display: inline-block;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  display: block;
+}
+.chevron-arrow-button::after {
+  background: #000;
+  -webkit-mask-size: contain;
+  -moz-mask-size: contain;
+  -o-mask-size: contain;
+  -ms-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -moz-mask-repeat: no-repeat;
+  -o-mask-repeat: no-repeat;
+  -ms-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  height: 26px;
+  width: 26px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  display: inline-block;
+  content: '.';
+  color: transparent;
+  margin-top: -2px;
+  position: absolute;
+  margin-left: 10px;
+}
+.chevron-arrow-button-gray::after {
+  background: #ccc;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+.chevron-arrow-button-left::before {
+  background: #000;
+  -webkit-mask-size: contain;
+  -moz-mask-size: contain;
+  -o-mask-size: contain;
+  -ms-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -moz-mask-repeat: no-repeat;
+  -o-mask-repeat: no-repeat;
+  -ms-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  height: 26px;
+  width: 26px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  display: inline-block;
+  content: '.';
+  color: transparent;
+  margin-top: -2px;
+  position: absolute;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  position: relative;
+  top: -2px;
+  left: -12px;
+}
+.chevron-arrow-button-left::after {
+  display: none;
+}
+.chevron-nav-list a {
+  text-decoration: none;
+  position: relative;
+  display: block;
+  padding: 14px 0;
+  border-top: 1px solid #ccc;
+  font-family: 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.chevron-nav-list a:last-child {
+  border-bottom: 1px solid #ccc;
+}
+.chevron-nav-list a::after {
+  background: #000;
+  -webkit-mask-size: contain;
+  -moz-mask-size: contain;
+  -o-mask-size: contain;
+  -ms-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -moz-mask-repeat: no-repeat;
+  -o-mask-repeat: no-repeat;
+  -ms-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  height: 26px;
+  width: 26px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  display: inline-block;
+  content: '.';
+  color: transparent;
+  margin-top: -2px;
+  position: absolute;
+  background: #ccc;
+  right: -9px;
+  position: absolute;
+}
+.avant-garde-box-button {
+  font-family: 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  background: transparent;
+  width: 100%;
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  position: relative;
+}
+.avant-garde-box-button:focus,
+.avant-garde-box-button:active {
+  background-color: #6a0bc1;
+  border-color: #6a0bc1;
+  color: #fff;
+  outline: none;
+}
+.avant-garde-box-button .loading-spinner {
+  background: #fff;
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  margin-left: -12px;
+  display: none;
+}
+.avant-garde-box-button-black,
+.avant-garde-box-button-gray {
+  color: #fff;
+}
+.avant-garde-box-button-black {
+  background: #000;
+  border: 1px solid #000;
+}
+.avant-garde-box-button-gray {
+  background: #333;
+  border: 1px solid #333;
+}
+.avant-garde-underline-button {
+  font-family: 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+  background: transparent;
+  display: table;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid #000;
+  text-decoration: none;
+}
+.avant-garde-box-button-loading {
+  color: transparent !important;
+}
+.avant-garde-box-button-loading.avant-garde-box-button-black .loading-spinner {
+  background: #fff;
+}
+.avant-garde-box-button-loading .loading-spinner {
+  display: block;
+}
+.bordered-input {
+  -webkit-appearance: none;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  font-family: 'adobe-garamond-pro', 'AGaramondPro-Regular', 'Times New Roman', 'Times', 'serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-size: 16px;
+  margin: 0;
+  display: block;
+}
+.bordered-input:focus,
+.bordered-input:active {
+  border-color: #6a0bc1;
+  outline: none;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+body {
+  font-family: 'adobe-garamond-pro', 'AGaramondPro-Regular', 'Times New Roman', 'Times', 'serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-size: 16px;
+  line-height: 1.4em;
+  text-rendering: optimizeLegibility;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+a {
+  color: #000;
+}
+b,
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+input {
+  font-family: 'adobe-garamond-pro', 'AGaramondPro-Regular', 'Times New Roman', 'Times', 'serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-size: 16px;
+}
+input:focus {
+  outline: none;
+}
+.main-side-margin {
+  margin: 0 20px;
+}
+.thin-gray-hr {
+  border: 0;
+  margin: 40px 0;
+  border-top: 1px solid #ccc;
+}
+.profile-icon-img-circle {
+  -webkit-border-radius: 150px;
+  border-radius: 150px;
+}
+.artsy-logo-large {
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 60px;
+}
+html.artsy-mobile-app .login-signup,
+html.artsy-mobile-app #main-header {
+  display: none;
+}
+html.wf-loading {
+  visibility: hidden;
+}
+@font-face {
+  font-family: 'AvantGardeGothicITCW01D 731075';
+  font-weight: normal;
+  font-style: normal;
+  src: url("/fonts/c18aee57-7585-4a8b-9a1c-69d226301d73.woff") format("woff");
+}
+.chevron-arrow-button::after,
+.chevron-arrow-button-left::before,
+.chevron-nav-list a::after {
+  -webkit-mask-image: url("/images/chevron_arrow.svg") !important;
+  -moz-mask-image: url("/images/chevron_arrow.svg") !important;
+  -o-mask-image: url("/images/chevron_arrow.svg") !important;
+  -ms-mask-image: url("/images/chevron_arrow.svg") !important;
+  mask-image: url("/images/chevron_arrow.svg") !important;
+}
+#main-header-logo-icon {
+  background-image: url("/images/logo_square.svg") !important;
+}
+.artsy-logo-large {
+  background-image: url("/images/logo_large.svg") !important;
+}
+#error-handler {
+  margin: 0;
+  padding: 20px;
+  font-family: Helvetica, sans-serif;
+}
+#error-handler h1 {
+  margin: 20px 0;
+  line-height: 1.2em;
+  font-size: 22px;
+  font-weight: bold;
+}
+#error-handler pre {
+  padding: 10px;
+  border: 1px solid #ccc;
+  overflow: scroll;
+  font-family: courier;
+  font-size: 12px;
+  line-height: 1.4em;
+}
