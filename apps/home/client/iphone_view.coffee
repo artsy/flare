@@ -7,13 +7,14 @@ module.exports = class iPhoneView extends Backbone.View
   minLeft: 50
 
   initialize: ->
-    @height = @$el.height()
-    @width = @$el.width()
     @$window = $(window)
     @positionPhone()
     @$window.on 'resize.feed', _.debounce((=> @positionPhone()), 300)
 
   positionPhone: ->
+    @height = @$el.height()
+    @width = @height * 0.4733
+
     windowHeight = @$window.height()
     windowWidth = @$window.width()
     top = Math.round((windowHeight - @height) / 2)
@@ -25,5 +26,6 @@ module.exports = class iPhoneView extends Backbone.View
     @$el.css
       top: @top
       left: @left
+      width: @width
 
     @trigger 'repositioned'

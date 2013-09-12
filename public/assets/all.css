@@ -505,33 +505,54 @@ html.wf-loading {
 }
 #iphone {
   position: fixed;
-  width: 382px;
-  height: 807px;
+  width: 100%;
   overflow: hidden;
   text-align: center;
   z-index: 11;
+  max-height: 807px;
+  height: 84%;
 }
 #iphone .phone {
-  width: 191px;
-  height: 403px;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
-  -webkit-transition: opacity 0.4s, height 0.4s, width 0.4s;
-  -moz-transition: opacity 0.4s, height 0.4s, width 0.4s;
-  -o-transition: opacity 0.4s, height 0.4s, width 0.4s;
-  -ms-transition: opacity 0.4s, height 0.4s, width 0.4s;
-  transition: opacity 0.4s, height 0.4s, width 0.4s;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-transition: opacity 0.4s, background-size 0.4s;
+  -moz-transition: opacity 0.4s, background-size 0.4s;
+  -o-transition: opacity 0.4s, background-size 0.4s;
+  -ms-transition: opacity 0.4s, background-size 0.4s;
+  transition: opacity 0.4s, background-size 0.4s;
+  background-image: url("/images/phone.png") !important;
+  -webkit-background-size: auto 100%;
+  -moz-background-size: auto 100%;
+  background-size: auto 100%;
+  width: 100%;
+  height: 100%;
 }
 #iphone .reflection {
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("/images/phone-reflection.png") !important;
   position: absolute;
-  top: 119px;
-  right: 29px;
+  top: 14.76%;
+  right: 7.7%;
   -webkit-transition: opacity 0.8s;
   -moz-transition: opacity 0.8s;
   -o-transition: opacity 0.8s;
   -ms-transition: opacity 0.8s;
   transition: opacity 0.8s;
+  -webkit-background-size: auto 100%;
+  -moz-background-size: auto 100%;
+  background-size: auto 100%;
+  width: 39.79%;
+  height: 53.407%;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -540,8 +561,6 @@ html.wf-loading {
   opacity: 1;
   -ms-filter: none;
   filter: none;
-  width: 382px;
-  height: 807px;
 }
 #iphone.visible .reflection {
   opacity: 1;

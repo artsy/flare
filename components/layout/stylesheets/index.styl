@@ -84,7 +84,7 @@ font-face('AvantGardeGothicITCW01D 731075', 'c18aee57-7585-4a8b-9a1c-69d226301d7
     &:hover
       border-color: highlight-color
 
-.large-header
+.hero
   background: black
   color: white
   position: fixed
@@ -125,31 +125,42 @@ font-face('AvantGardeGothicITCW01D 731075', 'c18aee57-7585-4a8b-9a1c-69d226301d7
 
 #iphone
   position: fixed
-  width: 382px
-  height: 807px
+  width: 100%
   overflow: hidden
   text-align: center
   z-index: 11
+  max-height: 807px
+  height: 84%
   .phone
-    width: 191px
-    height: 403px
     opacity(0)
-    transition: opacity 0.4s, height 0.4s, width 0.4s
+    background-size contain
+    background-repeat no-repeat
+    background-position center center
+    transition: opacity 0.4s, background-size 0.4s
+    background-image url('/images/phone.png') !important
+    background-size: auto 100%
+    width: 100%
+    height: 100%
   .reflection
+    background-size contain
+    background-repeat no-repeat
+    background-position center center
+    background-image url('/images/phone-reflection.png') !important
     position: absolute
-    top: 119px
-    right: 29px
+    top: 14.76%
+    right: 7.7%
     transition: opacity 0.8s
+    background-size: auto 100%
+    width: 39.79%
+    height: 53.407%
     opacity(0)
   &.visible
     .phone
       opacity(1)
-      width: 382px
-      height: 807px
     .reflection
       opacity(1)
 
-header
+.app-header
   position: fixed
   transition: top 0.4s
   top: -64px

@@ -94,8 +94,6 @@ module.exports = iPhoneView = (function(_super) {
 
   iPhoneView.prototype.initialize = function() {
     var _this = this;
-    this.height = this.$el.height();
-    this.width = this.$el.width();
     this.$window = $(window);
     this.positionPhone();
     return this.$window.on('resize.feed', _.debounce((function() {
@@ -105,6 +103,8 @@ module.exports = iPhoneView = (function(_super) {
 
   iPhoneView.prototype.positionPhone = function() {
     var left, top, windowHeight, windowWidth;
+    this.height = this.$el.height();
+    this.width = this.height * 0.4733;
     windowHeight = this.$window.height();
     windowWidth = this.$window.width();
     top = Math.round((windowHeight - this.height) / 2);
@@ -113,7 +113,8 @@ module.exports = iPhoneView = (function(_super) {
     this.left = _.max([left, this.minLeft]);
     this.$el.css({
       top: this.top,
-      left: this.left
+      left: this.left,
+      width: this.width
     });
     return this.trigger('repositioned');
   };
@@ -381,7 +382,8 @@ module.exports = {
   NODE_ENV: null,
   MIXPANEL_ID: null,
   SECURE_URL: null,
-  GOOGLE_ANALYTICS_ID: null
+  GOOGLE_ANALYTICS_ID: null,
+  IPHONE_APP_URL: null
 };
 
 

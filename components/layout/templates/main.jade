@@ -1,8 +1,7 @@
 extends ./scaffold
 
 mixin header
-  mixin large-header
-  header.black
+  header.app-header.black
     .links
       a( href= "/#browse" ) Browse Shows & Fairs
       a( href= "/#explore" ) Explore 60,000 Artworks
@@ -10,9 +9,8 @@ mixin header
     .header-logo
     a.app-store( href= sd.IPHONE_APP_URL )
 
-
-mixin large-header
-  .large-header
+mixin hero
+  .hero
     .content
       h1 The art world in your pocket
       h2 Introducing Artsy for iPhone
@@ -23,11 +21,12 @@ mixin large-header
 
 mixin iphone
   #iphone
-    img.phone( src=(sd.CDN_URL + "phone.png") )
-    img.reflection( src=(sd.CDN_URL + "phone-reflection-over-video.png") )
+    .phone
+    .reflection
     .content
 
 block body
+  mixin hero
   mixin header
   mixin iphone
   #content
