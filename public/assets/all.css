@@ -441,7 +441,7 @@ html.wf-loading {
 #arrow.visible:hover {
   border-color: #6a0bc1;
 }
-.large-header {
+.hero {
   background: #000;
   color: #fff;
   position: fixed;
@@ -450,21 +450,21 @@ html.wf-loading {
   z-index: 1;
   top: 0px;
 }
-.large-header h1,
-.large-header h2,
-.large-header .heading {
+.hero h1,
+.hero h2,
+.hero .heading {
   width: 300px;
 }
-.large-header h1 {
+.hero h1 {
   font-size: 47px;
   line-height: 102%;
 }
-.large-header h2 {
+.hero h2 {
   font-size: 24px;
   margin-top: 19px;
   margin-bottom: 50px;
 }
-.large-header .heading {
+.hero .heading {
   font-family: 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif';
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
@@ -475,7 +475,7 @@ html.wf-loading {
   font-size: 14px;
   margin-bottom: 9px;
 }
-.large-header .content {
+.hero .content {
   width: 350px;
   position: absolute;
   right: 0px;
@@ -489,12 +489,12 @@ html.wf-loading {
   -ms-transition: opacity 0.4s;
   transition: opacity 0.4s;
 }
-.large-header .content.visible {
+.hero .content.visible {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-.large-header .bordered-input {
+.hero .bordered-input {
   width: 239px;
 }
 #content {
@@ -511,21 +511,21 @@ html.wf-loading {
   z-index: 11;
   max-height: 807px;
   height: 84%;
-}
-#iphone .phone {
+  -webkit-transition: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
+  -ms-transition: opacity 0.4s;
+  transition: opacity 0.4s;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
+}
+#iphone .phone {
   -webkit-background-size: contain;
   -moz-background-size: contain;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-transition: opacity 0.4s, background-size 0.4s;
-  -moz-transition: opacity 0.4s, background-size 0.4s;
-  -o-transition: opacity 0.4s, background-size 0.4s;
-  -ms-transition: opacity 0.4s, background-size 0.4s;
-  transition: opacity 0.4s, background-size 0.4s;
   background-image: url("/images/phone.png") !important;
   -webkit-background-size: auto 100%;
   -moz-background-size: auto 100%;
@@ -543,31 +543,18 @@ html.wf-loading {
   position: absolute;
   top: 14.76%;
   right: 7.7%;
-  -webkit-transition: opacity 0.8s;
-  -moz-transition: opacity 0.8s;
-  -o-transition: opacity 0.8s;
-  -ms-transition: opacity 0.8s;
-  transition: opacity 0.8s;
   -webkit-background-size: auto 100%;
   -moz-background-size: auto 100%;
   background-size: auto 100%;
   width: 39.79%;
   height: 53.407%;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
 }
-#iphone.visible .phone {
+#iphone.visible {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-#iphone.visible .reflection {
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-}
-header {
+.app-header {
   position: fixed;
   -webkit-transition: top 0.4s;
   -moz-transition: top 0.4s;
@@ -581,10 +568,10 @@ header {
   overflow: hidden;
   height: 64px;
 }
-header.visible {
+.app-header.visible {
   top: 0px;
 }
-header .app-store {
+.app-header .app-store {
   -webkit-background-size: contain;
   -moz-background-size: contain;
   background-size: contain;
@@ -596,18 +583,18 @@ header .app-store {
   float: right;
   right: 16px;
 }
-header .app-store,
-header .header-logo {
+.app-header .app-store,
+.app-header .header-logo {
   top: 16px;
   position: absolute;
 }
-header .header-logo {
+.app-header .header-logo {
   left: 16px;
 }
-header .links {
+.app-header .links {
   text-align: center;
 }
-header .links a {
+.app-header .links a {
   font-family: 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif';
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
@@ -627,35 +614,35 @@ header .links a {
   -ms-transition: color 0.4s, border-color 0.4s;
   transition: color 0.4s, border-color 0.4s;
 }
-header .links a:first-child {
+.app-header .links a:first-child {
   margin-left: 0px;
 }
-header .links a:last-child {
+.app-header .links a:last-child {
   margin-right: 0px;
 }
-header .links a:hover,
-header .links a.active {
+.app-header .links a:hover,
+.app-header .links a.active {
   color: #6a0bc1 !important;
   border-color: #6a0bc1 !important;
 }
-header.black {
+.app-header.black {
   background: #000;
 }
-header.black .links a {
+.app-header.black .links a {
   color: #fff;
   border-color: #fff;
 }
-header.black .header-logo {
+.app-header.black .header-logo {
   background-image: url("/images/artsy-logotype-white.svg") !important;
 }
-header.white {
+.app-header.white {
   background: #fff;
 }
-header.white .links a {
+.app-header.white .links a {
   color: #000;
   border-color: #000;
 }
-header.white .header-logo {
+.app-header.white .header-logo {
   background-image: url("/images/artsy-logotype-black.svg") !important;
 }
 #error-handler {

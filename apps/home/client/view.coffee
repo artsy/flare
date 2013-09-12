@@ -1,4 +1,5 @@
 Backbone = require 'backbone'
+_ = require 'underscore'
 BrowseView = require './browse_view.coffee'
 ExploreView = require './explore_view.coffee'
 CollectView = require './collect_view.coffee'
@@ -21,18 +22,21 @@ module.exports = class HomePageView extends Backbone.View
     "collect" : (-> new CollectView(parent: @) )
 
   initialize: ->
-    @$headerItems = @$('header a')
+    @$headerItems = @$('.app-header a')
     @$window = $(window)
     @$arrow = @$('#arrow')
-    @$header = @$('header')
-    @$largeHeaderText = @$('.large-header .content')
+    @$header = @$('.app-header')
+    @$largeHeaderText = @$('.hero .content')
 
     @smsForm = new SmsView(parent: @)
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
     @iphone.on 'repositioned', (=> @sizeSections())
     @sizeSections()
     
-    @show()
+    _.delay =>
+      @show()
+    , 400
+
     # @animateIphoneImages()
 
   show: ->
@@ -50,7 +54,6 @@ module.exports = class HomePageView extends Backbone.View
 
     @$largeHeaderText.css
       left: @iphone.left + @iphone.width + @headerTextMargin
-
 
   sectionNavClick: (event) =>
     section = $(event.target).attr 'data-section-name'

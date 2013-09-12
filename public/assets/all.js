@@ -171,12 +171,14 @@ module.exports = SmsView = (function(_super) {
 
 
 },{"backbone":16}],8:[function(require,module,exports){
-var Backbone, BrowseView, CollectView, ExploreView, HomePageView, SmsView, iPhoneView, _ref,
+var Backbone, BrowseView, CollectView, ExploreView, HomePageView, SmsView, iPhoneView, _, _ref,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 Backbone = require('backbone');
+
+_ = require('underscore');
 
 BrowseView = require('./browse_view.coffee');
 
@@ -227,11 +229,11 @@ module.exports = HomePageView = (function(_super) {
 
   HomePageView.prototype.initialize = function() {
     var _this = this;
-    this.$headerItems = this.$('header a');
+    this.$headerItems = this.$('.app-header a');
     this.$window = $(window);
     this.$arrow = this.$('#arrow');
-    this.$header = this.$('header');
-    this.$largeHeaderText = this.$('.large-header .content');
+    this.$header = this.$('.app-header');
+    this.$largeHeaderText = this.$('.hero .content');
     this.smsForm = new SmsView({
       parent: this
     });
@@ -243,7 +245,9 @@ module.exports = HomePageView = (function(_super) {
       return _this.sizeSections();
     }));
     this.sizeSections();
-    return this.show();
+    return _.delay(function() {
+      return _this.show();
+    }, 400);
   };
 
   HomePageView.prototype.show = function() {
@@ -289,7 +293,7 @@ module.exports = HomePageView = (function(_super) {
 })(Backbone.View);
 
 
-},{"./browse_view.coffee":1,"./collect_view.coffee":2,"./explore_view.coffee":3,"./iphone_view.coffee":5,"./sms_view.coffee":7,"backbone":16}],9:[function(require,module,exports){
+},{"./browse_view.coffee":1,"./collect_view.coffee":2,"./explore_view.coffee":3,"./iphone_view.coffee":5,"./sms_view.coffee":7,"backbone":16,"underscore":17}],9:[function(require,module,exports){
 var hash;
 
 require('../../lib/zepto/index.coffee');
