@@ -15,9 +15,6 @@ analytics = require '../../lib/analytics.coffee'
 
 module.exports = ->
 
-  # Inject shared data
-  sd[key] = BOOTSTRAP[key] for key, val of sd
-
   # Add the Gravity access token to all ajax requests
   $.ajaxSettings.headers = {
     "X-XAPP-TOKEN": sd.GRAVITY_XAPP_TOKEN

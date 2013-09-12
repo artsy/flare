@@ -1,6 +1,6 @@
-// 
+//
 // Button styles used project-wide
-// 
+//
 
 @import '../../stylus_lib'
 
@@ -43,7 +43,7 @@ chevron-pseudo-el()
   width 20px
   height @width
   margin-top 1px
-  
+
 .chevron-arrow-button-left
   &::before
     chevron-pseudo-el()
@@ -53,7 +53,7 @@ chevron-pseudo-el()
     left -12px
   &::after
     display none
-    
+
 .chevron-nav-list a
   text-decoration none
   position relative
@@ -69,23 +69,26 @@ chevron-pseudo-el()
     background light-gray-border-color
     right -9px
     position absolute
-      
+
 // Avant Garde rectangular buttons
 .avant-garde-box-button
   avant-garde()
   font-size avant-garde-font-size
-  padding 12px
-  border 1px solid light-gray-border-color
+  padding 14px 24px
   background transparent
-  width 100%
   margin 0
   text-decoration none
   text-align center
-  display block
+  display inline-block
   position relative
-  &:focus, &:active
+  background: #333
+  border: 0px
+  color: #FFF
+  margin-left: 10px
+  cursor: pointer
+  transition: background-color 0.4s
+  &:focus, &:active, &:hover
     background-color highlight-color
-    border-color @background-color
     color white
     outline none
   .loading-spinner
@@ -100,11 +103,11 @@ chevron-pseudo-el()
 .avant-garde-box-button-black
 .avant-garde-box-button-gray
   color white
-  
+
 .avant-garde-box-button-black
   background black
   border @background
-  
+
 .avant-garde-box-button-gray
   background #333
   border @background
@@ -120,7 +123,7 @@ chevron-pseudo-el()
   border 0
   border-bottom 2px solid black
   text-decoration none
-  
+
 .avant-garde-box-button-loading
   color transparent !important
   &.avant-garde-box-button-black
