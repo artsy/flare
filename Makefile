@@ -1,18 +1,22 @@
-# 
+#
 # Make -- the OG build tool.
 # Add any build tasks here and abstract complex build scripts into `lib` that can
 # be run in a Makefile task like `coffee lib/build_script`.
-# 
+#
 # Remember to set your text editor to use 4 size non-soft tabs.
-# 
+#
 
 BIN = node_modules/.bin
+
+# CloudFront distributions for flare-production and flare-staging buckets
+CDN_DOMAIN_production = d2j4e4qugepns1
+CDN_DOMAIN_staging = d346buv1lzfvg9
 
 # Start the server
 s:
 	$(BIN)/coffee app.coffee
 
-# Start the server watching for file changes and restarting	
+# Start the server watching for file changes and restarting
 sw:
 	$(BIN)/nodemon $(BIN)/coffee app.coffee
 
@@ -43,7 +47,7 @@ assets-to-cdn:
 deploy:
 	make assets-production
 	APPLICATION_NAME=flare-$(env) make assets-to-cdn
-	heroku config:add CDN_URL=//s3.amazonaws.com/flare-$(env)/assets/$(shell git rev-parse --short HEAD)/ --app=flare-$(env)
+	heroku config:add CDN_URL=//$(CDN_DOMAIN_$(env)).cloudfront.net/assets/$(shell git rev-parse --short HEAD)/ --app=flare-$(env)
 	git push git@heroku.com:flare-$(env).git master
 
 deploy-staging:
