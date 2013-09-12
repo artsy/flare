@@ -1,4 +1,64 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var BrowseView, SectionBase, _ref,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+SectionBase = require('./section_base.coffee');
+
+module.exports = BrowseView = (function(_super) {
+  __extends(BrowseView, _super);
+
+  function BrowseView() {
+    _ref = BrowseView.__super__.constructor.apply(this, arguments);
+    return _ref;
+  }
+
+  return BrowseView;
+
+})(SectionBase);
+
+
+},{"./section_base.coffee":6}],2:[function(require,module,exports){
+var CollectView, SectionBase, _ref,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+SectionBase = require('./section_base.coffee');
+
+module.exports = CollectView = (function(_super) {
+  __extends(CollectView, _super);
+
+  function CollectView() {
+    _ref = CollectView.__super__.constructor.apply(this, arguments);
+    return _ref;
+  }
+
+  return CollectView;
+
+})(SectionBase);
+
+
+},{"./section_base.coffee":6}],3:[function(require,module,exports){
+var ExploreView, SectionBase, _ref,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+SectionBase = require('./section_base.coffee');
+
+module.exports = ExploreView = (function(_super) {
+  __extends(ExploreView, _super);
+
+  function ExploreView() {
+    _ref = ExploreView.__super__.constructor.apply(this, arguments);
+    return _ref;
+  }
+
+  return ExploreView;
+
+})(SectionBase);
+
+
+},{"./section_base.coffee":6}],4:[function(require,module,exports){
 var HomePageView, bootstrap;
 
 bootstrap = require('../../../components/layout/bootstrap.coffee');
@@ -11,29 +71,224 @@ $(function() {
 });
 
 
-},{"../../../components/layout/bootstrap.coffee":4,"./view.coffee":2}],2:[function(require,module,exports){
-var Backbone, HomePageView, _ref,
+},{"../../../components/layout/bootstrap.coffee":10,"./view.coffee":8}],5:[function(require,module,exports){
+var Backbone, iPhoneView, _, _ref,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 Backbone = require('backbone');
 
+_ = require('underscore');
+
+module.exports = iPhoneView = (function(_super) {
+  __extends(iPhoneView, _super);
+
+  function iPhoneView() {
+    _ref = iPhoneView.__super__.constructor.apply(this, arguments);
+    return _ref;
+  }
+
+  iPhoneView.prototype.minTop = 80;
+
+  iPhoneView.prototype.minLeft = 50;
+
+  iPhoneView.prototype.initialize = function() {
+    var _this = this;
+    this.height = this.$el.height();
+    this.width = this.$el.width();
+    this.$window = $(window);
+    this.positionPhone();
+    return this.$window.on('resize.feed', _.debounce((function() {
+      return _this.positionPhone();
+    }), 300));
+  };
+
+  iPhoneView.prototype.positionPhone = function() {
+    var left, top, windowHeight, windowWidth;
+    windowHeight = this.$window.height();
+    windowWidth = this.$window.width();
+    top = Math.round((windowHeight - this.height) / 2);
+    left = Math.round((windowWidth - this.width) / 2);
+    this.top = _.max([top, this.minTop]);
+    this.left = _.max([left, this.minLeft]);
+    this.$el.css({
+      top: this.top,
+      left: this.left
+    });
+    return this.trigger('repositioned');
+  };
+
+  return iPhoneView;
+
+})(Backbone.View);
+
+
+},{"backbone":16,"underscore":17}],6:[function(require,module,exports){
+var Backbone, SectionBase, _ref,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+Backbone = require('backbone');
+
+module.exports = SectionBase = (function(_super) {
+  __extends(SectionBase, _super);
+
+  function SectionBase() {
+    _ref = SectionBase.__super__.constructor.apply(this, arguments);
+    return _ref;
+  }
+
+  return SectionBase;
+
+})(Backbone.View);
+
+
+},{"backbone":16}],7:[function(require,module,exports){
+var Backbone, SmsView, _ref,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+Backbone = require('backbone');
+
+module.exports = SmsView = (function(_super) {
+  __extends(SmsView, _super);
+
+  function SmsView() {
+    _ref = SmsView.__super__.constructor.apply(this, arguments);
+    return _ref;
+  }
+
+  SmsView.prototype.events = {
+    'click button': 'submit'
+  };
+
+  SmsView.prototype.submit = function() {};
+
+  return SmsView;
+
+})(Backbone.View);
+
+
+},{"backbone":16}],8:[function(require,module,exports){
+var Backbone, BrowseView, CollectView, ExploreView, HomePageView, SmsView, iPhoneView, _ref,
+  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+Backbone = require('backbone');
+
+BrowseView = require('./browse_view.coffee');
+
+ExploreView = require('./explore_view.coffee');
+
+CollectView = require('./collect_view.coffee');
+
+SmsView = require('./sms_view.coffee');
+
+iPhoneView = require('./iphone_view.coffee');
+
 module.exports = HomePageView = (function(_super) {
   __extends(HomePageView, _super);
 
   function HomePageView() {
+    this.nextSectionClick = __bind(this.nextSectionClick, this);
+    this.sectionNavClick = __bind(this.sectionNavClick, this);
     _ref = HomePageView.__super__.constructor.apply(this, arguments);
     return _ref;
   }
 
   HomePageView.prototype.el = 'body';
 
+  HomePageView.prototype.headerTextMargin = 60;
+
+  HomePageView.prototype.events = {
+    'click header a': 'sectionNavClick',
+    'click arrow': 'nextSectionClick'
+  };
+
+  HomePageView.prototype.sections = {
+    "browse": (function() {
+      return new BrowseView({
+        parent: this
+      });
+    }),
+    "explore": (function() {
+      return new ExploreView({
+        parent: this
+      });
+    }),
+    "collect": (function() {
+      return new CollectView({
+        parent: this
+      });
+    })
+  };
+
+  HomePageView.prototype.initialize = function() {
+    var _this = this;
+    this.$headerItems = this.$('header a');
+    this.$window = $(window);
+    this.$arrow = this.$('#arrow');
+    this.$header = this.$('header');
+    this.$largeHeaderText = this.$('.large-header .content');
+    this.smsForm = new SmsView({
+      parent: this
+    });
+    this.iphone = new iPhoneView({
+      parent: this,
+      el: this.$('#iphone')
+    });
+    this.iphone.on('repositioned', (function() {
+      return _this.sizeSections();
+    }));
+    this.sizeSections();
+    return this.show();
+  };
+
+  HomePageView.prototype.show = function() {
+    this.iphone.$el.addClass('visible');
+    this.$header.addClass('visible');
+    return this.$largeHeaderText.addClass('visible');
+  };
+
+  HomePageView.prototype.sizeSections = function() {
+    var height;
+    height = this.$window.height();
+    this.$('#content').css({
+      'margin-top': "" + height + "px",
+      'margin-bottom': "" + height + "px"
+    }).find('section').css({
+      'min-height': "" + height + "px"
+    });
+    return this.$largeHeaderText.css({
+      left: this.iphone.left + this.iphone.width + this.headerTextMargin
+    });
+  };
+
+  HomePageView.prototype.sectionNavClick = function(event) {
+    var section;
+    section = $(event.target).attr('data-section-name');
+    return this.smoothTransitionSection(section);
+  };
+
+  HomePageView.prototype.nextSectionClick = function() {};
+
+  HomePageView.prototype.smoothTransitionSection = function(section) {};
+
+  HomePageView.prototype.showArrow = function() {
+    return this.$arrow.show();
+  };
+
+  HomePageView.prototype.hightlightHeaderSection = function() {
+    return this.$headerItems.removeClass('selected');
+  };
+
   return HomePageView;
 
 })(Backbone.View);
 
 
-},{"backbone":10}],3:[function(require,module,exports){
+},{"./browse_view.coffee":1,"./collect_view.coffee":2,"./explore_view.coffee":3,"./iphone_view.coffee":5,"./sms_view.coffee":7,"backbone":16}],9:[function(require,module,exports){
 var hash;
 
 require('../../lib/zepto/index.coffee');
@@ -60,7 +315,7 @@ $(function() {
 });
 
 
-},{"../../apps/home/client/index.coffee":1,"../../lib/zepto/index.coffee":7}],4:[function(require,module,exports){
+},{"../../apps/home/client/index.coffee":4,"../../lib/zepto/index.coffee":13}],10:[function(require,module,exports){
 var Backbone, analytics, sd;
 
 require('../../lib/zepto/index.coffee');
@@ -74,11 +329,6 @@ sd = require('../../lib/shared_data.coffee');
 analytics = require('../../lib/analytics.coffee');
 
 module.exports = function() {
-  var key, val;
-  for (key in sd) {
-    val = sd[key];
-    sd[key] = BOOTSTRAP[key];
-  }
   $.ajaxSettings.headers = {
     "X-XAPP-TOKEN": sd.GRAVITY_XAPP_TOKEN
   };
@@ -92,7 +342,7 @@ module.exports = function() {
 };
 
 
-},{"../../lib/analytics.coffee":5,"../../lib/shared_data.coffee":6,"../../lib/zepto/index.coffee":7,"backbone":10}],5:[function(require,module,exports){
+},{"../../lib/analytics.coffee":11,"../../lib/shared_data.coffee":12,"../../lib/zepto/index.coffee":13,"backbone":16}],11:[function(require,module,exports){
 var sd,
   _this = this;
 
@@ -121,7 +371,7 @@ module.exports.trackPageview = function() {
 };
 
 
-},{"./shared_data.coffee":6}],6:[function(require,module,exports){
+},{"./shared_data.coffee":12}],12:[function(require,module,exports){
 module.exports = {
   GRAVITY_URL: null,
   GRAVITY_XAPP_TOKEN: null,
@@ -135,7 +385,7 @@ module.exports = {
 };
 
 
-},{}],7:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var global=self;require('../../node_modules/zepto/src/zepto.js');
 
 if (typeof global !== "undefined" && global !== null) {
@@ -161,7 +411,7 @@ require('./infinite_scroll.coffee');
 module.exports = Zepto;
 
 
-},{"../../node_modules/zepto/src/ajax.js":12,"../../node_modules/zepto/src/detect.js":13,"../../node_modules/zepto/src/event.js":14,"../../node_modules/zepto/src/form.js":15,"../../node_modules/zepto/src/fx.js":16,"../../node_modules/zepto/src/touch.js":17,"../../node_modules/zepto/src/zepto.js":18,"./infinite_scroll.coffee":8,"./remove_column_space.coffee":9}],8:[function(require,module,exports){
+},{"../../node_modules/zepto/src/ajax.js":18,"../../node_modules/zepto/src/detect.js":19,"../../node_modules/zepto/src/event.js":20,"../../node_modules/zepto/src/form.js":21,"../../node_modules/zepto/src/fx.js":22,"../../node_modules/zepto/src/touch.js":23,"../../node_modules/zepto/src/zepto.js":24,"./infinite_scroll.coffee":14,"./remove_column_space.coffee":15}],14:[function(require,module,exports){
 var onScroll,
   _this = this;
 
@@ -184,7 +434,7 @@ onScroll = module.exports = function() {
 };
 
 
-},{}],9:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 var removeColumnSpaceFrom, _;
 
 _ = require('underscore');
@@ -211,7 +461,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
 };
 
 
-},{"underscore":11}],10:[function(require,module,exports){
+},{"underscore":17}],16:[function(require,module,exports){
 //     Backbone.js 1.0.0
 
 //     (c) 2010-2013 Jeremy Ashkenas, DocumentCloud Inc.
@@ -1784,7 +2034,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
 
 }).call(this);
 
-},{"underscore":11}],11:[function(require,module,exports){
+},{"underscore":17}],17:[function(require,module,exports){
 //     Underscore.js 1.5.1
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -3032,7 +3282,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
 
 }).call(this);
 
-},{}],12:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 //     Zepto.js
 //     (c) 2010-2012 Thomas Fuchs
 //     Zepto.js may be freely distributed under the MIT license.
@@ -3353,7 +3603,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
   }
 })(Zepto)
 
-},{}],13:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 //     Zepto.js
 //     (c) 2010-2012 Thomas Fuchs
 //     Zepto.js may be freely distributed under the MIT license.
@@ -3416,7 +3666,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
 
 })(Zepto)
 
-},{}],14:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 //     Zepto.js
 //     (c) 2010-2012 Thomas Fuchs
 //     Zepto.js may be freely distributed under the MIT license.
@@ -3666,7 +3916,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
 
 })(Zepto)
 
-},{}],15:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 //     Zepto.js
 //     (c) 2010-2012 Thomas Fuchs
 //     Zepto.js may be freely distributed under the MIT license.
@@ -3708,7 +3958,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
 
 })(Zepto)
 
-},{}],16:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 //     Zepto.js
 //     (c) 2010-2012 Thomas Fuchs
 //     Zepto.js may be freely distributed under the MIT license.
@@ -3812,7 +4062,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
   testEl = null
 })(Zepto)
 
-},{}],17:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 //     Zepto.js
 //     (c) 2010-2012 Thomas Fuchs
 //     Zepto.js may be freely distributed under the MIT license.
@@ -3929,7 +4179,7 @@ removeColumnSpaceFrom = module.exports = function($container) {
   })
 })(Zepto)
 
-},{}],18:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 //     Zepto.js
 //     (c) 2010-2012 Thomas Fuchs
 //     Zepto.js may be freely distributed under the MIT license.
@@ -4723,5 +4973,5 @@ var Zepto = (function() {
 window.Zepto = Zepto
 window.$ === undefined && (window.$ = Zepto)
 
-},{}]},{},[3])
+},{}]},{},[9])
 ;

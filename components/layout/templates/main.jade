@@ -2,26 +2,34 @@ extends ./scaffold
 
 mixin header
   mixin large-header
-  header
-    .header-logo
+  header.black
     .links
       a( href= "/#browse" ) Browse Shows & Fairs
       a( href= "/#explore" ) Explore 60,000 Artworks
       a( href= "/#collect" ) Collect With Artsy
-    .app_store
+    .header-logo
+    a.app-store( href= sd.IPHONE_APP_URL )
+
 
 mixin large-header
   .large-header
-    .large-img
-    h1 The artwork in your pocket
-    h2 Introducing Artsy for iPhone
-    .sms
-      .heading send a link to your phone
-      input.bordered-input( placeholder= "Enter your phone number" )
-      button.avant-garde-box-button.avant-garde-box-button-grey( type= "submit" ) OK
+    .content
+      h1 The art world in your pocket
+      h2 Introducing Artsy for iPhone
+      .sms
+        .heading send a link to your phone
+        input.bordered-input( placeholder= "Enter your phone number" )
+        button.avant-garde-box-button.avant-garde-box-button-grey( type= "submit" ) OK
+
+mixin iphone
+  #iphone
+    img.phone( src=(sd.CDN_URL + "phone.png") )
+    img.reflection( src=(sd.CDN_URL + "phone-reflection-over-video.png") )
+    .content
 
 block body
+  mixin header
+  mixin iphone
   #content
-    mixin header
     block content
-    mixin header
+  #arrow
