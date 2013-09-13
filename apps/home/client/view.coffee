@@ -40,7 +40,7 @@ module.exports = class HomePageView extends Backbone.View
     @$leftHeaders = @$('#content section .left-text')
     @scrollTop = @$window.scrollTop()
 
-    @smsForm = new SmsView(parent: @)
+    @smsForm = new SmsView(parent: @, el: @$('#sms'))
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
     @iphone.on 'repositioned', (=> @onResize() )
 
