@@ -251,13 +251,12 @@ module.exports = HomePageView = (function(_super) {
       el: this.$('#iphone')
     });
     this.iphone.on('repositioned', (function() {
-      return _this.sizeSections();
+      return _this.onResize();
     }));
-    this.sizeSections();
+    this.onResize();
     return _.delay(function() {
       _this.show();
-      _this.animateSplashImages();
-      return _this.startAnimationFrame();
+      return _this.animateSplashImages();
     }, 400);
   };
 
@@ -267,15 +266,25 @@ module.exports = HomePageView = (function(_super) {
     return this.$largeHeaderText.addClass('visible');
   };
 
+  HomePageView.prototype.onResize = function() {
+    this.browserHeight = this.$window.height();
+    this.sizeSections();
+    this.sizeHeaders();
+    this.positionHeaders();
+    return this.sizeIphoneContentAreas();
+  };
+
   HomePageView.prototype.sizeSections = function() {
-    var height, leftHeaderPosition, rightHeaderPosition;
-    height = this.$window.height();
-    this.$('#content').css({
-      'margin-top': "" + height + "px",
-      'margin-bottom': "" + height + "px"
+    return this.$('#content').css({
+      'margin-top': "" + this.browserHeight + "px",
+      'margin-bottom': "" + this.browserHeight + "px"
     }).find('section').css({
-      'min-height': "" + height + "px"
+      'min-height': "" + this.broserHeight + "px"
     });
+  };
+
+  HomePageView.prototype.sizeHeaders = function() {
+    var leftHeaderPosition, rightHeaderPosition;
     this.headerWidth = this.$('#content section .left-text').width();
     rightHeaderPosition = this.iphone.left + this.iphone.width + this.headerTextMargin;
     leftHeaderPosition = this.iphone.left - this.headerTextMargin - this.headerWidth;
@@ -285,9 +294,24 @@ module.exports = HomePageView = (function(_super) {
     this.$rightHeaders.css({
       left: rightHeaderPosition
     });
-    this.$leftHeaders.css({
+    return this.$leftHeaders.css({
       left: leftHeaderPosition
     });
+  };
+
+  HomePageView.prototype.positionHeaders = function() {
+    var browserHeight;
+    browserHeight = this.browserHeight;
+    return this.$('.text-container').each(function() {
+      var $header;
+      $header = $(this);
+      return $header.css({
+        top: (browserHeight - $header.height()) / 2
+      });
+    });
+  };
+
+  HomePageView.prototype.sizeIphoneContentAreas = function() {
     return this.$phoneContentAreas.css({
       height: this.iphone.height * this.phoneContentAreaHeightRatio,
       'margin-top': this.iphone.top + (this.iphone.height * this.phoneAreaAboveContentAreaToHeightRatio)
@@ -300,6 +324,14 @@ module.exports = HomePageView = (function(_super) {
     section = $(event.target).attr('data-section-name');
     this.smoothTransitionSection(section);
     return false;
+  };
+
+  HomePageView.prototype.smoothTransitionSection = function(section) {
+    var $section;
+    $section = $("#" + section);
+    return $('html, body').animate({
+      scrollTop: $section.offset().top
+    }, 400);
   };
 
   HomePageView.prototype.animateSplashImages = function() {
@@ -317,15 +349,6 @@ module.exports = HomePageView = (function(_super) {
   };
 
   HomePageView.prototype.nextSectionClick = function() {};
-
-  HomePageView.prototype.smoothTransitionSection = function(section) {
-    var $section;
-    $section = $("#" + section);
-    console.log(section, $section);
-    return $('html, body').animate({
-      scrollTop: $section.offset().top
-    }, 400);
-  };
 
   HomePageView.prototype.showArrow = function() {
     return this.$arrow.show();

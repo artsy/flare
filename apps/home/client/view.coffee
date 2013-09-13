@@ -7,7 +7,7 @@ SmsView = require './sms_view.coffee'
 iPhoneView = require './iphone_view.coffee'
 
 module.exports = class HomePageView extends Backbone.View
-  
+
   el: 'body'
 
   headerTextMargin: 60
@@ -36,13 +36,13 @@ module.exports = class HomePageView extends Backbone.View
 
     @smsForm = new SmsView(parent: @)
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
-    @iphone.on 'repositioned', (=> @sizeSections())
-    @sizeSections()
-    
+    @iphone.on 'repositioned', (=> @onResize() )
+    @onResize()
+
     _.delay =>
       @show()
       @animateSplashImages()
-      @startAnimationFrame()
+      #@startAnimationFrame()
     , 400
 
   show: ->
@@ -50,14 +50,21 @@ module.exports = class HomePageView extends Backbone.View
     @$header.addClass 'visible'
     @$largeHeaderText.addClass 'visible'
 
-  sizeSections: ->
-    height = @$window.height()
-    @$('#content').css(
-      'margin-top': "#{height}px"
-      'margin-bottom': "#{height}px"
-    ).find('section').css
-      'min-height': "#{height}px"
+  onResize: ->
+    @browserHeight = @$window.height()
+    @sizeSections()
+    @sizeHeaders()
+    @positionHeaders()
+    @sizeIphoneContentAreas()
 
+  sizeSections: ->
+    @$('#content').css(
+      'margin-top': "#{@browserHeight}px"
+      'margin-bottom': "#{@browserHeight}px"
+    ).find('section').css
+      'min-height': "#{@broserHeight}px"
+
+  sizeHeaders: ->
     @headerWidth = @$('#content section .left-text').width()
 
     rightHeaderPosition = @iphone.left + @iphone.width + @headerTextMargin
@@ -71,6 +78,14 @@ module.exports = class HomePageView extends Backbone.View
     @$leftHeaders.css
       left: leftHeaderPosition
 
+  positionHeaders: ->
+    browserHeight = @browserHeight
+    @$('.text-container').each ->
+      $header = $(@)
+      $header.css
+        top: (browserHeight - $header.height()) / 2
+
+  sizeIphoneContentAreas: ->
     @$phoneContentAreas.css
       height: @iphone.height * @phoneContentAreaHeightRatio
       'margin-top': @iphone.top + (@iphone.height * @phoneAreaAboveContentAreaToHeightRatio)
