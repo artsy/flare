@@ -12,8 +12,6 @@
 #
 
 module.exports =
-  GRAVITY_URL: null
-  GRAVITY_XAPP_TOKEN: null
   CDN_URL: null
   JS_EXT: null
   CSS_EXT: null

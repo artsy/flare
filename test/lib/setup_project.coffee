@@ -29,19 +29,3 @@ describe 'Project setup', ->
     it 'sets the JS_EXT and CSS_EXT for production', ->
       sd.JS_EXT.should.equal '.min.js.gz'
       sd.CSS_EXT.should.equal '.min.css.gz'
-  
-  context 'for test', ->
-    
-    beforeEach ->
-      @app = express()
-      @app.set 'env', 'test'
-      setup @app
-    
-    it 'mounts gravity for test', ->
-      routes = (layer.route for layer in @app.stack)
-      ('/__gravity' in routes).should.be.ok
-      
-  it 'inject configuration into shared data', ->
-    sd.GRAVITY_URL = ''
-    setup @app
-    sd.GRAVITY_URL.should.equal config.GRAVITY_URL

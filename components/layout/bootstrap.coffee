@@ -16,11 +16,6 @@ analytics = require '../../lib/analytics.coffee'
 
 module.exports = ->
 
-  # Add the Gravity access token to all ajax requests
-  $.ajaxSettings.headers = {
-    "X-XAPP-TOKEN": sd.GRAVITY_XAPP_TOKEN
-  }
-
   # Initialize analytics & track page view if we included mixpanel
   # (not included in test environment).
   unless typeof mixpanel is 'undefined'

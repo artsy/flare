@@ -1,7 +1,6 @@
-# 
-# Overrides Backbone.sync to work on the server by using superagent and adding the
-# Gravity XAPP token.
-# 
+#
+# Overrides Backbone.sync to work on the server by using superagent
+#
 # TODO: Extract into it's own Open Source node module.
 #
 
@@ -20,7 +19,7 @@ module.exports = (method, model, options) ->
   httpMethod = METHOD_MAP[method]
   url = _.result model, 'url'
   data = options.data or (if method in ['create', 'update'] then model.toJSON() else {})
-  req = request[httpMethod](url).set("X-XAPP-TOKEN": sd.GRAVITY_XAPP_TOKEN)
+  req = request[httpMethod](url)
   req = if method in ['create', 'update']
           req.send(data).set('content-length', JSON.stringify(data).length)
         else

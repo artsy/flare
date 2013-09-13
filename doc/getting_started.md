@@ -41,7 +41,7 @@ npm install coffee-script -g
 
 ## Run the Server
 
-Make sure Gravity is running on localhost:3000, then run the server, and open flare at [localhost:3003](http://localhost:3003).
+Run the server, and open flare at [localhost:3003](http://localhost:3003).
 
 ````
 make s
