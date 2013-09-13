@@ -14,6 +14,6 @@ describe 'Bootstrapping client-side environment', ->
 
   it 'loads any bootstrap data into the shared data hash', ->
     sd.GRAVITY_URL.should.equal 'foobar'
-    
+
   it 'adds the XAPP token to ajax requests', ->
     $.ajaxSettings.headers['X-XAPP-TOKEN'].should.equal 'xappfoobar'
