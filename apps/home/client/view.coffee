@@ -11,6 +11,7 @@ module.exports = class HomePageView extends Backbone.View
   el: 'body'
 
   headerTextMargin: 60
+  headerWidth: 350 # todo - make responsive
 
   events:
     'click header a' : 'sectionNavClick'
@@ -52,8 +53,16 @@ module.exports = class HomePageView extends Backbone.View
     ).find('section').css
       'min-height': "#{height}px"
 
+    rightHeaderPosition = @iphone.left + @iphone.width + @headerTextMargin
+    leftHeaderPosition = @iphone.left - @headerTextMargin - @headerWidth
+
     @$largeHeaderText.css
-      left: @iphone.left + @iphone.width + @headerTextMargin
+      left: rightHeaderPosition
+
+    @$('#content section .right').css
+      left: rightHeaderPosition
+    @$('#content section .left').css
+      left: leftHeaderPosition
 
   sectionNavClick: (event) =>
     section = $(event.target).attr 'data-section-name'
