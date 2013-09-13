@@ -3,6 +3,23 @@ section {
   position: relative;
   min-height: 1000px;
 }
+section .text-container {
+  min-width: 350px;
+  width: 30%;
+  position: absolute;
+}
+section .heading {
+  font-size: 47px;
+  line-height: 102%;
+  margin-bottom: 25px;
+  min-width: 350px;
+}
+section p {
+  font-size: 17px;
+  line-height: 143%;
+  color: #333;
+  width: 350px;
+}
 .avant-garde-header,
 .avant-garde-header-center {
   font-family: 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif';
