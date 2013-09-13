@@ -239,6 +239,7 @@ module.exports = HomePageView = (function(_super) {
     var _this = this;
     this.$headerItems = this.$('.app-header a');
     this.$window = $(window);
+    this.$document = $(document);
     this.$arrow = this.$('#arrow');
     this.$header = this.$('.app-header');
     this.$phoneContentAreas = this.$('.phone-content-area');
@@ -271,7 +272,7 @@ module.exports = HomePageView = (function(_super) {
 
   HomePageView.prototype.onResize = function() {
     this.browserHeight = this.$window.height();
-    this.documentHeight = $(document).height();
+    this.documentHeight = this.$document.height();
     this.sizeSections();
     this.sizeHeaders();
     this.positionHeaders();
@@ -316,9 +317,12 @@ module.exports = HomePageView = (function(_super) {
   };
 
   HomePageView.prototype.sizeIphoneContentAreas = function() {
-    return this.$phoneContentAreas.css({
-      height: this.iphone.height * this.phoneContentAreaHeightRatio,
-      'margin-top': this.iphone.top + (this.iphone.height * this.phoneAreaAboveContentAreaToHeightRatio)
+    this.$phoneContentAreas.css({
+      height: this.iphone.height * this.phoneContentAreaHeightRatio
+    });
+    this.contentAreaTop = this.iphone.top + (this.iphone.height * this.phoneAreaAboveContentAreaToHeightRatio);
+    return $('.phone-content-area.splash-images').css({
+      'margin-top': this.contentAreaTop
     });
   };
 

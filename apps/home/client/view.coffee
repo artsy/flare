@@ -28,6 +28,7 @@ module.exports = class HomePageView extends Backbone.View
   initialize: ->
     @$headerItems = @$('.app-header a')
     @$window = $(window)
+    @$document = $(document)
     @$arrow = @$('#arrow')
     @$header = @$('.app-header')
     @$phoneContentAreas = @$('.phone-content-area')
@@ -53,7 +54,7 @@ module.exports = class HomePageView extends Backbone.View
 
   onResize: ->
     @browserHeight = @$window.height()
-    @documentHeight = $(document).height()
+    @documentHeight = @$document.height()
     @sizeSections()
     @sizeHeaders()
     @positionHeaders()
@@ -90,7 +91,11 @@ module.exports = class HomePageView extends Backbone.View
   sizeIphoneContentAreas: ->
     @$phoneContentAreas.css
       height: @iphone.height * @phoneContentAreaHeightRatio
-      'margin-top': @iphone.top + (@iphone.height * @phoneAreaAboveContentAreaToHeightRatio)
+
+    # todo - refactor
+    @contentAreaTop = @iphone.top + (@iphone.height * @phoneAreaAboveContentAreaToHeightRatio)
+    $('.phone-content-area.splash-images').css
+      'margin-top': @contentAreaTop
 
   sectionNavClick: (event) =>
     event.preventDefault()

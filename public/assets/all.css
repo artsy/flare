@@ -2,11 +2,13 @@ section {
   background: #fff;
   position: relative;
   min-height: 1000px;
+  overflow: hidden;
 }
 section .text-container {
   min-width: 350px;
   width: 30%;
   position: absolute;
+  z-index: 6;
 }
 section .heading {
   font-size: 47px;
@@ -19,6 +21,34 @@ section p {
   line-height: 143%;
   color: #333;
   width: 350px;
+}
+section .top-white-bar,
+section .bottom-white-bar {
+  color: #fff;
+  width: 500px;
+  margin: 0px auto;
+  position: absolute;
+  z-index: 5;
+}
+section .top-white-bar {
+  top: 0px;
+}
+section .bottom-white-bar {
+  bottom: 0px;
+}
+section .image-placeholder {
+  background-size: auto 100%;
+  width: 100%;
+  height: 100%;
+}
+section#browse .phone-content-area .image-placeholder {
+  background: #0ff;
+}
+section#explore .phone-content-area .image-placeholder {
+  background: #f0f;
+}
+section#collect .phone-content-area .image-placeholder {
+  background: #ff0;
 }
 .app-header {
   position: fixed;
