@@ -17,6 +17,7 @@
 @import './headers'
 @import './buttons'
 @import './inputs'
+@import './hero'
 
 global-reset()
 
@@ -84,82 +85,6 @@ font-face('AvantGardeGothicITCW01D 731075', 'c18aee57-7585-4a8b-9a1c-69d226301d7
     &:hover
       border-color: highlight-color
 
-.hero
-  background: black
-  color: white
-  position: fixed
-  width: 100%
-  height: 100%
-  z-index: 1
-  top: 0px
-  h1, h2, .heading
-    width: 300px
-  h1
-    font-size: 47px
-    line-height: 102%
-  h2
-    font-size: 24px
-    margin-top: 19px
-    margin-bottom: 50px
-  .heading
-    avant-garde()
-    font-size: 14px
-    margin-bottom: 9px
-  .content
-    width: 350px
-    position: absolute
-    right: 0px
-    top: 300px
-    opacity(0)
-    transition(opacity, 0.4s)
-    &.visible
-      opacity(1)
-  .bordered-input
-    width: 239px
-
-  .splash-logo
-    height: 100%
-    width: 100%
-    background-size contain
-    background-repeat no-repeat
-    background-position center center
-    background-size: auto 11%
-    background-image url('/images/splash/Logo@2x.png') !important
-    position: absolute
-    top: 0px
-    z-index: 6
-
-  .splash-image
-    background-size contain
-    background-repeat no-repeat
-    background-position center center
-    background-size: auto 100%
-    width: 100%
-    height: 100%
-    transition: opacity 0.4s
-    opacity(0)
-    position: absolute
-    top: 0px
-    z-index: 5
-    &.active
-      opacity(1)
-  .splash-image-1
-    background-image url('/images/splash/01intro.png') !important
-  .splash-image-2
-    background-image url('/images/splash/02intro.png') !important
-  .splash-image-3
-    background-image url('/images/splash/03intro.png') !important
-  .splash-image-4
-    background-image url('/images/splash/04intro.png') !important
-  .splash-image-5
-    background-image url('/images/splash/05intro.png') !important
-  .splash-image-6
-    background-image url('/images/splash/06intro.png') !important
-  .splash-image-7
-    background-image url('/images/splash/07intro.png') !important
-  .splash-image-8
-    background-image url('/images/splash/08intro.png') !important
-
 .phone-content-area
   position: absolute
   width: 100%
@@ -202,62 +127,3 @@ font-face('AvantGardeGothicITCW01D 731075', 'c18aee57-7585-4a8b-9a1c-69d226301d7
     height: 53.407%
   &.visible
     opacity(1)
-
-.app-header
-  position: fixed
-  transition: top 0.4s
-  top: -64px
-  left: 0px
-  width: 100%
-  z-index: 10
-  overflow: hidden
-  height: 64px
-  &.visible
-    top: 0px
-  .app-store
-    background-size contain
-    background-repeat no-repeat
-    background-position center center
-    height: 50px
-    background-image url('/images/app-store.svg') !important
-    width: 150px
-    float: right
-    right: 16px
-  .app-store, .header-logo
-    top: 16px
-    position: absolute
-  .header-logo
-    left: 16px
-  .links
-    text-align: center
-    a
-      avant-garde()
-      text-decoration: none
-      margin: 16px 19px
-      padding: 9px 20px
-      display: inline-block
-      border-top: 4px solid white
-      font-size: 13px
-      transition: color 0.4s, border-color 0.4s
-      &:first-child
-        margin-left: 0px
-      &:last-child
-        margin-right: 0px
-      &:hover, &.active
-        color: highlight-color !important
-        border-color: highlight-color !important
-
-  &.black
-    background: black
-    .links a
-      color: white
-      border-color: white
-    .header-logo
-      background-image url('/images/artsy-logotype-white.svg') !important
-  &.white
-    background: white
-    .links a
-      color: black
-      border-color: black
-    .header-logo
-      background-image url('/images/artsy-logotype-black.svg') !important

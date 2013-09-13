@@ -93,4 +93,4 @@ attachGlobals = (window) =>
   global.navigator = globals.navigator = window.navigator
   global.document = globals.document = window.document
   global.BOOTSTRAP = globals.BOOTSTRAP = {}
-  globals.$ = Backbone.$ = require '../../lib/zepto/index.coffee'
+  globals.$ = Backbone.$ = require '../../lib/jquery.js'
