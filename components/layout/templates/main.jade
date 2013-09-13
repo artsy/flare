@@ -3,9 +3,9 @@ extends ./scaffold
 mixin header
   header.app-header.black
     .links
-      a( href= "/#browse" ) Browse Shows & Fairs
-      a( href= "/#explore" ) Explore 60,000 Artworks
-      a( href= "/#collect" ) Collect With Artsy
+      a( href= "/#browse" data-section-name='browse' ) Browse Shows & Fairs
+      a( href= "/#explore" data-section-name='explore' ) Explore 60,000 Artworks
+      a( href= "/#collect" data-section-name='collect' ) Collect With Artsy
     .header-logo
     a.app-store( href= sd.IPHONE_APP_URL )
 
@@ -13,7 +13,7 @@ mixin hero
   .hero
     .splash-images.phone-content-area
       .splash-logo
-      .splash-image.splash-image-1.active
+      .splash-image.splash-image-1
       .splash-image.splash-image-2
       .splash-image.splash-image-3
       .splash-image.splash-image-4

@@ -42,6 +42,7 @@ module.exports = class HomePageView extends Backbone.View
     _.delay =>
       @show()
       @animateSplashImages()
+      @startAnimationFrame()
     , 400
 
   show: ->
@@ -75,8 +76,14 @@ module.exports = class HomePageView extends Backbone.View
       'margin-top': @iphone.top + (@iphone.height * @phoneAreaAboveContentAreaToHeightRatio)
 
   sectionNavClick: (event) =>
+    event.preventDefault()
     section = $(event.target).attr 'data-section-name'
     @smoothTransitionSection section
+    false
+
+  smoothTransitionSection: (section) ->
+    $section = $("##{section}")
+    $('html, body').animate(scrollTop: $section.offset().top, 400)
 
   animateSplashImages: ->
     @splashInterval = window.setInterval =>
@@ -90,8 +97,6 @@ module.exports = class HomePageView extends Backbone.View
     , 2000
 
   nextSectionClick: =>
-
-  smoothTransitionSection: (section) ->
 
   showArrow: ->
     @$arrow.show()

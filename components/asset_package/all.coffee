@@ -6,7 +6,7 @@
 # to get more complex in how we break up and load assets.
 # 
 
-require '../../lib/zepto/index.coffee'
+require '../../lib/jquery.js'
 
 hash =
   

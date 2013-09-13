@@ -7,7 +7,7 @@
 # included across most apps and any uncessary bloat should be avoided.
 #
 
-require '../../lib/zepto/index.coffee'
+require '../../lib/jquery.js'
 Backbone = require 'backbone'
 Backbone.$ = $
 sd = require '../../lib/shared_data.coffee'

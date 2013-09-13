@@ -1,17 +1,59 @@
-// 
-// Header styles used project-wide
-// 
-
 @import '../../stylus_lib'
 
-.avant-garde-header
-  avant-garde()
-  font-size avant-garde-font-size
-  
-.avant-garde-header-center
-  @extend .avant-garde-header
-  width 100%
-  text-align center
-  
-.h2-margin
-  margin 20px 0
+.app-header
+  position: fixed
+  transition: top 0.8s
+  top: -64px
+  left: 0px
+  width: 100%
+  z-index: 10
+  overflow: hidden
+  height: 64px
+  &.visible
+    top: 0px
+  .app-store
+    background-size contain
+    background-repeat no-repeat
+    background-position center center
+    height: 50px
+    background-image url('/images/app-store.svg') !important
+    width: 150px
+    float: right
+    right: 16px
+  .app-store, .header-logo
+    top: 16px
+    position: absolute
+  .header-logo
+    left: 16px
+  .links
+    text-align: center
+    a
+      avant-garde()
+      text-decoration: none
+      margin: 16px 19px
+      padding: 9px 20px
+      display: inline-block
+      border-top: 4px solid white
+      font-size: 13px
+      transition: color 0.4s, border-color 0.4s
+      &:first-child
+        margin-left: 0px
+      &:last-child
+        margin-right: 0px
+      &:hover, &.active
+        color: highlight-color !important
+        border-color: highlight-color !important
+  &.black
+    background: black
+    .links a
+      color: white
+      border-color: white
+    .header-logo
+      background-image url('/images/artsy-logotype-white.svg') !important
+  &.white
+    background: white
+    .links a
+      color: black
+      border-color: black
+    .header-logo
+      background-image url('/images/artsy-logotype-black.svg') !important
