@@ -10,6 +10,7 @@
 require '../../lib/jquery.js'
 Backbone = require 'backbone'
 Backbone.$ = $
+popLockit = require '../../lib/jquery.poplockit.coffee'
 sd = require '../../lib/shared_data.coffee'
 analytics = require '../../lib/analytics.coffee'
 

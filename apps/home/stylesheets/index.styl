@@ -4,11 +4,17 @@ section
   position: relative
   min-height: 1000px
   overflow: hidden
+  border-bottom: 1px solid black
   .text-container
     min-width: 350px
     width: 30%
-    position: absolute
     z-index: 6
+    display: inline-block
+
+  .heading, p
+    padding-left: 35px
+    padding-right: 35px
+
   .heading
     font-size: 47px
     line-height: 102%
@@ -48,3 +54,7 @@ section
 
   &#collect .phone-content-area .image-placeholder
     background: yellow
+
+  .phone-content-area.column
+    position: static
+    display: inline-block
