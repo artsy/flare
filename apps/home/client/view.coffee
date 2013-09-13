@@ -11,6 +11,7 @@ module.exports = class HomePageView extends Backbone.View
   el: 'body'
 
   headerTextMargin: 60
+  phoneContentAreaHeightRatio: 0.7053
 
   events:
     'click header a' : 'sectionNavClick'
@@ -26,6 +27,7 @@ module.exports = class HomePageView extends Backbone.View
     @$window = $(window)
     @$arrow = @$('#arrow')
     @$header = @$('.app-header')
+    @$phoneContentAreas = @$('.phone-content-area')
     @$largeHeaderText = @$('.hero .content')
     @$rightHeaders = @$('#content section .right-text')
     @$leftHeaders = @$('#content section .left-text')
@@ -37,9 +39,8 @@ module.exports = class HomePageView extends Backbone.View
     
     _.delay =>
       @show()
+      @animateSplashImages()
     , 400
-
-    # @animateIphoneImages()
 
   show: ->
     @iphone.$el.addClass 'visible'
@@ -67,9 +68,24 @@ module.exports = class HomePageView extends Backbone.View
     @$leftHeaders.css
       left: leftHeaderPosition
 
+    @$phoneContentAreas.css
+      height: @iphone.height * @phoneContentAreaHeightRatio
+      'margin-top': @iphone.top + (@iphone.height * 0.14759)
+
   sectionNavClick: (event) =>
     section = $(event.target).attr 'data-section-name'
     @smoothTransitionSection section
+
+  animateSplashImages: ->
+    @splashInterval = window.setInterval =>
+      activeSplashImage = @$('.splash-image.active').removeClass('active').next()
+      # wait for css fade out animation to finish
+      _.delay =>
+        if activeSplashImage.length < 1
+          activeSplashImage = @$('.splash-image').first()
+        activeSplashImage.addClass 'active'
+      , 300
+    , 2000
 
   nextSectionClick: =>
 
