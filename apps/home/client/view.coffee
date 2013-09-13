@@ -6,6 +6,7 @@ CollectView = require './collect_view.coffee'
 WhiteBlockerBars = require './white_blocker_bars.coffee'
 SmsView = require './sms_view.coffee'
 iPhoneView = require './iphone_view.coffee'
+ShareView = require './share_view.coffee'
 
 # todo - refactor this into a larger view for the homepage / app and a subview for stuff under #content
 module.exports = class HomePageView extends Backbone.View
@@ -27,6 +28,7 @@ module.exports = class HomePageView extends Backbone.View
     "browse" : (-> new BrowseView(parent: @) )
     "explore" : (-> new ExploreView(parent: @) )
     "collect" : (-> new CollectView(parent: @) )
+
   sectionViews: {}
 
   initialize: ->
@@ -45,6 +47,7 @@ module.exports = class HomePageView extends Backbone.View
     @smsForm = new SmsView(parent: @, el: @$('#sms'))
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
     @whiteBars = new WhiteBlockerBars(parent: @, el: @$('.white-bars-container'))
+    @shareView = new ShareView(parent: @, el: @$('.share'))
     @iphone.on 'repositioned', @onResize
 
     _.delay =>

@@ -42,6 +42,33 @@
     bottom: 20px
     color: #AAA
 
+  .share
+    avant-garde()
+    margin-top: 36px
+    font-size: 14px
+
+    .facebook-icon, .twitter-icon
+      background-size contain
+      background-repeat no-repeat
+      background-position left center
+      height: 20px
+      width: 20px
+      display: inline-block
+      margin-left: 16px
+      padding-left: 30px
+      width: 86px
+      cursor: pointer
+      transition: opacity 0.4s
+      opacity(1)
+      &:hover
+        opacity(0.7)
+
+    .facebook-icon
+      background-image url('/images/icon_facebook_white.png') !important
+    .twitter-icon
+      width: 62px
+      background-image url('/images/icon_twitter_white.png') !important
+
   .splash-image
     background-size contain
     background-repeat no-repeat

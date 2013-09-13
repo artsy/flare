@@ -10,7 +10,7 @@ module.exports = class iPhoneView extends Backbone.View
   initialize: ->
     @$window = $(window)
     @positionPhone()
-    @$window.on 'resize.feed', _.debounce((=> @positionPhone()), 300)
+    @$window.on 'resize.feed', _.throttle((=> @positionPhone()), 70)
 
   positionPhone: ->
     @height = @$el.height()
