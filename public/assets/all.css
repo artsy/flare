@@ -3,12 +3,18 @@ section {
   position: relative;
   min-height: 1000px;
   overflow: hidden;
+  border-bottom: 1px solid #000;
 }
 section .text-container {
   min-width: 350px;
   width: 30%;
-  position: absolute;
   z-index: 6;
+  display: inline-block;
+}
+section .heading,
+section p {
+  padding-left: 35px;
+  padding-right: 35px;
 }
 section .heading {
   font-size: 47px;
@@ -50,6 +56,10 @@ section#explore .phone-content-area .image-placeholder {
 }
 section#collect .phone-content-area .image-placeholder {
   background: #ff0;
+}
+section .phone-content-area.column {
+  position: static;
+  display: inline-block;
 }
 .app-header {
   position: fixed;
@@ -409,7 +419,7 @@ section#collect .phone-content-area .image-placeholder {
   width: 350px;
   position: absolute;
   right: 0px;
-  top: 300px;
+  top: 0px;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -587,11 +597,6 @@ body {
   font-size: 16px;
   line-height: 1.4em;
   text-rendering: optimizeLegibility;
-}
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
 a {
   color: #000;

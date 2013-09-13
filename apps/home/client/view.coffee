@@ -34,6 +34,7 @@ module.exports = class HomePageView extends Backbone.View
     @$arrow = @$('#arrow')
     @$header = @$('.app-header')
     @$phoneContentAreas = @$('.phone-content-area')
+    @$mainPhoneContentAreas = @$('#content .phone-content-area') # excludes hero
     @$largeHeaderText = @$('.hero .content')
     @$rightHeaders = @$('#content section .right-text')
     @$leftHeaders = @$('#content section .left-text')
@@ -43,15 +44,20 @@ module.exports = class HomePageView extends Backbone.View
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
     @iphone.on 'repositioned', (=> @onResize() )
 
-    @initializeRequestAnimationFrame()
-
     _.delay =>
       @onResize()
       @show()
       @animateSplashImages()
+      @initializePopLockit()
       @newAnimationFrame()
       @initializeSections()
     , 400
+
+  initializePopLockit: ->
+    $('#content').popLockIt({
+      feedItems      : $('#content > section')
+      columnSelector : '> .column'
+    })
 
   initializeSections: ->
     for sectionName in _.keys(@sections)
@@ -82,27 +88,28 @@ module.exports = class HomePageView extends Backbone.View
   sizeHeaders: ->
     @headerWidth = @$('#content section .left-text').width()
 
-    rightHeaderPosition = @iphone.left + @iphone.width + @headerTextMargin
-    leftHeaderPosition = @iphone.left - @headerTextMargin - @headerWidth
-
     @$largeHeaderText.css
-      left: rightHeaderPosition
+      left: @iphone.left + @iphone.width + @headerTextMargin
 
     @$rightHeaders.css
-      left: rightHeaderPosition
+      width: "#{@iphone.left}px"
     @$leftHeaders.css
-      left: leftHeaderPosition
+      width: "#{@iphone.left}px"
 
   positionHeaders: ->
     browserHeight = @browserHeight
     @$('.text-container').each ->
       $header = $(@)
       $header.css
-        top: (browserHeight - $header.height()) / 2
+        'padding-top': (browserHeight - $header.height()) / 2
+        'padding-bottom': (browserHeight - $header.height()) / 2
 
   sizeIphoneContentAreas: ->
     @$phoneContentAreas.css
       height: @iphone.height * @phoneContentAreaHeightRatio
+
+    @$mainPhoneContentAreas.css
+      width: @iphone.width
 
     # todo - refactor
     @contentAreaTop = @iphone.top + (@iphone.height * @phoneAreaAboveContentAreaToHeightRatio)
@@ -165,27 +172,3 @@ module.exports = class HomePageView extends Backbone.View
 
   hightlightHeaderSection: ->
     @$headerItems.removeClass 'selected'
-
-
-  # todo - put in a lib
-  # http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-  # requestAnimationFrame polyfill by Erik Moller
-  # fixes from Paul Irish and Tino Zijdel
-  initializeRequestAnimationFrame: ->
-    return if window.requestAnimationFrame
-    lastTime = 0
-    vendors = ['ms', 'moz', 'webkit', 'o']
-    for vendor in vendors when not window.requestAnimationFrame
-      window.requestAnimationFrame = window["#{vendor}RequestAnimationFrame"]
-      window.cancelAnimationFrame = window["{vendor}CancelAnimationFrame"] or window["{vendors}CancelRequestAnimationFrame"]
-
-    unless window.requestAnimationFrame
-      window.requestAnimationFrame = (callback, element) ->
-        currTime = new Date().getTime()
-        timeToCall = Math.max(0, 16 - (currTime - lastTime))
-        id = window.setTimeout((-> callback(currTime + timeToCall)), timeToCall)
-        lastTime = currTime + timeToCall
-        id
-
-    unless window.cancelAnimationFrame
-      window.cancelAnimationFrame = (id) -> clearTimeout(id)
