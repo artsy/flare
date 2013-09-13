@@ -235,6 +235,8 @@ module.exports = HomePageView = (function(_super) {
     })
   };
 
+  HomePageView.prototype.sectionViews = {};
+
   HomePageView.prototype.initialize = function() {
     var _this = this;
     this.$headerItems = this.$('.app-header a');
@@ -260,8 +262,20 @@ module.exports = HomePageView = (function(_super) {
       _this.onResize();
       _this.show();
       _this.animateSplashImages();
-      return _this.startAnimationFrame();
+      _this.startAnimationFrame();
+      return _this.initializeSections();
     }, 400);
+  };
+
+  HomePageView.prototype.initializeSections = function() {
+    var sectionName, _i, _len, _ref1, _results;
+    _ref1 = _.keys(this.sections);
+    _results = [];
+    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+      sectionName = _ref1[_i];
+      _results.push(this.sectionViews[sectionName] = this.sections[sectionName]());
+    }
+    return _results;
   };
 
   HomePageView.prototype.show = function() {
@@ -272,8 +286,8 @@ module.exports = HomePageView = (function(_super) {
 
   HomePageView.prototype.onResize = function() {
     this.browserHeight = this.$window.height();
-    this.documentHeight = this.$document.height();
     this.sizeSections();
+    this.documentHeight = this.$document.height();
     this.sizeHeaders();
     this.positionHeaders();
     return this.sizeIphoneContentAreas();
@@ -284,7 +298,7 @@ module.exports = HomePageView = (function(_super) {
       'margin-top': "" + this.browserHeight + "px",
       'margin-bottom': "" + this.browserHeight + "px"
     }).find('section').css({
-      'min-height': "" + this.broserHeight + "px"
+      'min-height': "" + (this.browserHeight * 3) + "px"
     });
   };
 
@@ -361,12 +375,20 @@ module.exports = HomePageView = (function(_super) {
       _this = this;
     this.scrollTop = this.$window.scrollTop();
     step = function() {
-      if (_this.$window.scrollTop() !== _this.scrollTop) {
-        _this.scrollTop = _this.$window.scrollTop();
+      var newScrollTop, sectionName, sectionView, _ref1;
+      newScrollTop = _this.$window.scrollTop();
+      if (newScrollTop !== _this.scrollTop) {
+        _this.direction = newScrollTop > _this.scrollTop ? 'down' : 'up';
+        _this.scrollTop = newScrollTop;
         if ((_this.scrollTop > _this.browserHeight - _this.headerHeight) && (_this.scrollTop < _this.documentHeight - _this.browserHeight - _this.headerHeight)) {
           _this.$header.addClass('white');
         } else {
           _this.$header.removeClass('white');
+        }
+        _ref1 = _this.sectionViews;
+        for (sectionName in _ref1) {
+          sectionView = _ref1[sectionName];
+          sectionView.onScroll(_this.scrollTop, _this.browserHeight, _this.direction);
         }
       }
       return window.requestAnimationFrame(step);

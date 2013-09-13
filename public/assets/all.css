@@ -28,7 +28,8 @@ section .bottom-white-bar {
   width: 500px;
   margin: 0px auto;
   position: absolute;
-  z-index: 5;
+  z-index: 9;
+  height: 100px;
 }
 section .top-white-bar {
   top: 0px;
@@ -427,22 +428,6 @@ section#collect .phone-content-area .image-placeholder {
 .hero .bordered-input {
   width: 239px;
 }
-.hero .splash-logo {
-  height: 100%;
-  width: 100%;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-background-size: auto 11%;
-  -moz-background-size: auto 11%;
-  background-size: auto 11%;
-  background-image: url("/images/splash/Logo@2x.png") !important;
-  position: absolute;
-  top: 0px;
-  z-index: 6;
-}
 .hero .splash-image {
   -webkit-background-size: contain;
   -moz-background-size: contain;
@@ -689,7 +674,6 @@ html.wf-loading {
 .phone-content-area {
   position: absolute;
   width: 100%;
-  margin-left: 0.8%;
 }
 #content {
   margin-top: 1000px;

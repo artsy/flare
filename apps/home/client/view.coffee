@@ -24,6 +24,7 @@ module.exports = class HomePageView extends Backbone.View
     "browse" : (-> new BrowseView(parent: @) )
     "explore" : (-> new ExploreView(parent: @) )
     "collect" : (-> new CollectView(parent: @) )
+  sectionViews: {}
 
   initialize: ->
     @$headerItems = @$('.app-header a')
@@ -45,7 +46,12 @@ module.exports = class HomePageView extends Backbone.View
       @show()
       @animateSplashImages()
       @startAnimationFrame()
+      @initializeSections()
     , 400
+
+  initializeSections: ->
+    for sectionName in _.keys(@sections)
+      @sectionViews[sectionName] = @sections[sectionName]()
 
   show: ->
     @iphone.$el.addClass 'visible'
@@ -54,18 +60,18 @@ module.exports = class HomePageView extends Backbone.View
 
   onResize: ->
     @browserHeight = @$window.height()
-    @documentHeight = @$document.height()
     @sizeSections()
+    @documentHeight = @$document.height()
     @sizeHeaders()
     @positionHeaders()
     @sizeIphoneContentAreas()
 
   sizeSections: ->
     @$('#content').css(
-      'margin-top': "#{@browserHeight}px"
-      'margin-bottom': "#{@browserHeight}px"
+      'margin-top'    : "#{@browserHeight}px"
+      'margin-bottom' : "#{@browserHeight}px"
     ).find('section').css
-      'min-height': "#{@broserHeight}px"
+      'min-height'    : "#{@browserHeight * 3}px"
 
   sizeHeaders: ->
     @headerWidth = @$('#content section .left-text').width()
@@ -116,20 +122,25 @@ module.exports = class HomePageView extends Backbone.View
           activeSplashImage = @$('.splash-image').first()
         activeSplashImage.addClass 'active'
       , 300
-    , 2000
+    , 3000
 
   startAnimationFrame: ->
     @scrollTop = @$window.scrollTop()
 
     step = =>
-      if @$window.scrollTop() != @scrollTop
-        @scrollTop = @$window.scrollTop()
+      newScrollTop = @$window.scrollTop()
+      if newScrollTop != @scrollTop
+        direction = if newScrollTop > @scrollTop then 'down' else 'up'
+        @scrollTop = newScrollTop
 
-        # check header position
+        # check header position against top of page and bottom of page
         if (@scrollTop > @browserHeight - @headerHeight) and (@scrollTop < @documentHeight - @browserHeight - @headerHeight)
           @$header.addClass('white')
         else
           @$header.removeClass('white')
+
+        for sectionName, sectionView of @sectionViews
+          sectionView.onScroll @scrollTop, @browserHeight, direction
 
       window.requestAnimationFrame step
 
