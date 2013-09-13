@@ -24,7 +24,8 @@
         "moment": "*",
         "showdown": "git://github.com/craigspaeth/showdown.git",
         "strong-agent": "*",
-        "ua-parser": "*"
+        "ua-parser": "*",
+        "twilio": "*"
     },
     "devDependencies": {
         "browserify": "*",

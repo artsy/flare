@@ -27,3 +27,9 @@ describe 'HomePageView', ->
 
     it 'renders', ->
       @view.initialize()
+
+  describe '#sms', ->
+
+    xit 'sends link when pressing submit button'
+    xit 'sends link when pressing enter'
+    xit 'enables sending state while sending'

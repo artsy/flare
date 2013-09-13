@@ -19,3 +19,8 @@ describe '#index', ->
 
   it 'renders the hero units', ->
     @templateName.should.equal 'page'
+
+describe '#sendLinkViaSMS', ->
+
+  xit 'POST sends a link with a valid phone number'
+  xit 'POST returns an error with an invalid phone number'
