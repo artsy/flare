@@ -20,3 +20,4 @@ module.exports =
   SECURE_URL: null
   GOOGLE_ANALYTICS_ID: null
   IPHONE_APP_URL: null
+  ARTSY_URL: null
