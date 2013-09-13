@@ -11,7 +11,6 @@ module.exports = class HomePageView extends Backbone.View
   el: 'body'
 
   headerTextMargin: 60
-  headerWidth: 350 # todo - make responsive
 
   events:
     'click header a' : 'sectionNavClick'
@@ -28,6 +27,8 @@ module.exports = class HomePageView extends Backbone.View
     @$arrow = @$('#arrow')
     @$header = @$('.app-header')
     @$largeHeaderText = @$('.hero .content')
+    @$rightHeaders = @$('#content section .right-text')
+    @$leftHeaders = @$('#content section .left-text')
 
     @smsForm = new SmsView(parent: @)
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
@@ -53,15 +54,17 @@ module.exports = class HomePageView extends Backbone.View
     ).find('section').css
       'min-height': "#{height}px"
 
+    @headerWidth = @$('#content section .left-text').width()
+
     rightHeaderPosition = @iphone.left + @iphone.width + @headerTextMargin
     leftHeaderPosition = @iphone.left - @headerTextMargin - @headerWidth
 
     @$largeHeaderText.css
       left: rightHeaderPosition
 
-    @$('#content section .right').css
+    @$rightHeaders.css
       left: rightHeaderPosition
-    @$('#content section .left').css
+    @$leftHeaders.css
       left: leftHeaderPosition
 
   sectionNavClick: (event) =>

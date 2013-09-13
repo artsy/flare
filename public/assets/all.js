@@ -204,8 +204,6 @@ module.exports = HomePageView = (function(_super) {
 
   HomePageView.prototype.headerTextMargin = 60;
 
-  HomePageView.prototype.headerWidth = 350;
-
   HomePageView.prototype.events = {
     'click header a': 'sectionNavClick',
     'click arrow': 'nextSectionClick'
@@ -236,6 +234,8 @@ module.exports = HomePageView = (function(_super) {
     this.$arrow = this.$('#arrow');
     this.$header = this.$('.app-header');
     this.$largeHeaderText = this.$('.hero .content');
+    this.$rightHeaders = this.$('#content section .right-text');
+    this.$leftHeaders = this.$('#content section .left-text');
     this.smsForm = new SmsView({
       parent: this
     });
@@ -267,15 +267,16 @@ module.exports = HomePageView = (function(_super) {
     }).find('section').css({
       'min-height': "" + height + "px"
     });
+    this.headerWidth = this.$('#content section .left-text').width();
     rightHeaderPosition = this.iphone.left + this.iphone.width + this.headerTextMargin;
     leftHeaderPosition = this.iphone.left - this.headerTextMargin - this.headerWidth;
     this.$largeHeaderText.css({
       left: rightHeaderPosition
     });
-    this.$('#content section .right').css({
+    this.$rightHeaders.css({
       left: rightHeaderPosition
     });
-    return this.$('#content section .left').css({
+    return this.$leftHeaders.css({
       left: leftHeaderPosition
     });
   };
