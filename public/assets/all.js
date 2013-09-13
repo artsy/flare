@@ -204,6 +204,8 @@ module.exports = HomePageView = (function(_super) {
 
   HomePageView.prototype.el = 'body';
 
+  HomePageView.prototype.headerHeight = 64;
+
   HomePageView.prototype.headerTextMargin = 60;
 
   HomePageView.prototype.phoneContentAreaHeightRatio = 0.7053;
@@ -253,10 +255,11 @@ module.exports = HomePageView = (function(_super) {
     this.iphone.on('repositioned', (function() {
       return _this.onResize();
     }));
-    this.onResize();
     return _.delay(function() {
+      _this.onResize();
       _this.show();
-      return _this.animateSplashImages();
+      _this.animateSplashImages();
+      return _this.startAnimationFrame();
     }, 400);
   };
 
@@ -268,6 +271,7 @@ module.exports = HomePageView = (function(_super) {
 
   HomePageView.prototype.onResize = function() {
     this.browserHeight = this.$window.height();
+    this.documentHeight = $(document).height();
     this.sizeSections();
     this.sizeHeaders();
     this.positionHeaders();
@@ -346,6 +350,24 @@ module.exports = HomePageView = (function(_super) {
         return activeSplashImage.addClass('active');
       }, 300);
     }, 2000);
+  };
+
+  HomePageView.prototype.startAnimationFrame = function() {
+    var step,
+      _this = this;
+    this.scrollTop = this.$window.scrollTop();
+    step = function() {
+      if (_this.$window.scrollTop() !== _this.scrollTop) {
+        _this.scrollTop = _this.$window.scrollTop();
+        if ((_this.scrollTop > _this.browserHeight - _this.headerHeight) && (_this.scrollTop < _this.documentHeight - _this.browserHeight - _this.headerHeight)) {
+          _this.$header.addClass('white');
+        } else {
+          _this.$header.removeClass('white');
+        }
+      }
+      return window.requestAnimationFrame(step);
+    };
+    return window.requestAnimationFrame(step);
   };
 
   HomePageView.prototype.nextSectionClick = function() {};

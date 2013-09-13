@@ -10,6 +10,7 @@ module.exports = class HomePageView extends Backbone.View
 
   el: 'body'
 
+  headerHeight: 64
   headerTextMargin: 60
   phoneContentAreaHeightRatio: 0.7053
   phoneAreaAboveContentAreaToHeightRatio: 0.14759
@@ -37,12 +38,12 @@ module.exports = class HomePageView extends Backbone.View
     @smsForm = new SmsView(parent: @)
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
     @iphone.on 'repositioned', (=> @onResize() )
-    @onResize()
 
     _.delay =>
+      @onResize()
       @show()
       @animateSplashImages()
-      #@startAnimationFrame()
+      @startAnimationFrame()
     , 400
 
   show: ->
@@ -52,6 +53,7 @@ module.exports = class HomePageView extends Backbone.View
 
   onResize: ->
     @browserHeight = @$window.height()
+    @documentHeight = $(document).height()
     @sizeSections()
     @sizeHeaders()
     @positionHeaders()
@@ -110,6 +112,23 @@ module.exports = class HomePageView extends Backbone.View
         activeSplashImage.addClass 'active'
       , 300
     , 2000
+
+  startAnimationFrame: ->
+    @scrollTop = @$window.scrollTop()
+
+    step = =>
+      if @$window.scrollTop() != @scrollTop
+        @scrollTop = @$window.scrollTop()
+
+        # check header position
+        if (@scrollTop > @browserHeight - @headerHeight) and (@scrollTop < @documentHeight - @browserHeight - @headerHeight)
+          @$header.addClass('white')
+        else
+          @$header.removeClass('white')
+
+      window.requestAnimationFrame step
+
+    window.requestAnimationFrame step
 
   nextSectionClick: =>
 

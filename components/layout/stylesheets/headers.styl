@@ -6,11 +6,16 @@
   top: -64px
   left: 0px
   width: 100%
-  z-index: 10
+  z-index: 20
   overflow: hidden
   height: 64px
   &.visible
     top: 0px
+  .links a
+    color: white
+    border-color: white
+  .header-logo
+    background-image url('/images/artsy-logotype-white.svg') !important
   .app-store
     background-size contain
     background-repeat no-repeat
@@ -43,15 +48,7 @@
       &:hover, &.active
         color: highlight-color !important
         border-color: highlight-color !important
-  &.black
-    background: black
-    .links a
-      color: white
-      border-color: white
-    .header-logo
-      background-image url('/images/artsy-logotype-white.svg') !important
   &.white
-    background: white
     .links a
       color: black
       border-color: black
