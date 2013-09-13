@@ -5,6 +5,7 @@ module.exports = class iPhoneView extends Backbone.View
 
   minTop: 80
   minLeft: 50
+  phoneHeightToWidthRatio: 0.4733
 
   initialize: ->
     @$window = $(window)
@@ -13,7 +14,7 @@ module.exports = class iPhoneView extends Backbone.View
 
   positionPhone: ->
     @height = @$el.height()
-    @width = @height * 0.4733
+    @width = @height * @phoneHeightToWidthRatio
 
     windowHeight = @$window.height()
     windowWidth = @$window.width()

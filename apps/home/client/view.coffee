@@ -12,6 +12,8 @@ module.exports = class HomePageView extends Backbone.View
 
   headerTextMargin: 60
   phoneContentAreaHeightRatio: 0.7053
+  phoneAreaAboveContentAreaToHeightRatio: 0.14759
+  # each variable name must be longer than previous one
 
   events:
     'click header a' : 'sectionNavClick'
@@ -70,7 +72,7 @@ module.exports = class HomePageView extends Backbone.View
 
     @$phoneContentAreas.css
       height: @iphone.height * @phoneContentAreaHeightRatio
-      'margin-top': @iphone.top + (@iphone.height * 0.14759)
+      'margin-top': @iphone.top + (@iphone.height * @phoneAreaAboveContentAreaToHeightRatio)
 
   sectionNavClick: (event) =>
     section = $(event.target).attr 'data-section-name'
