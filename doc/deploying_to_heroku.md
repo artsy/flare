@@ -10,7 +10,7 @@ $ heroku config:add NODE_ENV=staging --app=flare-staging
 
 ## DNS
 
-[DynECT](http://manage.dynect.com) points [apple.artsy.net](http://apple.artsy.net) and [apple.staging.artsy.net](http://apple.staging.artsy.net) to Flare.
+[DynECT](http://manage.dynect.com) points [iphone.artsy.net](http://iphone.artsy.net) and [iphone.staging.artsy.net](http://iphone.staging.artsy.net) to Flare.
 
 ## Deployment Tasks
 
