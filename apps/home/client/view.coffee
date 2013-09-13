@@ -18,8 +18,8 @@ module.exports = class HomePageView extends Backbone.View
   # each variable name must be longer than previous one ;)
 
   events:
-    'click header a' : 'sectionNavClick'
-    'click arrow'    : 'nextSectionClick'
+    'click header .links a' : 'sectionNavClick'
+    'click arrow'           : 'nextSectionClick'
 
   sections:
     "browse" : (-> new BrowseView(parent: @) )
