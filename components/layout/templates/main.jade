@@ -6,7 +6,7 @@ mixin header
       a( href= "/#browse" data-section-name='browse' ) Browse Shows & Fairs
       a( href= "/#explore" data-section-name='explore' ) Explore 60,000 Artworks
       a( href= "/#collect" data-section-name='collect' ) Collect With Artsy
-    .header-logo
+    a.header-logo( href= sd.ARTSY_URL )
     a.app-store( href= sd.IPHONE_APP_URL )
 
 mixin hero
@@ -25,12 +25,14 @@ mixin hero
     .content.text-container
       h1 The art world in your pocket
       h2 Introducing Artsy for iPhone
+        sup &copy;
       #sms.sms
         .heading send a link to your phone
         input.phone_number.bordered-input( placeholder = "Enter your phone number" )
         button.avant-garde-box-button.avant-garde-box-button-grey( type = "submit" ) OK
         .error
         .success
+     .apple-copy Apple, the Apple logo and the iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.
 
 mixin iphone
   #iphone
