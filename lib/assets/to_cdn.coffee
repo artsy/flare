@@ -1,6 +1,6 @@
-# 
+#
 # Pushes compiled assets to the proper S3 bucket to be served from cloudfront.
-# 
+#
 
 path = require 'path'
 knox = require 'knox'
@@ -11,7 +11,7 @@ client = knox.createClient
   key: S3_KEY
   secret: S3_SECRET
   bucket: APPLICATION_NAME
-  
+
 uploadFile = (filename) ->
   exec "git rev-parse --short HEAD", (err, commitHash) ->
     localPath = path.resolve process.cwd(), filename
@@ -22,15 +22,15 @@ uploadFile = (filename) ->
       'Content-Encoding': 'gzip' if filename.match /gz$/
     client.putFile localPath, s3Path, headers, (err, res) ->
       if err
-        console.warn err
+        console.warn "Error uploading #{filename} to #{APPLICATION_NAME}#{s3Path}: #{err}"
         process.exit(1)
       else
-        console.log "Uploaded #{filename} to #{s3Path}..."
+        console.log "Uploaded #{filename} to #{APPLICATION_NAME}#{s3Path}."
 
 
 # Run CLI if this module is run directly.
-# 
-# Takes file paths as arguments and uploads them to the /assets/ folder in 
+#
+# Takes file paths as arguments and uploads them to the /assets/ folder in
 # the APPLICATION_NAME config var.
 # e.g. `coffee lib/assets/to_cdn.coffee public/assets/all.css public/assets/all.js
 
