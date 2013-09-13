@@ -3,10 +3,12 @@ section
   background: white
   position: relative
   min-height: 1000px
+  overflow: hidden
   .text-container
     min-width: 350px
     width: 30%
     position: absolute
+    z-index: 6
   .heading
     font-size: 47px
     line-height: 102%
@@ -17,3 +19,32 @@ section
     line-height: 143%
     color: #333
     width: 350px
+
+  // bar that hides the next section - z-indexed above media but below phone
+  .top-white-bar, .bottom-white-bar
+    color: white
+    width: 500px
+    margin: 0px auto
+    position: absolute
+    z-index: 9
+    height: 100px
+
+  .top-white-bar
+    top: 0px
+  .bottom-white-bar
+    bottom: 0px
+
+  .image-placeholder
+    background-size: auto 100%
+    width: 100%
+    height: 100%
+
+  // for texting
+  &#browse .phone-content-area .image-placeholder
+    background: cyan
+
+  &#explore .phone-content-area .image-placeholder
+    background: magenta
+
+  &#collect .phone-content-area .image-placeholder
+    background: yellow

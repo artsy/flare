@@ -2,11 +2,13 @@ section {
   background: #fff;
   position: relative;
   min-height: 1000px;
+  overflow: hidden;
 }
 section .text-container {
   min-width: 350px;
   width: 30%;
   position: absolute;
+  z-index: 6;
 }
 section .heading {
   font-size: 47px;
@@ -20,6 +22,35 @@ section p {
   color: #333;
   width: 350px;
 }
+section .top-white-bar,
+section .bottom-white-bar {
+  color: #fff;
+  width: 500px;
+  margin: 0px auto;
+  position: absolute;
+  z-index: 9;
+  height: 100px;
+}
+section .top-white-bar {
+  top: 0px;
+}
+section .bottom-white-bar {
+  bottom: 0px;
+}
+section .image-placeholder {
+  background-size: auto 100%;
+  width: 100%;
+  height: 100%;
+}
+section#browse .phone-content-area .image-placeholder {
+  background: #0ff;
+}
+section#explore .phone-content-area .image-placeholder {
+  background: #f0f;
+}
+section#collect .phone-content-area .image-placeholder {
+  background: #ff0;
+}
 .app-header {
   position: fixed;
   -webkit-transition: top 0.8s;
@@ -30,12 +61,19 @@ section p {
   top: -64px;
   left: 0px;
   width: 100%;
-  z-index: 10;
+  z-index: 20;
   overflow: hidden;
   height: 64px;
 }
 .app-header.visible {
   top: 0px;
+}
+.app-header .links a {
+  color: #fff;
+  border-color: #fff;
+}
+.app-header .header-logo {
+  background-image: url("/images/artsy-logotype-white.svg") !important;
 }
 .app-header .app-store {
   -webkit-background-size: contain;
@@ -90,19 +128,6 @@ section p {
 .app-header .links a.active {
   color: #6a0bc1 !important;
   border-color: #6a0bc1 !important;
-}
-.app-header.black {
-  background: #000;
-}
-.app-header.black .links a {
-  color: #fff;
-  border-color: #fff;
-}
-.app-header.black .header-logo {
-  background-image: url("/images/artsy-logotype-white.svg") !important;
-}
-.app-header.white {
-  background: #fff;
 }
 .app-header.white .links a {
   color: #000;
@@ -403,22 +428,6 @@ section p {
 .hero .bordered-input {
   width: 239px;
 }
-.hero .splash-logo {
-  height: 100%;
-  width: 100%;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-background-size: auto 11%;
-  -moz-background-size: auto 11%;
-  background-size: auto 11%;
-  background-image: url("/images/splash/Logo@2x.png") !important;
-  position: absolute;
-  top: 0px;
-  z-index: 6;
-}
 .hero .splash-image {
   -webkit-background-size: contain;
   -moz-background-size: contain;
@@ -665,7 +674,6 @@ html.wf-loading {
 .phone-content-area {
   position: absolute;
   width: 100%;
-  margin-left: 0.8%;
 }
 #content {
   margin-top: 1000px;
