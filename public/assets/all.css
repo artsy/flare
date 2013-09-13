@@ -472,28 +472,34 @@ section#collect .phone-content-area .image-placeholder {
   filter: none;
 }
 .hero .splash-image-1 {
-  background-image: url("/images/splash/01intro.png") !important;
+  background-image: url("/images/splash/01intro.jpg") !important;
 }
 .hero .splash-image-2 {
-  background-image: url("/images/splash/02intro.png") !important;
+  background-image: url("/images/splash/02intro.jpg") !important;
 }
 .hero .splash-image-3 {
-  background-image: url("/images/splash/03intro.png") !important;
+  background-image: url("/images/splash/03intro.jpg") !important;
 }
 .hero .splash-image-4 {
-  background-image: url("/images/splash/04intro.png") !important;
+  background-image: url("/images/splash/04intro.jpg") !important;
 }
 .hero .splash-image-5 {
-  background-image: url("/images/splash/05intro.png") !important;
+  background-image: url("/images/splash/05intro.jpg") !important;
 }
 .hero .splash-image-6 {
-  background-image: url("/images/splash/06intro.png") !important;
+  background-image: url("/images/splash/06intro.jpg") !important;
 }
 .hero .splash-image-7 {
-  background-image: url("/images/splash/07intro.png") !important;
+  background-image: url("/images/splash/07intro.jpg") !important;
 }
 .hero .splash-image-8 {
-  background-image: url("/images/splash/08intro.png") !important;
+  background-image: url("/images/splash/08intro.jpg") !important;
+}
+.hero .splash-image-9 {
+  background-image: url("/images/splash/09intro.jpg") !important;
+}
+.hero .splash-image-10 {
+  background-image: url("/images/splash/10intro.jpg") !important;
 }
 html,
 body,
