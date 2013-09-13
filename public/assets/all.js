@@ -204,6 +204,8 @@ module.exports = HomePageView = (function(_super) {
 
   HomePageView.prototype.headerTextMargin = 60;
 
+  HomePageView.prototype.phoneContentAreaHeightRatio = 0.7053;
+
   HomePageView.prototype.events = {
     'click header a': 'sectionNavClick',
     'click arrow': 'nextSectionClick'
@@ -233,6 +235,7 @@ module.exports = HomePageView = (function(_super) {
     this.$window = $(window);
     this.$arrow = this.$('#arrow');
     this.$header = this.$('.app-header');
+    this.$phoneContentAreas = this.$('.phone-content-area');
     this.$largeHeaderText = this.$('.hero .content');
     this.$rightHeaders = this.$('#content section .right-text');
     this.$leftHeaders = this.$('#content section .left-text');
@@ -248,7 +251,8 @@ module.exports = HomePageView = (function(_super) {
     }));
     this.sizeSections();
     return _.delay(function() {
-      return _this.show();
+      _this.show();
+      return _this.animateSplashImages();
     }, 400);
   };
 
@@ -276,8 +280,12 @@ module.exports = HomePageView = (function(_super) {
     this.$rightHeaders.css({
       left: rightHeaderPosition
     });
-    return this.$leftHeaders.css({
+    this.$leftHeaders.css({
       left: leftHeaderPosition
+    });
+    return this.$phoneContentAreas.css({
+      height: this.iphone.height * this.phoneContentAreaHeightRatio,
+      'margin-top': this.iphone.top + (this.iphone.height * 0.14759)
     });
   };
 
@@ -285,6 +293,20 @@ module.exports = HomePageView = (function(_super) {
     var section;
     section = $(event.target).attr('data-section-name');
     return this.smoothTransitionSection(section);
+  };
+
+  HomePageView.prototype.animateSplashImages = function() {
+    var _this = this;
+    return this.splashInterval = window.setInterval(function() {
+      var activeSplashImage;
+      activeSplashImage = _this.$('.splash-image.active').removeClass('active').next();
+      return _.delay(function() {
+        if (activeSplashImage.length < 1) {
+          activeSplashImage = _this.$('.splash-image').first();
+        }
+        return activeSplashImage.addClass('active');
+      }, 300);
+    }, 2000);
   };
 
   HomePageView.prototype.nextSectionClick = function() {};

@@ -514,6 +514,79 @@ html.wf-loading {
 .hero .bordered-input {
   width: 239px;
 }
+.hero .splash-logo {
+  height: 100%;
+  width: 100%;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: auto 11%;
+  -moz-background-size: auto 11%;
+  background-size: auto 11%;
+  background-image: url("/images/splash/Logo@2x.png") !important;
+  position: absolute;
+  top: 0px;
+  z-index: 6;
+}
+.hero .splash-image {
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: auto 100%;
+  -moz-background-size: auto 100%;
+  background-size: auto 100%;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
+  -ms-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  position: absolute;
+  top: 0px;
+  z-index: 5;
+}
+.hero .splash-image.active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.hero .splash-image-1 {
+  background-image: url("/images/splash/01intro.png") !important;
+}
+.hero .splash-image-2 {
+  background-image: url("/images/splash/02intro.png") !important;
+}
+.hero .splash-image-3 {
+  background-image: url("/images/splash/03intro.png") !important;
+}
+.hero .splash-image-4 {
+  background-image: url("/images/splash/04intro.png") !important;
+}
+.hero .splash-image-5 {
+  background-image: url("/images/splash/05intro.png") !important;
+}
+.hero .splash-image-6 {
+  background-image: url("/images/splash/06intro.png") !important;
+}
+.hero .splash-image-7 {
+  background-image: url("/images/splash/07intro.png") !important;
+}
+.hero .splash-image-8 {
+  background-image: url("/images/splash/08intro.png") !important;
+}
+.phone-content-area {
+  position: absolute;
+  width: 100%;
+  margin-left: 0.8%;
+}
 #content {
   margin-top: 1000px;
   margin-bottom: 1000px;
