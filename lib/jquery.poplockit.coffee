@@ -57,17 +57,8 @@
       @marginBottom = settings.marginBottom if settings.marginBottom
       @marginLeft = settings.marginLeft if settings.marginLeft
 
-      # marginTop = @$el.css('margin-top')
-      # @marginTop = Number(marginTop.replace('px',""))
-      # marginBottom = @$el.css('margin-bottom')
-      # @marginBottom = Number(marginBottom.replace('px',""))
-
-      # @marginTop = settings.marginTop if settings.marginTop
-      # @marginBottom = settings.marginBottom if settings.marginBottom
-
-
     setDimensions: ->
-      @height = @$el.outerHeight() #Math.floor Number(@$el.css('height').replace('px',""))
+      @height = @$el.outerHeight()
       @top = Math.floor(@$el.offset().top - @marginTop)
       @left = Math.floor(@$el.offset().left)
       @bottom = Math.floor(@top + @height)

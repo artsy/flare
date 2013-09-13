@@ -3,7 +3,7 @@ _ = require 'underscore'
 
 module.exports = class iPhoneView extends Backbone.View
 
-  minTop: 80
+  minTop: 65
   minLeft: 50
   phoneHeightToWidthRatio: 0.4733
 

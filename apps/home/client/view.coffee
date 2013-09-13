@@ -3,9 +3,11 @@ _ = require 'underscore'
 BrowseView = require './browse_view.coffee'
 ExploreView = require './explore_view.coffee'
 CollectView = require './collect_view.coffee'
+WhiteBlockerBars = require './white_blocker_bars.coffee'
 SmsView = require './sms_view.coffee'
 iPhoneView = require './iphone_view.coffee'
 
+# todo - refactor this into a larger view for the homepage / app and a subview for stuff under #content
 module.exports = class HomePageView extends Backbone.View
 
   el: 'body'
@@ -42,7 +44,8 @@ module.exports = class HomePageView extends Backbone.View
 
     @smsForm = new SmsView(parent: @, el: @$('#sms'))
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
-    @iphone.on 'repositioned', (=> @onResize() )
+    @whiteBars = new WhiteBlockerBars(parent: @, el: @$('.white-bars-container'))
+    @iphone.on 'repositioned', @onResize
 
     _.delay =>
       @onResize()
@@ -68,15 +71,19 @@ module.exports = class HomePageView extends Backbone.View
     @$header.addClass 'visible'
     @$largeHeaderText.addClass 'visible'
 
-  onResize: ->
+  onResize: =>
     @browserHeight = @$window.height()
     @sizeSections()
     @documentHeight = @$document.height()
     @sizeHeaders()
     @positionHeaders()
+    @sizeWhiteBars()
     @sizeIphoneContentAreas()
     for sectionName, sectionView of @sectionViews
       sectionView.onResize @browserHeight, @documentHeight
+
+  sizeWhiteBars: ->
+    @whiteBars.size @iphone.width, @iphone.left, @iphone.top, @documentHeight
 
   sizeSections: ->
     @$('#content').css(
@@ -157,6 +164,9 @@ module.exports = class HomePageView extends Backbone.View
         @heroAnimationsActive = false
       else
         @heroAnimationsActive = true
+
+      # reposition the white bars
+      @whiteBars.onScroll @scrollTop
 
       # for sectionName, sectionView of @sectionViews
       #   sectionView.onScroll @scrollTop, @browserHeight, direction
