@@ -24,7 +24,7 @@ module.exports = class iPhoneView extends Backbone.View
     windowHeight = @$window.height()
     windowWidth = @$window.width()
     top = Math.round((windowHeight - @height) / 2)
-    left = Math.round((windowWidth - @width) / 2)
+    left = Math.floor((windowWidth - @width) / 2)
 
     @top = _.max([top, @minTop])
     @left = _.max([left, @minLeft])
