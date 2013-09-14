@@ -15,5 +15,4 @@ module.exports = (req, res, next) ->
     sd: sd
     rd: requestData
     bootstrapData: _.extend sd, requestData
-    htmlClass: ""
   next()

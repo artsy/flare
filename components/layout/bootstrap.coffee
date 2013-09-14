@@ -1,7 +1,5 @@
 #
 # Common bootstrap code that needs to be run on the client-side.
-# Includes adding the XAPP token to ajax requests and loading bootstrapped data into
-# the shared_data module.
 #
 # Don't go too wild here, we want to keep this minimal and light-weight because it could be
 # included across most apps and any uncessary bloat should be avoided.
@@ -15,6 +13,9 @@ sd = require '../../lib/shared_data.coffee'
 analytics = require '../../lib/analytics.coffee'
 
 module.exports = ->
+
+  # Inject shared data
+  sd[key] = BOOTSTRAP[key] for key, val of sd
 
   # Initialize analytics & track page view if we included mixpanel
   # (not included in test environment).

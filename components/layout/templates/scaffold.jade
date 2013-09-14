@@ -43,8 +43,9 @@ html( class=htmlClass )
         include ./mixpanel.html
         include ./ga.html
 
-      // sublime video
-      script( src="//cdn.sublimevideo.net/js/tpvibfga.js" )
-
       script( src=(sd.CDN_URL + 'all' + sd.JS_EXT) )
+
+      script.
+        window.BOOTSTRAP = !{JSON.stringify(bootstrapData)};
+
       block scripts
