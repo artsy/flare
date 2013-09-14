@@ -21,3 +21,4 @@ module.exports =
   GOOGLE_ANALYTICS_ID: null
   IPHONE_APP_URL: null
   ARTSY_URL: null
+  CANONICAL_URL: null
