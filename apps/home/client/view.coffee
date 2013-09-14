@@ -25,9 +25,9 @@ module.exports = class HomePageView extends Backbone.View
     'click arrow'           : 'nextSectionClick'
 
   sections:
-    "browse" : (-> new BrowseView(parent: @) )
-    "explore" : (-> new ExploreView(parent: @) )
-    "collect" : (-> new CollectView(parent: @) )
+    "browse" : (-> new BrowseView(parent: @, el: $('#browse') ) )
+    "explore" : (-> new ExploreView(parent: @, el: $('#explore') ) )
+    "collect" : (-> new CollectView(parent: @, el: $('#collect') ) )
 
   sectionViews: {}
 
@@ -51,12 +51,12 @@ module.exports = class HomePageView extends Backbone.View
     @iphone.on 'repositioned', @onResize
 
     _.delay =>
+      @initializeSections()
       @onResize()
       @show()
       @animateSplashImages()
       @initializePopLockit()
       @newAnimationFrame()
-      @initializeSections()
     , 400
 
   initializePopLockit: ->
@@ -83,7 +83,7 @@ module.exports = class HomePageView extends Backbone.View
     @sizeWhiteBars()
     @sizeIphoneContentAreas()
     for sectionName, sectionView of @sectionViews
-      sectionView.onResize @browserHeight, @documentHeight
+      sectionView.onResize @browserHeight
 
   sizeWhiteBars: ->
     @whiteBars.size @iphone.width, @iphone.left, @iphone.top, @documentHeight
@@ -171,8 +171,8 @@ module.exports = class HomePageView extends Backbone.View
       # reposition the white bars
       @whiteBars.onScroll @scrollTop
 
-      # for sectionName, sectionView of @sectionViews
-      #   sectionView.onScroll @scrollTop, @browserHeight, direction
+      for sectionName, sectionView of @sectionViews
+        sectionView.onScroll @scrollTop, @browserHeight, direction
 
     @newAnimationFrame()
 
