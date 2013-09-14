@@ -1,0 +1,110 @@
+@import '../../stylus_lib'
+
+#iphone
+  position: fixed
+  width: 100%
+  overflow: hidden
+  text-align: center
+  z-index: 11
+  max-height: 807px
+  height: 84%
+  transition: opacity 0.8s
+  opacity(0)
+  &.visible
+    opacity(1)
+  .phone
+    background-size contain
+    background-repeat no-repeat
+    background-position center center
+    background-image url('/images/phone.png') !important
+    background-size: auto 100%
+    width: 100%
+    height: 100%
+  .reflection
+    background-size contain
+    background-repeat no-repeat
+    background-position center center
+    background-image url('/images/phone-reflection.png') !important
+    position: absolute
+    top: 14.76%
+    right: 7.7%
+    background-size: auto 100%
+    width: 39.79%
+    height: 53.407%
+
+  .iphone-content
+    top: 0px
+    left: 0px
+    width: 100%
+    height: 100%
+    position: absolute
+    margin-left: 1px
+
+  .phone-content-area
+    top: 0px
+    left: 0px
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+  .splash-image
+    background-size contain
+    background-repeat no-repeat
+    background-position center center
+    background-size: auto 100%
+    width: 100%
+    height: 100%
+    opacity(0)
+    position: absolute
+    top: 0px
+    z-index: 5
+    &.active
+      opacity(1)
+
+  .splash-images.phone-content-area
+    .splash-image
+      transition: opacity 0.4s
+
+  .splash-image-1
+    background-image url('/images/splash/01intro.jpg') !important
+  .splash-image-2
+    background-image url('/images/splash/02intro.jpg') !important
+  .splash-image-3
+    background-image url('/images/splash/03intro.jpg') !important
+  .splash-image-4
+    background-image url('/images/splash/04intro.jpg') !important
+  .splash-image-5
+    background-image url('/images/splash/05intro.jpg') !important
+  .splash-image-6
+    background-image url('/images/splash/06intro.jpg') !important
+  .splash-image-7
+    background-image url('/images/splash/07intro.jpg') !important
+  .splash-image-8
+    background-image url('/images/splash/08intro.jpg') !important
+  .splash-image-9
+    background-image url('/images/splash/09intro.jpg') !important
+  .splash-image-10
+    background-image url('/images/splash/10intro.jpg') !important
+
+  .browse-content-area,.explore-content-area, .collect-content-area
+    &.active
+      .splash-image
+        opacity(1)
+
+  .content-padder
+    position: absolute
+    height: 100%
+    width: 100%
+
+  .browse-placeholder
+    background-image url('/images/video/1.jpg') !important
+    z-index: 6
+  .explore-placeholder
+    background-image url('/images/video/2.jpg') !important
+    z-index: 7
+  .collect-placeholder
+    background-image url('/images/video/3.jpg') !important
+    z-index: 8
+
+  .video-holder
+    display: none

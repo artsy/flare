@@ -1,29 +1,6 @@
 
 #content
   position: relative
-  // bar that hides the next section - z-indexed above media but below phone
-  .white-bars-container
-    display: none
-    position: fixed
-    top: 0px
-    left: 0px
-    width: 100%
-    overflow: hidden
-    z-index: 9
-
-  .white-bar
-    background: white
-    width: 100%
-    margin: 0px auto
-    position: absolute
-    height: 100px
-    left: 0px
-
-  .top-white-bar
-    top: 0px
-
-  .bottom-white-bar
-    top: 0px
 
 section
   background: white
@@ -57,34 +34,3 @@ section
     position: static
     display: inline-block
     vertical-align: top
-
-  .image-container
-    width: 100%
-    height: 100%
-    position: relative
-
-  .image-placeholder
-    background-size: auto 100%
-    width: 100%
-    height: 100%
-
-  .image-placeholder
-    background-size contain
-    background-repeat no-repeat
-    background-position center center
-    background-size: auto 100%
-    width: 100%
-    height: 100%
-    transition: opacity 0.4s
-    position: absolute
-    top: 0px
-    z-index: 5
-
-  &#browse .phone-content-area .image-placeholder
-    background-image url('/images/video/1.jpg') !important
-
-  &#explore .phone-content-area .image-placeholder
-    background-image url('/images/video/2.jpg') !important
-
-  &#collect .phone-content-area .image-placeholder
-    background-image url('/images/video/3.jpg') !important

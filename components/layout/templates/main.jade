@@ -11,17 +11,6 @@ mixin header
 
 mixin hero
   .hero
-    .splash-images.phone-content-area
-      .splash-image.splash-image-1.active
-      .splash-image.splash-image-2
-      .splash-image.splash-image-3
-      .splash-image.splash-image-4
-      .splash-image.splash-image-5
-      .splash-image.splash-image-6
-      .splash-image.splash-image-7
-      .splash-image.splash-image-8
-      .splash-image.splash-image-9
-      .splash-image.splash-image-10
     .content.text-container
       h1 The art world in your pocket
       h2 Introducing Artsy for iPhone
@@ -41,7 +30,30 @@ mixin iphone
   #iphone
     .phone
     .reflection
-    .content
+    .iphone-content
+      .phone-content-area.splash-images
+        .splash-image.splash-image-1.active
+        .splash-image.splash-image-2
+        .splash-image.splash-image-3
+        .splash-image.splash-image-4
+        .splash-image.splash-image-5
+        .splash-image.splash-image-6
+        .splash-image.splash-image-7
+        .splash-image.splash-image-8
+        .splash-image.splash-image-9
+        .splash-image.splash-image-10
+      .phone-content-area.browse-content-area
+        .content-padder
+          .splash-image.browse-placeholder
+          .browse-video.video-holder
+      .phone-content-area.explore-content-area
+        .content-padder
+          .splash-image.explore-placeholder
+          .explore-video.video-holder
+      .phone-content-area.collect-content-area
+        .content-padder
+          .splash-image.collect-placeholder
+          .collect-video.video-holder
 
 block body
   mixin hero

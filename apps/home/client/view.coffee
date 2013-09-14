@@ -3,7 +3,6 @@ _ = require 'underscore'
 BrowseView = require './browse_view.coffee'
 ExploreView = require './explore_view.coffee'
 CollectView = require './collect_view.coffee'
-WhiteBlockerBars = require './white_blocker_bars.coffee'
 SmsView = require './sms_view.coffee'
 iPhoneView = require './iphone_view.coffee'
 ShareView = require './share_view.coffee'
@@ -16,18 +15,15 @@ module.exports = class HomePageView extends Backbone.View
   headerHeight: 64
   headerTextMargin: 60
   heroAnimationsActive: true
-  phoneContentAreaHeightRatio: 0.7053
-  phoneAreaAboveContentAreaToHeightRatio: 0.14759
-  # each variable name must be longer than previous one ;)
 
   events:
     'click header .links a' : 'sectionNavClick'
     'click arrow'           : 'nextSectionClick'
 
   sections:
-    "browse" : (-> new BrowseView(parent: @, el: $('#browse') ) )
-    "explore" : (-> new ExploreView(parent: @, el: $('#explore') ) )
-    "collect" : (-> new CollectView(parent: @, el: $('#collect') ) )
+    "browse" : (-> new BrowseView(el: $('#browse'), $phoneContentArea: $('.browse-content-area') ) )
+    "explore" : (-> new ExploreView(el: $('#explore'), $phoneContentArea: $('.explore-content-area') ) )
+    "collect" : (-> new CollectView(el: $('#collect'), $phoneContentArea: $('.collect-content-area') ) )
 
   sectionViews: {}
 
@@ -37,8 +33,6 @@ module.exports = class HomePageView extends Backbone.View
     @$document = $(document)
     @$arrow = @$('#arrow')
     @$header = @$('.app-header')
-    @$phoneContentAreas = @$('.phone-content-area')
-    @$mainPhoneContentAreas = @$('#content .phone-content-area') # excludes hero
     @$largeHeaderText = @$('.hero .content')
     @$rightHeaders = @$('#content section .right-text')
     @$leftHeaders = @$('#content section .left-text')
@@ -46,7 +40,6 @@ module.exports = class HomePageView extends Backbone.View
 
     @smsForm = new SmsView(parent: @, el: @$('#sms'))
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
-    @whiteBars = new WhiteBlockerBars(parent: @, el: @$('.white-bars-container'))
     @shareView = new ShareView(parent: @, el: @$('.share'))
     @iphone.on 'repositioned', @onResize
 
@@ -55,8 +48,9 @@ module.exports = class HomePageView extends Backbone.View
       @onResize()
       @show()
       @animateSplashImages()
-      @initializePopLockit()
-      @newAnimationFrame()
+      _.defer =>
+        @initializePopLockit()
+        @newAnimationFrame()
     , 400
 
   initializePopLockit: ->
@@ -80,13 +74,8 @@ module.exports = class HomePageView extends Backbone.View
     @documentHeight = @$document.height()
     @sizeHeaders()
     @positionHeaders()
-    @sizeWhiteBars()
-    @sizeIphoneContentAreas()
     for sectionName, sectionView of @sectionViews
-      sectionView.onResize @browserHeight
-
-  sizeWhiteBars: ->
-    @whiteBars.size @iphone.width, @iphone.left, @iphone.top, @documentHeight
+        sectionView.onResize @browserHeight, @iphone.contentAreaTop, @iphone.contentAreaHeight, @iphone.top
 
   sizeSections: ->
     @$('#content').css(
@@ -113,18 +102,6 @@ module.exports = class HomePageView extends Backbone.View
       $header.css
         'padding-top': (browserHeight - $header.height()) / 2
         'padding-bottom': (browserHeight - $header.height()) / 2
-
-  sizeIphoneContentAreas: ->
-    @$phoneContentAreas.css
-      height: @iphone.height * @phoneContentAreaHeightRatio
-
-    @$mainPhoneContentAreas.css
-      width: @iphone.width
-
-    # todo - refactor
-    @contentAreaTop = @iphone.top + (@iphone.height * @phoneAreaAboveContentAreaToHeightRatio)
-    $('.phone-content-area.splash-images').css
-      'margin-top': @contentAreaTop
 
   sectionNavClick: (event) =>
     event.preventDefault()
@@ -167,9 +144,6 @@ module.exports = class HomePageView extends Backbone.View
         @heroAnimationsActive = false
       else
         @heroAnimationsActive = true
-
-      # reposition the white bars
-      @whiteBars.onScroll @scrollTop
 
       for sectionName, sectionView of @sectionViews
         sectionView.onScroll @scrollTop, @browserHeight, direction
