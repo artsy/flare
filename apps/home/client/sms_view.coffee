@@ -21,18 +21,18 @@ module.exports = class SmsView extends Backbone.View
       data:
         phone_number: phoneNumber
       success: (data, status, xhr) =>
-        @$('.success').text JSON.parse(xhr.responseText)?.message
+        @$('.success').show().text JSON.parse(xhr.responseText)?.message
         @sent()
       error: (xhr, status, error) =>
-        @$('.error').text JSON.parse(xhr.responseText)?.message || status
+        @$('.error').show().text JSON.parse(xhr.responseText)?.message || status
         @sent()
 
   submitOnEnter: (event) ->
     @submit() if _.include([@NUMPAD_ENTER, @ENTER], event.which)
 
   sending: ->
-    @$('.error').html ''
-    @$('.success').html ''
+    @$('.error').hide().html ''
+    @$('.success').hide().html ''
     @$el.addClass('sending')
 
   sent: ->

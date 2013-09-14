@@ -102,11 +102,13 @@
 
     onScroll: (scrollTop, viewportHeight, preventFixed=false, scrollDirection) ->
       if !preventFixed
-        if @height <= viewportHeight
+        if @height == viewportHeight
           if (scrollTop < @top + @parentHeight - @height)
             return @setPosition('fixed', 'north')
           return @setPosition('absolute', 'south')
-
+        else if @height < viewportHeight
+          return @setPosition('fixed', 'north') if scrollTop >= @top and scrollTop < @top + @parentHeight - @height
+          return @setPosition('absolute', 'south')
         return @setPosition('fixed', 'south') if @height > viewportHeight and @height < @parentHeight and (scrollTop + viewportHeight) >= (@top + @height) and (scrollTop + viewportHeight) < (@parentHeight + @top)
 
       return @setPosition('absolute', 'south') if scrollTop >= @bottom
