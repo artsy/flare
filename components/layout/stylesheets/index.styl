@@ -18,6 +18,7 @@
 @import './buttons'
 @import './inputs'
 @import './hero'
+@import './iphone'
 
 global-reset()
 
@@ -94,41 +95,10 @@ font-face('AvantGardeGothicITCW01D 731075', 'c18aee57-7585-4a8b-9a1c-69d226301d7
 .phone-content-area
   position: absolute
   width: 100%
+  overflow: hidden
 
 #content
   margin-top: 1000px
   margin-bottom: 1000px
   position: relative
   z-index: 10
-
-#iphone
-  position: fixed
-  width: 100%
-  overflow: hidden
-  text-align: center
-  z-index: 11
-  max-height: 807px
-  height: 84%
-  transition: opacity 0.4s
-  opacity(0)
-  .phone
-    background-size contain
-    background-repeat no-repeat
-    background-position center center
-    background-image url('/images/phone.png') !important
-    background-size: auto 100%
-    width: 100%
-    height: 100%
-  .reflection
-    background-size contain
-    background-repeat no-repeat
-    background-position center center
-    background-image url('/images/phone-reflection.png') !important
-    position: absolute
-    top: 14.76%
-    right: 7.7%
-    background-size: auto 100%
-    width: 39.79%
-    height: 53.407%
-  &.visible
-    opacity(1)
