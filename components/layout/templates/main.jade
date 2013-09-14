@@ -44,16 +44,17 @@ mixin iphone
         .splash-image.splash-image-10
       .phone-content-area.browse-content-area
         .content-padder
-          .splash-image.browse-placeholder
-          .browse-video.video-holder
+          video.splash-image.browse-placeholder( data-autoresize="fit" preload="none" loop="true" )
+            source( src="https://cdn.sublimevideo.net/vpa/ms_360p.mp4" )
+            source( src="https://cdn.sublimevideo.net/vpa/ms_720p.mp4" data-quality="hd" )
+            source( src="https://cdn.sublimevideo.net/vpa/ms_360p.webm" )
+            source( src="https://cdn.sublimevideo.net/vpa/ms_720p.webm" data-quality="hd" )
       .phone-content-area.explore-content-area
         .content-padder
           .splash-image.explore-placeholder
-          .explore-video.video-holder
       .phone-content-area.collect-content-area
         .content-padder
           .splash-image.collect-placeholder
-          .collect-video.video-holder
 
 block body
   mixin hero
