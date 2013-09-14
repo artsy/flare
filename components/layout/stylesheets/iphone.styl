@@ -20,6 +20,11 @@
     background-size: auto 100%
     width: 100%
     height: 100%
+    position: absolute
+    top: 0px
+    left: 0px
+    z-index: 100
+
   .reflection
     background-size contain
     background-repeat no-repeat
@@ -31,6 +36,7 @@
     background-size: auto 100%
     width: 39.79%
     height: 53.407%
+    z-index: 100
 
   .iphone-content
     top: 0px
@@ -57,6 +63,7 @@
     opacity(0)
     position: absolute
     top: 0px
+    left: 0px
     z-index: 5
     &.active
       opacity(1)
@@ -105,6 +112,3 @@
   .collect-placeholder
     background-image url('/images/video/3.jpg') !important
     z-index: 8
-
-  .video-holder
-    display: none

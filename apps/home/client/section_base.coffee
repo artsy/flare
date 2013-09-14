@@ -12,11 +12,14 @@ module.exports = class SectionBase extends Backbone.View
     @$headerLink = $(".links a:eq(#{@index})")
     @$phoneContentArea = @options.$phoneContentArea
     @$phoneContentPadder = @$phoneContentArea.find('.content-padder')
+    if @$phoneContentArea.find('video').length
+      @video = @$phoneContentArea.find('video')[0]
     @parent = @options.parent
 
   onResize: (browserHeight, phoneContentAreaTop, phoneContentAreaHeight, phoneTop) ->
     @top = @$el.offset().top
     @activeTop = @top - browserHeight
+    @videoTop = @top + browserHeight
 
     @bottom = @top + @$el.height()
     @activeBottom = @bottom - browserHeight
@@ -32,11 +35,29 @@ module.exports = class SectionBase extends Backbone.View
     @phoneActiveBottom = @activeBottom - @contentTopMargin
 
 
+  playVideo: ->
+    if @video and !@playing
+      # @$splashImage.hide()
+      # @$videoHolder.show()
+      @video.play()
+      @playing = true
+
+  pauseVideo: ->
+    if @video and @playing
+      @playing = false
+      @video.pause()
+
   onScroll: (scrollTop, browserHeight)->
     if scrollTop >= @top and scrollTop <= @activeBottom
       @makeActive()
     else
       @makeInactive()
+
+    if scrollTop > @videoTop and scrollTop < @activeBottom
+      @playVideo()
+    else
+      @pauseVideo()
+
     @contentAreaOnScroll scrollTop, browserHeight
 
   contentAreaOnScroll: (scrollTop, browserHeight) ->
