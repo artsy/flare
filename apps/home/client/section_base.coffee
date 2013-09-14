@@ -6,7 +6,7 @@ module.exports = class SectionBase extends Backbone.View
   contentAreaActive: false
   active: false
   state: {}
-  cssProperties: ['height', 'top', 'bottom']
+  cssProperties: ['height', 'top', 'bottom', 'padderPositionTop']
 
   initialize: ->
     @$headerLink = $(".links a:eq(#{@index})")
@@ -71,10 +71,11 @@ module.exports = class SectionBase extends Backbone.View
       height: "#{height}px"
       top: top
       bottom: bottom
-    @applyNewState height - @contentHeight
+      padderPositionTop: height - @contentHeight
+    @applyNewState newState
 
   # ensure we don't make any unnecessary dom manipulation
-  applyNewState: (newState, padderPositionTop) ->
+  applyNewState: (newState) ->
     diff = {}
     changed = false
     for prop in @cssProperties
@@ -88,7 +89,7 @@ module.exports = class SectionBase extends Backbone.View
 
       # bit of a hack - refactor
       if @state.top
-        @$phoneContentPadder.css top: padderPositionTop
+        @$phoneContentPadder.css top: @state.padderPositionTop
 
   makeActive: ->
     return if @active
