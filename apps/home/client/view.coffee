@@ -118,7 +118,6 @@ module.exports = class HomePageView extends Backbone.View
     activeSplashImage = @$('.splash-image.active').removeClass('active').next()
     # wait for css fade out animation to finish
     _.delay =>
-      return unless @heroAnimationsActive
       if activeSplashImage.length < 1
         activeSplashImage = @$('.splash-image').first()
       activeSplashImage.addClass 'active'
