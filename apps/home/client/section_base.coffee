@@ -13,7 +13,7 @@ module.exports = class SectionBase extends Backbone.View
     @$phoneContentArea = @options.$phoneContentArea
     @$phoneContentPadder = @$phoneContentArea.find('.content-padder')
     if @$phoneContentArea.find('video').length
-      @video = @$phoneContentArea.find('video')[0]
+      @video = @$phoneContentArea.find('video').show()[0]
     @parent = @options.parent
 
   onResize: (browserHeight, phoneContentAreaTop, phoneContentAreaHeight, phoneTop) ->
@@ -37,8 +37,6 @@ module.exports = class SectionBase extends Backbone.View
 
   playVideo: ->
     if @video and !@playing
-      # @$splashImage.hide()
-      # @$videoHolder.show()
       @video.play()
       @playing = true
 
