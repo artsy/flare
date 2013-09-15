@@ -44,15 +44,15 @@ mixin iphone
         .splash-image.splash-image-10
       .phone-content-area.browse-content-area
         .content-padder
-          video.splash-image.browse-placeholder( data-autoresize="fit" preload="none" loop="true" width=320 height=570 )
+          video.splash-image.browse-placeholder( preload="none" muted="true" loop="true" width=320 height=570 poster=(sd.CDN_URL + "browse-placeholder.jpg" ) )
             source( src=(sd.CDN_URL + "browse.mp4" ) )
       .phone-content-area.explore-content-area
         .content-padder
-          video.splash-image.explore-placeholder( data-autoresize="fit" preload="none" loop="true" width=320 height=570 )
+          video.splash-image.explore-placeholder( preload="none" muted="true" loop="true" width=320 height=570 poster=(sd.CDN_URL + "explore-placeholder.jpg" ) )
             source( src=(sd.CDN_URL + "explore.mp4" ) )
       .phone-content-area.collect-content-area
         .content-padder
-          video.splash-image.collect-placeholder( data-autoresize="fit" preload="none" loop="true" width=320 height=570 )
+          video.splash-image.collect-placeholder( preload="none" muted="true" loop="true" width=320 height=570 poster=(sd.CDN_URL + "collect-placeholder.jpg" ) )
             source( src=(sd.CDN_URL + "collect.mp4" ) )
 
 block body

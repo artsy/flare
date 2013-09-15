@@ -3,8 +3,9 @@ _ = require 'underscore'
 
 module.exports = class iPhoneView extends Backbone.View
 
-  minTop: 65
+  minTop: 100
   minLeft: 50
+  maxHeight: 807
   phoneHeightToWidthRatio: 0.4733
   phoneContentAreaHeightRatio: 0.7053
   phoneAreaAboveContentAreaToHeightRatio: 0.14759
@@ -18,11 +19,15 @@ module.exports = class iPhoneView extends Backbone.View
     @$window.on 'resize.feed', _.throttle((=> @positionPhone()), 70)
 
   positionPhone: ->
-    @height = @$el.height()
-    @width = Math.floor(@height * @phoneHeightToWidthRatio)
-
     windowHeight = @$window.height()
     windowWidth = @$window.width()
+
+    @height = windowHeight - (@minTop * 2)
+    @height = if @height > @maxHeight then @maxHeight else @height
+
+    @$el.height @height
+    @width = Math.floor(@height * @phoneHeightToWidthRatio)
+
     top = Math.round((windowHeight - @height) / 2)
     left = Math.floor((windowWidth - @width) / 2)
 
