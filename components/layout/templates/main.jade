@@ -28,20 +28,19 @@ mixin hero
 
 mixin iphone
   #iphone
-    .phone
-    .reflection
+    img.phone( src=(sd.CDN_URL + "phone.png" ) )
     .iphone-content
       .phone-content-area.splash-images
-        .splash-image.splash-image-1.active
-        .splash-image.splash-image-2
-        .splash-image.splash-image-3
-        .splash-image.splash-image-4
-        .splash-image.splash-image-5
-        .splash-image.splash-image-6
-        .splash-image.splash-image-7
-        .splash-image.splash-image-8
-        .splash-image.splash-image-9
-        .splash-image.splash-image-10
+        img.splash-image.splash-image-1.active( src=(sd.CDN_URL + "01intro.jpg" ) )
+        img.splash-image.splash-image-2( src=(sd.CDN_URL + "02intro.jpg" ) )
+        img.splash-image.splash-image-3( src=(sd.CDN_URL + "03intro.jpg" ) )
+        img.splash-image.splash-image-4( src=(sd.CDN_URL + "04intro.jpg" ) )
+        img.splash-image.splash-image-5( src=(sd.CDN_URL + "05intro.jpg" ) )
+        img.splash-image.splash-image-6( src=(sd.CDN_URL + "06intro.jpg" ) )
+        img.splash-image.splash-image-7( src=(sd.CDN_URL + "07intro.jpg" ) )
+        img.splash-image.splash-image-8( src=(sd.CDN_URL + "08intro.jpg" ) )
+        img.splash-image.splash-image-9( src=(sd.CDN_URL + "09intro.jpg" ) )
+        img.splash-image.splash-image-10( src=(sd.CDN_URL + "10intro.jpg" ) )
       .phone-content-area.browse-content-area
         .content-padder
           video.splash-image.browse-placeholder( preload="none" muted="true" loop="true" width=320 height=570 poster=(sd.CDN_URL + "browse-placeholder.jpg" ) )
