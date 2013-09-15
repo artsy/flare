@@ -16,8 +16,18 @@ uploadFile = (filename) ->
   exec "git rev-parse --short HEAD", (err, commitHash) ->
     localPath = path.resolve process.cwd(), filename
     s3Path = path.resolve "/assets/#{commitHash.trim()}/", path.basename(filename)
+
+    if filename.match /\.css/ then
+      contentType = "text/css"
+    else if filename.match /\.ico/ then
+      contentType = "image/x-icon"
+    else if filename.match /\.mp4/
+      contentType = "video/mp4"
+    else
+      contentType = "application/javascript"
+
     headers =
-      'Content-Type': if filename.match /\.css/ then 'text/css' else 'application/javascript'
+      'Content-Type': contentType
       'x-amz-acl': 'public-read'
       'Content-Encoding': 'gzip' if filename.match /gz$/
     client.putFile localPath, s3Path, headers, (err, res) ->
