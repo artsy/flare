@@ -17,9 +17,9 @@ uploadFile = (filename) ->
     localPath = path.resolve process.cwd(), filename
     s3Path = path.resolve "/assets/#{commitHash.trim()}/", path.basename(filename)
 
-    if filename.match /\.css/ then
+    if filename.match /\.css/
       contentType = "text/css"
-    else if filename.match /\.ico/ then
+    else if filename.match /\.ico/
       contentType = "image/x-icon"
     else if filename.match /\.mp4/
       contentType = "video/mp4"
