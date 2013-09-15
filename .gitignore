@@ -12,4 +12,5 @@ pids
 logs
 results
 npm-debug.log
-public/assets
+public/assets/all.css
+public/assets/all.js
