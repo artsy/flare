@@ -21,6 +21,8 @@ uploadFile = (filename) ->
       contentType = "text/css"
     else if filename.match /\.ico/
       contentType = "image/x-icon"
+    else if filename.match /\.jpg/
+      contentType = "image/jpeg"
     else if filename.match /\.mp4/
       contentType = "video/mp4"
     else

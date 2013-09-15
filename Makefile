@@ -42,7 +42,10 @@ assets-production: assets
 
 # Uploads assets to S3
 assets-to-cdn: assets-production
-	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/all.min.css.gz public/assets/all.min.js.gz public/assets/browse.mp4 public/assets/collect.mp4 public/assets/explore.mp4 public/assets/favicon.ico
+	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/all.min.css.gz public/assets/all.min.js.gz
+	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/browse.mp4 public/assets/collect.mp4 public/assets/explore.mp4
+	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/browse-placeholder.jpg public/assets/collect-placeholder.jpg public/assets/explore-placeholder.jpg
+	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/favicon.ico
 
 # Runs all the necessary build tasks to push to staging or production
 deploy: assets-production
