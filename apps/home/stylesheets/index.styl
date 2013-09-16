@@ -1,3 +1,4 @@
+@import '../../../components/stylus_lib'
 
 #content
   position: relative
@@ -14,6 +15,8 @@ section
     z-index: 6
     display: inline-block
     vertical-align: top
+    @media media-query
+      display: none
 
   .heading, p
     padding-left: 60px
@@ -23,6 +26,7 @@ section
     font-size: 47px
     line-height: 102%
     margin-bottom: 25px
+
   p
     font-size: 17px
     line-height: 143%

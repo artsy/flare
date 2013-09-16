@@ -31,8 +31,11 @@
     transition(opacity, 0.4s)
     &.visible
       opacity(1)
+    @media media-query
+      display: none
+
   .bordered-input
-    width: 239px
+    width: 229px
 
   .apple-copy
     text-align: center
@@ -41,6 +44,9 @@
     position: absolute
     bottom: 20px
     color: #AAA
+    padding: 0px 20px
+    margin: 0px auto
+    box-sizing: border-box
 
   .share
     avant-garde()

@@ -22,9 +22,10 @@
     background-position center center
     height: 50px
     background-image url('/images/app-store.svg') !important
-    width: 150px
+    width: 133px
     float: right
     right: 16px
+    margin-top: -6px
   .app-store, .header-logo
     top: 16px
     position: absolute
@@ -32,6 +33,8 @@
     left: 16px
   .links
     text-align: center
+    @media media-query
+      display: none
     a
       avant-garde()
       text-decoration: none
