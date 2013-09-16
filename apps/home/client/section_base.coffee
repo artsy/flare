@@ -6,7 +6,7 @@ module.exports = class SectionBase extends Backbone.View
   contentAreaActive: false
   active: false
   state: {}
-  cssProperties: ['height', 'top', 'bottom', 'padderPositionTop']
+  cssProperties: ['height', 'top', 'bottom', 'padderPositionTop', 'padderOpacity']
 
   initialize: ->
     @$headerLink = $(".links a:eq(#{@index})")
@@ -62,6 +62,7 @@ module.exports = class SectionBase extends Backbone.View
   contentAreaOnScroll: (scrollTop, browserHeight) ->
     height = @contentHeight
     top = 0
+    top = 1
     bottom = 'auto'
     backgroundPositionY = 'auto'
 
@@ -78,6 +79,7 @@ module.exports = class SectionBase extends Backbone.View
         height = @phoneBottom - scrollTop
         top = 0
         bottom = 'auto'
+        opacity = (height / @contentHeight)
 
       @makeContentAreaActive()
     else
@@ -92,6 +94,7 @@ module.exports = class SectionBase extends Backbone.View
       top: top
       bottom: bottom
       padderPositionTop: height - @contentHeight
+      padderOpacity: opacity
     @applyNewState newState
 
   # ensure we don't make any unnecessary dom manipulation
@@ -109,7 +112,11 @@ module.exports = class SectionBase extends Backbone.View
 
       # bit of a hack - refactor
       if @state.top
-        @$phoneContentPadder.css top: @state.padderPositionTop
+        @$phoneContentPadder.css
+          top: @state.padderPositionTop
+      else
+        @$phoneContentPadder.find('video').css
+          opacity: @state.padderOpacity
 
   makeActive: ->
     return if @active
