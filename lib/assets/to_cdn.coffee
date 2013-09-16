@@ -25,6 +25,8 @@ uploadFile = (filename) ->
       contentType = "image/jpeg"
     else if filename.match /\.mp4/
       contentType = "video/mp4"
+    else if filename.match /\.webm/
+      contentType = "video/webm"
     else
       contentType = "application/javascript"
 
