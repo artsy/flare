@@ -13,8 +13,9 @@ module.exports = class HomePageView extends Backbone.View
   el: 'body'
 
   headerHeight: 64
-  headerTextMargin: 60
+  headerTextMargin: 45
   heroAnimationsActive: true
+  minSupportedWidth: 770
 
   events:
     'click header .links a' : 'sectionNavClick'
@@ -49,7 +50,7 @@ module.exports = class HomePageView extends Backbone.View
       @show()
       @animateSplashImages()
       _.defer =>
-        @initializePopLockit()
+        @initializePopLockit() if @width > @minSupportedWidth
         @newAnimationFrame()
     , 400
 
@@ -71,6 +72,10 @@ module.exports = class HomePageView extends Backbone.View
 
   onResize: =>
     @browserHeight = @$window.height()
+    @browserWidth = @$window.width()
+
+    return @$content?.popLockIt 'destroy' if @width < @minSupportedWidth
+
     @sizeSections()
     @documentHeight = @$document.height()
     @sizeHeaders()
