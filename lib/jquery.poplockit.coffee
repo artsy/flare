@@ -247,6 +247,7 @@
 
     # recomputes height / top / bottom etc of each feed item and its columns
     recompute: ->
+      @viewportHeight = @$window.outerHeight(true)
       @settings.active = true
       feedItem.recompute() for feedItem in @feedItems
 

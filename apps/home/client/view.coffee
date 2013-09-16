@@ -54,7 +54,8 @@ module.exports = class HomePageView extends Backbone.View
     , 400
 
   initializePopLockit: ->
-    $('#content').popLockIt({
+    @$content = $('#content')
+    @$content.popLockIt({
       feedItems      : $('#content > section')
       columnSelector : '> .column'
     })
@@ -76,6 +77,7 @@ module.exports = class HomePageView extends Backbone.View
     @positionHeaders()
     for sectionName, sectionView of @sectionViews
         sectionView.onResize @browserHeight, @iphone.contentAreaTop, @iphone.contentAreaHeight, @iphone.top
+    @$content?.popLockIt 'recompute'
 
   sizeSections: ->
     @$('#content').css(
