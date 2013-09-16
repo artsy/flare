@@ -79,10 +79,10 @@ module.exports = class HomePageView extends Backbone.View
 
   sizeSections: ->
     @$('#content').css(
-      'margin-top'    : "#{@browserHeight}px"
-      'margin-bottom' : "#{@browserHeight}px"
+      'margin-top'    : @browserHeight
+      'margin-bottom' : @browserHeight
     ).find('section').css
-      'min-height'    : "#{@browserHeight * 3}px"
+      'min-height'    : @browserHeight * 1.5
 
   sizeHeaders: ->
     @headerWidth = @$('#content section .left-text').width()
