@@ -50,7 +50,7 @@ module.exports = class HomePageView extends Backbone.View
       @show()
       @animateSplashImages()
       _.defer =>
-        @initializePopLockit() if @width > @minSupportedWidth
+        @initializePopLockit() if @browserWidth > @minSupportedWidth
         @newAnimationFrame()
     , 400
 
@@ -74,7 +74,7 @@ module.exports = class HomePageView extends Backbone.View
     @browserHeight = @$window.height()
     @browserWidth = @$window.width()
 
-    return @$content?.popLockIt 'destroy' if @width < @minSupportedWidth
+    return @$content?.popLockIt 'destroy' if @browserWidth < @minSupportedWidth
 
     @sizeSections()
     @documentHeight = @$document.height()
