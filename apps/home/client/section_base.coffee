@@ -19,10 +19,11 @@ module.exports = class SectionBase extends Backbone.View
   onResize: (browserHeight, phoneContentAreaTop, phoneContentAreaHeight, phoneTop) ->
     @top = @$el.offset().top
     @activeTop = @top - browserHeight
-    @videoTop = @top + browserHeight
+    @videoTop = @top - (browserHeight / 5)
 
     @bottom = @top + @$el.height()
     @activeBottom = @bottom - browserHeight
+    @videoBottom = @bottom - browserHeight + (browserHeight / 5)
 
     # for the phone content areas
     @contentTopMargin = phoneContentAreaTop + phoneTop
@@ -51,7 +52,7 @@ module.exports = class SectionBase extends Backbone.View
     else
       @makeInactive()
 
-    if scrollTop > @videoTop and scrollTop < @activeBottom
+    if scrollTop > @videoTop and scrollTop < @videoBottom
       @playVideo()
     else
       @pauseVideo()
