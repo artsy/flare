@@ -1,50 +1,50 @@
 {
-    "name": "flare",
-    "version": "0.0.1",
-    "private": true,
-    "engines": {
-  	"node": "0.10.x"
-    },
-    "scripts": {
-        "start": "make s",
-  	"test": "make test"
-    },
-    "dependencies": {
-        "express": "3.x",
-        "jade": "*",
-        "stylus": "0.35.x",
-        "coffee-script": "*",
-        "backbone": "*",
-        "underscore": "*",
-        "underscore.string": "*",
-        "inflection": "*",
-        "superagent": "*",
-        "node-uuid": "*",
-        "validator": "*",
-        "moment": "*",
-        "showdown": "git://github.com/craigspaeth/showdown.git",
-        "strong-agent": "*",
-        "ua-parser": "*",
-        "twilio": "*"
-    },
-    "devDependencies": {
-        "browserify": "*",
-        "nodemon": "*",
-        "mocha": "*",
-        "should": "*",
-        "sinon": "*",
-        "rewire": "*",
-        "nib": "*",
-        "coffeeify": "*",
-        "uglify-js": "*",
-        "jadeify2": "*",
-        "jsdom": "*",
-        "supertest": "*",
-        "zombie": "2.0.0-alpha19",
-        "glob": "*",
-	"knox": "*",
-	"sqwish": "*",
-	"uglify-js": "*",
-	"portscanner": "*"
-    }
+  "name": "flare",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+	  "node": "0.10.x"
+  },
+  "scripts": {
+    "start": "make s",
+	  "test": "make test"
+  },
+  "dependencies": {
+    "express": "3.x",
+    "jade": "*",
+    "stylus": "0.35.x",
+    "coffee-script": "*",
+    "backbone": "*",
+    "underscore": "*",
+    "underscore.string": "*",
+    "inflection": "*",
+    "superagent": "*",
+    "node-uuid": "*",
+    "validator": "*",
+    "moment": "*",
+    "showdown": "git://github.com/craigspaeth/showdown.git",
+    "strong-agent": "*",
+    "ua-parser": "*",
+    "twilio": "*"
+  },
+  "devDependencies": {
+    "browserify": "*",
+    "nodemon": "*",
+    "mocha": "*",
+    "should": "*",
+    "sinon": "*",
+    "rewire": "*",
+    "nib": "*",
+    "coffeeify": "*",
+    "uglify-js": "*",
+    "jadeify2": "*",
+    "jsdom": "*",
+    "supertest": "*",
+    "zombie": "2.0.0-alpha19",
+    "glob": "*",
+    "knox": "*",
+    "sqwish": "*",
+    "uglify-js": "*",
+    "portscanner": "*"
+  }
 }

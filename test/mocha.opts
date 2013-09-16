@@ -2,4 +2,4 @@
 --reporter list
 --ui bdd
 --compilers coffee:coffee-script
---timeout 5000
+--timeout 10000

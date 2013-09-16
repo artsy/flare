@@ -1,7 +1,8 @@
 fabricate = require '../../../test/helpers/fabricate'
 sinon = require 'sinon'
-routes = require '../routes'
 Backbone = require 'backbone'
+rewire = require 'rewire'
+routes = rewire '../routes'
 
 describe '#index', ->
 
@@ -21,6 +22,29 @@ describe '#index', ->
     @templateName.should.equal 'page'
 
 describe '#sendLinkViaSMS', ->
-
-  xit 'POST sends a link with a valid phone number'
+  
+  twilioConstructorArgs = null; twilioSendSmsArgs = null; resStub = null;
+  
+  beforeEach ->
+    twilio = routes.__get__ 'twilio'
+    twilio.RestClient = class TwilioClientStub
+      constructor: -> twilioConstructorArgs = arguments
+      sendSms: -> twilioSendSmsArgs = arguments
+    routes.sendLinkViaSMS { body: { phone_number: '555 111 2222' } }, { json: resStub = sinon.stub() }
+    
+    
+  it 'sends a link with a valid phone number', ->
+    twilioConstructorArgs[0].length.should.be.above 5
+    twilioConstructorArgs[1].length.should.be.above 5
+    twilioSendSmsArgs[0].to.should.equal '555 111 2222'
+    twilioSendSmsArgs[0].from.should.equal '(917) 746-8750'
+    twilioSendSmsArgs[0].body.should.include 'Get the new Artsy iPhone app at http://artsy.net/sup'
+    twilioSendSmsArgs[1] null, 'SUCCESS!'
+    resStub.args[0][1].message.should.include 'Message sent.'
+  
+  it 'throws an error if twilio doesnt like it', ->
+    twilioSendSmsArgs[1] 'fail', { message: 'You suck!' }
+    resStub.args[0][1].message.should.include 'You suck!'
+    
+  
   xit 'POST returns an error with an invalid phone number'
