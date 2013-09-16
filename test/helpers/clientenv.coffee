@@ -55,18 +55,19 @@ globals = {}
 @teardown = =>
   delete global[key] for key, val of globals
 
-# Helper for rendering a server-side template's #content element or just the template 
-# into the fake browser's body.
+# Helper for rendering a server-side template's into the fake browser's body.
+# Will strip out all script tags first to avoid jsdom trying to run scripts.
 # 
 # @param {String} filename
 # @param {Object} options Options passed into jade
 
 @renderTemplate = (filename, options) ->
-  html = jade.compile(
+  $html = $ jade.compile(
     fs.readFileSync(filename),
     { filename: filename }
   ) options
-  $('body').html $(html).find('#content')?.html() or html
+  $html.find('script').remove()
+  $('body').html $html.html()
 
 # Helper for rewiring client-side templates that were meant for jadeify
 # into something that can be tested serverside.
@@ -93,4 +94,4 @@ attachGlobals = (window) =>
   global.navigator = globals.navigator = window.navigator
   global.document = globals.document = window.document
   global.BOOTSTRAP = globals.BOOTSTRAP = {}
-  globals.$ = Backbone.$ = require '../../lib/jquery.js'
+  global.$ = globals.$ = global.jQuery = globals.jQuery = Backbone.$ = require '../../lib/jquery.js'
