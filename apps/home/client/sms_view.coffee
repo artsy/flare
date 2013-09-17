@@ -11,10 +11,11 @@ module.exports = class SmsView extends Backbone.View
     "keyup input"  : 'submitOnEnter'
 
   initialize: ->
-    _.delay =>
-      @$('input').focus()
-    , 1000
+    @$input = @$('input')
+    _.delay @focusInput, 1000
 
+  focusInput: =>
+    @$input.focus() unless @options.isTouchDevice
 
   submit: ->
     @sending()

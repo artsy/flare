@@ -60,6 +60,10 @@
     padding: 0px 20px
     margin: 0px auto
     box-sizing: border-box
+    opacity(0)
+    transition(opacity, 0.4s)
+    &.active
+      opacity(1)
 
   .arrow
     background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 33%, rgba(0,0,0,0.8) 66%, rgba(0,0,0,0.8) 100%)
@@ -84,7 +88,7 @@
     cursor: pointer
     margin-left: -20px
     opacity(0)
-    transition(opacity, 0.4s)
+    transition(opacity, 0.2s)
     &.active
       opacity(1)
       &:hover
@@ -120,3 +124,9 @@
     .twitter-icon
       background-image url('/images/icon_twitter_white.png') !important
       margin-left: 12px
+
+  &.bottom-mode
+    .arrow-container
+      opacity(0) !important
+    .apple-copy
+      opacity(1) !important

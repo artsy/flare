@@ -7,7 +7,6 @@ SmsView = require './sms_view.coffee'
 iPhoneView = require './iphone_view.coffee'
 ShareView = require './share_view.coffee'
 
-# todo - refactor this into a larger view for the homepage / app and a subview for stuff under #content
 module.exports = class HomePageView extends Backbone.View
 
   el: 'body'
@@ -34,17 +33,19 @@ module.exports = class HomePageView extends Backbone.View
     @$headerItems = @$('.app-header a')
     @$window = $(window)
     @$document = $(document)
-    @$arrow = @$('.hero .arrow-container')
+    @$hero = @$('.hero')
+    @$arrow = @$hero.find('.arrow-container')
     @$header = @$('.app-header')
-    @$largeHeaderText = @$('.hero .content')
+    @$largeHeaderText = @$hero.find('.content')
     @$rightHeaders = @$('#content section .right-text')
     @$leftHeaders = @$('#content section .left-text')
     @scrollTop = @$window.scrollTop()
 
-    @smsForm = new SmsView(parent: @, el: @$('#sms'))
+    @smsForm = new SmsView(parent: @, el: @$('#sms'), isTouchDevice: @isTouchDevice())
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'), $window: @$window)
     @shareView = new ShareView(parent: @, el: @$('.share'))
     @iphone.on 'repositioned', @onResize
+    @throttledAnimations = _.throttle((=> @delayableOnScrollEvents()), 70)
 
     @initializeSections()
     @onResize()
@@ -126,12 +127,41 @@ module.exports = class HomePageView extends Backbone.View
     activeSplashImage = @$('.splash-image.active').removeClass('active').next()
     # wait for css fade out animation to finish
     _.delay =>
-      if activeSplashImage.length < 1
-        activeSplashImage = @$('.splash-image').first()
-      activeSplashImage.addClass 'active'
+      unless @$hero.hasClass 'bottom-mode'
+        if activeSplashImage.length < 1
+          activeSplashImage = @$('.splash-image').first()
+        activeSplashImage.addClass 'active'
     , 300
 
+  showFirstSplashImage: ->
+    @$('.splash-image.active').removeClass('active')
+    @$('.splash-image').first().addClass('active')
+
   animateSplashImages: -> @splashInterval = window.setInterval @showNextImage, @splashImageAnimationSpeed
+
+  # these events don't need to happen every animation frame
+  delayableOnScrollEvents: ->
+
+    # check header position against top of page and bottom of page
+    if (@scrollTop > @browserHeight - @headerHeight) and (@scrollTop < @documentHeight - @browserHeight - @headerHeight)
+      @$header.addClass('white')
+    else
+      @$header.removeClass('white')
+
+    # prevent header animations if user has started scrolling
+    if @scrollTop < @headerHeight
+      @heroAnimationsActive = true
+    else
+      @heroAnimationsActive = false
+
+    # add / remove the 'bottom mode' state
+    if @scrollTop > @documentHeight - (@browserHeight * 2)
+      unless @$hero.hasClass 'bottom-mode'
+        @$hero.addClass 'bottom-mode'
+        @smsForm.focusInput()
+        @showFirstSplashImage()
+    else
+      @$hero.removeClass 'bottom-mode'
 
   animate: =>
     newScrollTop = @$window.scrollTop()
@@ -139,18 +169,7 @@ module.exports = class HomePageView extends Backbone.View
       direction = if newScrollTop > @scrollTop then 'down' else 'up'
       @scrollTop = newScrollTop
 
-      # check header position against top of page and bottom of page
-      if (@scrollTop > @browserHeight - @headerHeight) and (@scrollTop < @documentHeight - @browserHeight - @headerHeight)
-        @$header.addClass('white')
-      else
-        @$header.removeClass('white')
-
-      # prevent header animations if user has started scrolling
-      # re-enable header animations if they are at the bottom of the page
-      if (@scrollTop > @headerHeight) and (@scrollTop < @documentHeight - @browserHeight - (@headerHeight * 2))
-        @heroAnimationsActive = false
-      else
-        @heroAnimationsActive = true
+      @throttledAnimations()
 
       for sectionName, sectionView of @sectionViews
         sectionView.onScroll @scrollTop, @browserHeight, direction
@@ -166,10 +185,16 @@ module.exports = class HomePageView extends Backbone.View
   delayShowArrow: ->
     bottom = (@iphone.top / 2)
     _.delay =>
-      @$arrow.css(
-        bottom: bottom
-      ).addClass 'active'
+      @$arrow.css bottom: bottom
+      @showArrow()
     , 1000
 
-  hightlightHeaderSection: ->
-    @$headerItems.removeClass 'selected'
+  showArrow: -> @$arrow.addClass 'active'
+  hideArrow: -> @$arrow.remove 'active'
+
+  isTouchDevice: ->
+    try
+      document.createEvent("TouchEvent")
+      return true
+    catch
+      return false
