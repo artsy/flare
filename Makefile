@@ -39,15 +39,12 @@ assets-production: assets
 	$(BIN)/coffee lib/assets/embed_datauri.coffee public/assets/all.min.css
 	$(BIN)/uglifyjs public/assets/all.js > public/assets/all.min.js
 	gzip -f public/assets/all.min.js public/assets/all.min.css
+	# keep only compressed assets
+	rm public/assets/*.js public/assets/*.css
 
 # Uploads assets to S3
 assets-to-cdn: assets-production
-	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/all.min.css.gz public/assets/all.min.js.gz
-	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/browse.mp4 public/assets/collect.mp4 public/assets/explore.mp4
-	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/browse.webm public/assets/collect.webm public/assets/explore.webm
-	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/browse-placeholder.jpg public/assets/collect-placeholder.jpg public/assets/explore-placeholder.jpg
-	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/favicon.ico
-	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/01intro.jpg public/assets/02intro.jpg public/assets/03intro.jpg public/assets/04intro.jpg public/assets/05intro.jpg public/assets/06intro.jpg public/assets/07intro.jpg public/assets/08intro.jpg public/assets/09intro.jpg public/assets/10intro.jpg
+	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets
 
 # Runs all the necessary build tasks to push to staging or production
 deploy: assets-production
