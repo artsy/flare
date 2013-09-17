@@ -3,8 +3,8 @@ _ = require 'underscore'
 
 module.exports = class iPhoneView extends Backbone.View
 
-  minTop: 100
-  minLeft: 50
+  minTop: 120
+  minLeft: 60
   maxHeight: 807
   phoneHeightToWidthRatio: 0.4733
   phoneContentAreaHeightRatio: 0.7026022
@@ -12,10 +12,9 @@ module.exports = class iPhoneView extends Backbone.View
   phoneAreaToLeftContentAreaToWidthRatio: 0.083769
 
   initialize: ->
-    @$window = $(window)
+    @$window = @options.$window
     @$phoneContent = @$('.iphone-content')
-    @$splashImages = $('.splash-image')
-    @$mainPhoneContentAreas = $('#content .phone-content-area')
+    @$splashImages = @$('.splash-image')
     @positionPhone()
     @$window.on 'resize.feed', _.throttle((=> @positionPhone()), 70)
 
@@ -51,10 +50,7 @@ module.exports = class iPhoneView extends Backbone.View
       height: @contentAreaHeight
       top: @contentAreaTop
 
-    # ideally this would be sized purely by css but we need to shrink the container for wipe animations
+    # ideally this would be sized purely by css but we shrink the container for wipe animations
     @$splashImages.css
       height: @height * @phoneContentAreaHeightRatio
       left: @height * @phoneHeightToWidthRatio * @phoneAreaToLeftContentAreaToWidthRatio
-
-    @$mainPhoneContentAreas.css
-      width: @width

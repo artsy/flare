@@ -8,19 +8,24 @@
   height: 100%
   z-index: 1
   top: 0px
+
   h1, h2, .heading
     width: 300px
+
   h1
     font-size: 47px
     line-height: 102%
+
   h2
     font-size: 24px
     margin-top: 19px
     margin-bottom: 50px
+
   .heading
     avant-garde()
     font-size: 14px
     margin-bottom: 9px
+
   .content
     width: 350px
     position: absolute
@@ -42,11 +47,36 @@
     font-size: 13px
     width: 100%
     position: absolute
-    bottom: 20px
+    bottom: 5px
     color: #AAA
     padding: 0px 20px
     margin: 0px auto
     box-sizing: border-box
+  
+  .arrow
+    position: absolute
+    bottom: 5.5%
+    left: 50%
+    background-color: #000
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center center
+    background-image: url('/images/down_arrow.png') !important
+    background-size: 70% auto
+    border: 2px #FFF solid
+    border-radius: 25px
+    width: 30px
+    height: 30px
+    z-index: 15
+    padding: 3px
+    cursor: pointer
+    margin-left: -17px
+    opacity(0)
+    transition(opacity, 0.4s)
+    &.active
+      opacity(1)
+      &:hover
+        opacity(0.7)
 
   .share
     avant-garde()
@@ -71,6 +101,7 @@
 
     .facebook-icon
       background-image url('/images/icon_facebook_white.png') !important
+
     .twitter-icon
       width: 62px
       background-image url('/images/icon_twitter_white.png') !important

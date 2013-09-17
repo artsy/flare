@@ -12,14 +12,15 @@ module.exports = class HomePageView extends Backbone.View
 
   el: 'body'
 
-  headerHeight: 64
+  headerHeight: 32
+  arrowHeight: 40
   headerTextMargin: 45
   heroAnimationsActive: true
   minSupportedWidth: 770
 
   events:
     'click header .links a' : 'sectionNavClick'
-    'click arrow'           : 'nextSectionClick'
+    'click .hero .arrow'    : 'nextSectionClick'
 
   sections:
     "browse" : (-> new BrowseView(el: $('#browse'), $phoneContentArea: $('.browse-content-area') ) )
@@ -32,7 +33,7 @@ module.exports = class HomePageView extends Backbone.View
     @$headerItems = @$('.app-header a')
     @$window = $(window)
     @$document = $(document)
-    @$arrow = @$('#arrow')
+    @$arrow = @$('.hero .arrow')
     @$header = @$('.app-header')
     @$largeHeaderText = @$('.hero .content')
     @$rightHeaders = @$('#content section .right-text')
@@ -40,7 +41,7 @@ module.exports = class HomePageView extends Backbone.View
     @scrollTop = @$window.scrollTop()
 
     @smsForm = new SmsView(parent: @, el: @$('#sms'))
-    @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
+    @iphone = new iPhoneView(parent: @, el: @$('#iphone'), $window: @$window)
     @shareView = new ShareView(parent: @, el: @$('.share'))
     @iphone.on 'repositioned', @onResize
 
@@ -80,6 +81,7 @@ module.exports = class HomePageView extends Backbone.View
     @documentHeight = @$document.height()
     @sizeHeaders()
     @positionHeaders()
+    @delayShowArrow()
     for sectionName, sectionView of @sectionViews
         sectionView.onResize @browserHeight, @iphone.contentAreaTop, @iphone.contentAreaHeight, @iphone.top
     @$content?.popLockIt 'recompute'
@@ -159,9 +161,17 @@ module.exports = class HomePageView extends Backbone.View
   newAnimationFrame: -> window.requestAnimationFrame @animate
 
   nextSectionClick: =>
+    @smoothTransitionSection 'browse'
+    return false
 
-  showArrow: ->
-    @$arrow.show()
+  delayShowArrow: ->
+    bottom = (@iphone.top / 2)
+    _.delay =>
+      @$arrow.css(
+        bottom: bottom
+      ).addClass 'active'
+    , 1000
+
 
   hightlightHeaderSection: ->
     @$headerItems.removeClass 'selected'

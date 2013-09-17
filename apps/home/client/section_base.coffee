@@ -3,6 +3,7 @@ Backbone = require 'backbone'
 # base view for video sections
 module.exports = class SectionBase extends Backbone.View
 
+  supportsHtml5Video: true
   contentAreaActive: false
   active: false
   state: {}
@@ -12,9 +13,11 @@ module.exports = class SectionBase extends Backbone.View
     @$headerLink = $(".links a:eq(#{@index})")
     @$phoneContentArea = @options.$phoneContentArea
     @$phoneContentPadder = @$phoneContentArea.find('.content-padder')
-    if @$phoneContentArea.find('video').length
-      @video = @$phoneContentArea.find('video').show()[0]
+    @$video = @$phoneContentArea.find('video')
+    if @$video.length
+      @video = @$video.show()[0]
     @parent = @options.parent
+    @detectHtml5VideoSupport()
 
   onResize: (browserHeight, phoneContentAreaTop, phoneContentAreaHeight, phoneTop) ->
     @top = @$el.offset().top
@@ -34,17 +37,6 @@ module.exports = class SectionBase extends Backbone.View
 
     @phoneBottom = @bottom - @contentTopMargin
     @phoneActiveBottom = @activeBottom - @contentTopMargin
-
-
-  playVideo: ->
-    if @video and !@playing
-      @video.play()
-      @playing = true
-
-  pauseVideo: ->
-    if @video and @playing
-      @playing = false
-      @video.pause()
 
   onScroll: (scrollTop, browserHeight)->
     if scrollTop >= @top and scrollTop <= @activeBottom
@@ -118,6 +110,16 @@ module.exports = class SectionBase extends Backbone.View
         @$phoneContentPadder.find('video').css
           opacity: @state.padderOpacity
 
+  playVideo: ->
+    if @supportsHtml5Video and @video and !@playing
+      @video.play()
+      @playing = true
+
+  pauseVideo: ->
+    if @video and @playing
+      @playing = false
+      @video.pause()
+
   makeActive: ->
     return if @active
     @$headerLink.addClass 'active'
@@ -139,3 +141,12 @@ module.exports = class SectionBase extends Backbone.View
     return unless @contentAreaActive
     @$phoneContentArea.removeClass 'active'
     @contentAreaActive = false
+
+  # Html5 video performes terribly on Safari (unable to scroll while video is playing) so we disable it ONLY in Safari
+  # CSS fallbacks are apropriate for other browsers
+  detectHtml5VideoSupport: ->
+    isChrome = navigator.userAgent.indexOf('Chrome') > -1
+    isSafari = navigator.userAgent.indexOf("Safari") > -1
+    if isChrome and isSafari
+      isSafari = false
+    @supportsHtml5Video = false if isSafari

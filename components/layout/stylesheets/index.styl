@@ -28,19 +28,23 @@ body
   font-size default-font-size
   line-height 1.4em
   text-rendering optimizeLegibility
-// *
-//   box-sizing border-box
+  background: black
+
 a
   color black
+
 b, strong
   font-weight bold
+
 em
   font-style italic
+
 input
   serif()
   font-size default-font-size
   &:focus
     outline none
+
 sup
   font-size: 13px
   vertical-align: top
@@ -48,57 +52,6 @@ sup
   display: inline-block
   margin-left: 2px
 
-// Random component styles that haven't grown big enough to warrent moving them
-// into their own folder.
-.main-side-margin
-  margin 0 20px
-.thin-gray-hr
-  border 0
-  margin 40px 0
-  border-top 1px solid light-gray-border-color
-
-// Hide the document until typekit loads Garamond
-html.wf-loading
-  visibility hidden
-
 // List any data-uri embedded assets needed for initial page load here so they
 // are only embedded once.
 font-face('AvantGardeGothicITCW01D 731075', 'c18aee57-7585-4a8b-9a1c-69d226301d73')
-
-// Square logo
-.header-logo
-  background-size contain
-  background-repeat no-repeat
-  background-position center center
-  height: 40px
-  width: 40px
-  float: left
-
-#arrow
-  position: fixed
-  bottom: 36px
-  left: 50%
-  background: #000
-  border: 3px #FFF solid
-  -webkit-border-radius: 20px
-  border-radius: 16px
-  width: 30px
-  height: 30px
-  z-index: 15
-  opacity(0)
-  transition(opacity, 0.4s)
-  &.visible
-    opacity(1)
-    &:hover
-      border-color: highlight-color
-
-.phone-content-area
-  position: absolute
-  width: 100%
-  overflow: hidden
-
-#content
-  margin-top: 1000px
-  margin-bottom: 1000px
-  position: relative
-  z-index: 10
