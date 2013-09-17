@@ -49,6 +49,16 @@
     left: 0px
     width: 100%
     height: 100%
+    z-index: 10
+    .black-background
+      display: none
+      height: 100%
+      top: 0px
+    &.active
+      .black-background
+        display: block
+      .content-padder
+        opacity(1)
 
   .splash-image
     width: auto
@@ -77,6 +87,15 @@
     position: absolute
     height: 100%
     width: 100%
+    opacity(0)
+    z-index: 10
+
+  .browse-black-background
+    z-index: 5
+  .explore-black-background
+    z-index: 6
+  .collect-black-background
+    z-index: 7
 
   .browse-placeholder
     z-index: 6
