@@ -13,8 +13,9 @@ module.exports = class SectionBase extends Backbone.View
     @$headerLink = $(".links a:eq(#{@index})")
     @$phoneContentArea = @options.$phoneContentArea
     @$phoneContentPadder = @$phoneContentArea.find('.content-padder')
-    if @$phoneContentArea.find('video').length
-      @video = @$phoneContentArea.find('video').show()[0]
+    @$video = @$phoneContentArea.find('video').length
+    if @$video.length
+      @video = @$video.show()[0]
     @parent = @options.parent
     @detectHtml5VideoSupport()
 
@@ -36,16 +37,6 @@ module.exports = class SectionBase extends Backbone.View
 
     @phoneBottom = @bottom - @contentTopMargin
     @phoneActiveBottom = @activeBottom - @contentTopMargin
-
-  playVideo: ->
-    if @supportsHtml5Video and @video and !@playing
-      @video.play()
-      @playing = true
-
-  pauseVideo: ->
-    if @video and @playing
-      @playing = false
-      @video.pause()
 
   onScroll: (scrollTop, browserHeight)->
     if scrollTop >= @top and scrollTop <= @activeBottom
@@ -111,6 +102,16 @@ module.exports = class SectionBase extends Backbone.View
       # bit of a hack - refactor
       if @state.top
         @$phoneContentPadder.css top: @state.padderPositionTop
+
+  playVideo: ->
+    if @supportsHtml5Video and @video and !@playing
+      @video.play()
+      @playing = true
+
+  pauseVideo: ->
+    if @video and @playing
+      @playing = false
+      @video.pause()
 
   makeActive: ->
     return if @active
