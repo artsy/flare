@@ -47,7 +47,6 @@ assets-to-cdn: assets-production
 	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/browse.webm public/assets/collect.webm public/assets/explore.webm
 	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/browse-placeholder.jpg public/assets/collect-placeholder.jpg public/assets/explore-placeholder.jpg
 	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/favicon.ico
-	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/phone.png
 	$(BIN)/coffee lib/assets/to_cdn.coffee public/assets/01intro.jpg public/assets/02intro.jpg public/assets/03intro.jpg public/assets/04intro.jpg public/assets/05intro.jpg public/assets/06intro.jpg public/assets/07intro.jpg public/assets/08intro.jpg public/assets/09intro.jpg public/assets/10intro.jpg
 
 # Runs all the necessary build tasks to push to staging or production

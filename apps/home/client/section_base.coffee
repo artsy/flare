@@ -13,7 +13,7 @@ module.exports = class SectionBase extends Backbone.View
     @$headerLink = $(".links a:eq(#{@index})")
     @$phoneContentArea = @options.$phoneContentArea
     @$phoneContentPadder = @$phoneContentArea.find('.content-padder')
-    @$video = @$phoneContentArea.find('video').length
+    @$video = @$phoneContentArea.find('video')
     if @$video.length
       @video = @$video.show()[0]
     @parent = @options.parent
