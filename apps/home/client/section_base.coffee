@@ -3,6 +3,7 @@ Backbone = require 'backbone'
 # base view for video sections
 module.exports = class SectionBase extends Backbone.View
 
+  supportsHtml5Video: true
   contentAreaActive: false
   active: false
   state: {}
@@ -15,6 +16,7 @@ module.exports = class SectionBase extends Backbone.View
     if @$phoneContentArea.find('video').length
       @video = @$phoneContentArea.find('video').show()[0]
     @parent = @options.parent
+    @detectHtml5VideoSupport()
 
   onResize: (browserHeight, phoneContentAreaTop, phoneContentAreaHeight, phoneTop) ->
     @top = @$el.offset().top
@@ -35,9 +37,8 @@ module.exports = class SectionBase extends Backbone.View
     @phoneBottom = @bottom - @contentTopMargin
     @phoneActiveBottom = @activeBottom - @contentTopMargin
 
-
   playVideo: ->
-    if @video and !@playing
+    if @supportsHtml5Video and @video and !@playing
       @video.play()
       @playing = true
 
@@ -132,3 +133,12 @@ module.exports = class SectionBase extends Backbone.View
     return unless @contentAreaActive
     @$phoneContentArea.removeClass 'active'
     @contentAreaActive = false
+
+  # Html5 video performes terribly on Safari (unable to scroll while video is playing) so we disable it ONLY in Safari
+  # CSS fallbacks are apropriate for other browsers
+  detectHtml5VideoSupport: ->
+    isChrome = navigator.userAgent.indexOf('Chrome') > -1
+    isSafari = navigator.userAgent.indexOf("Safari") > -1
+    if isChrome and isSafari
+      isSafari = false
+    @supportsHtml5Video = false if isSafari
