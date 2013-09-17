@@ -82,7 +82,7 @@ module.exports = class SectionBase extends Backbone.View
     height = if height > @contentHeight then @contentHeight else height
 
     newState =
-      height: height
+      height: Math.round(height)
       top: top
       bottom: bottom
       padderPositionTop: Math.round(height - @contentHeight)
