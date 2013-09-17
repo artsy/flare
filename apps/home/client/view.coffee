@@ -154,11 +154,13 @@ module.exports = class HomePageView extends Backbone.View
     else
       @heroAnimationsActive = false
 
+    if @scrollTop == @documentHeight - @browserHeight
+      @smsForm.focusInput()
+
     # add / remove the 'bottom mode' state
     if @scrollTop > @documentHeight - (@browserHeight * 2)
       unless @$hero.hasClass 'bottom-mode'
         @$hero.addClass 'bottom-mode'
-        @smsForm.focusInput()
         @showFirstSplashImage()
     else
       @$hero.removeClass 'bottom-mode'
