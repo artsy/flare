@@ -12,10 +12,9 @@ module.exports = class iPhoneView extends Backbone.View
   phoneAreaToLeftContentAreaToWidthRatio: 0.083769
 
   initialize: ->
-    @$window = $(window)
+    @$window = @options.$window
     @$phoneContent = @$('.iphone-content')
-    @$splashImages = $('.splash-image')
-    @$mainPhoneContentAreas = $('#content .phone-content-area')
+    @$splashImages = @$('.splash-image')
     @positionPhone()
     @$window.on 'resize.feed', _.throttle((=> @positionPhone()), 70)
 
@@ -55,6 +54,3 @@ module.exports = class iPhoneView extends Backbone.View
     @$splashImages.css
       height: @height * @phoneContentAreaHeightRatio
       left: @height * @phoneHeightToWidthRatio * @phoneAreaToLeftContentAreaToWidthRatio
-
-    @$mainPhoneContentAreas.css
-      width: @width

@@ -12,7 +12,7 @@ module.exports = class HomePageView extends Backbone.View
 
   el: 'body'
 
-  headerHeight: 64
+  headerHeight: 32
   headerTextMargin: 45
   heroAnimationsActive: true
   minSupportedWidth: 770
@@ -40,7 +40,7 @@ module.exports = class HomePageView extends Backbone.View
     @scrollTop = @$window.scrollTop()
 
     @smsForm = new SmsView(parent: @, el: @$('#sms'))
-    @iphone = new iPhoneView(parent: @, el: @$('#iphone'))
+    @iphone = new iPhoneView(parent: @, el: @$('#iphone'), $window: @$window)
     @shareView = new ShareView(parent: @, el: @$('.share'))
     @iphone.on 'repositioned', @onResize
 
