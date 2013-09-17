@@ -23,8 +23,8 @@ module.exports = class HomePageView extends Backbone.View
     'click .hero .arrow'    : 'nextSectionClick'
 
   sections:
-    "browse" : (-> new BrowseView(el: $('#browse'), $phoneContentArea: $('.browse-content-area') ) )
     "explore" : (-> new ExploreView(el: $('#explore'), $phoneContentArea: $('.explore-content-area') ) )
+    "browse" : (-> new BrowseView(el: $('#browse'), $phoneContentArea: $('.browse-content-area') ) )
     "collect" : (-> new CollectView(el: $('#collect'), $phoneContentArea: $('.collect-content-area') ) )
 
   sectionViews: {}
@@ -159,7 +159,7 @@ module.exports = class HomePageView extends Backbone.View
   newAnimationFrame: -> window.requestAnimationFrame @animate
 
   nextSectionClick: =>
-    @smoothTransitionSection 'browse'
+    @smoothTransitionSection 'explore'
     return false
 
   delayShowArrow: ->
