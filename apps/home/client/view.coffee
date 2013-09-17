@@ -45,15 +45,13 @@ module.exports = class HomePageView extends Backbone.View
     @shareView = new ShareView(parent: @, el: @$('.share'))
     @iphone.on 'repositioned', @onResize
 
-    _.delay =>
-      @initializeSections()
-      @onResize()
-      @show()
-      @animateSplashImages()
-      _.defer =>
-        @initializePopLockit() if @browserWidth > @minSupportedWidth
-        @newAnimationFrame()
-    , 400
+    @initializeSections()
+    @onResize()
+    @show()
+    @animateSplashImages()
+    _.defer =>
+      @initializePopLockit() if @browserWidth > @minSupportedWidth
+      @newAnimationFrame()
 
   initializePopLockit: ->
     @$content = $('#content')
