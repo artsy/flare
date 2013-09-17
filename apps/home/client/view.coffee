@@ -33,7 +33,7 @@ module.exports = class HomePageView extends Backbone.View
     @$headerItems = @$('.app-header a')
     @$window = $(window)
     @$document = $(document)
-    @$arrow = @$('.hero .arrow')
+    @$arrow = @$('.hero .arrow-container')
     @$header = @$('.app-header')
     @$largeHeaderText = @$('.hero .content')
     @$rightHeaders = @$('#content section .right-text')
@@ -169,7 +169,6 @@ module.exports = class HomePageView extends Backbone.View
         bottom: bottom
       ).addClass 'active'
     , 1000
-
 
   hightlightHeaderSection: ->
     @$headerItems.removeClass 'selected'

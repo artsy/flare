@@ -1,5 +1,15 @@
 @import '../../stylus_lib'
 
+@keyframes slide
+ 0%
+   background-position-y: 40px
+ 33%
+   background-position-y: 159px
+ 66%
+   background-position-y: 159px
+ 100%
+   background-position-y: 159px
+
 .hero
   background: black
   color: white
@@ -54,29 +64,35 @@
     box-sizing: border-box
 
   .arrow
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 33%, rgba(0,0,0,0.8) 66%, rgba(0,0,0,0.8) 100%)
+    width: 40px
+    height: 80px
+    cursor: pointer
+    background-position-y: 40px
+    background-size: 100% 150%
+    animation: slide 2.8s linear infinite
+
+  .arrow-container
     position: absolute
     bottom: 5.5%
     left: 50%
-    background-color: #000
     background-size: contain
     background-repeat: no-repeat
     background-position: center center
     background-image: url('/images/down_arrow.png') !important
-    background-size: 70% auto
-    border: 2px #FFF solid
-    border-radius: 25px
-    width: 30px
-    height: 30px
-    padding: 3px
+    width: 40px
+    height: 40px
     z-index: 15
     cursor: pointer
-    margin-left: -18px
+    margin-left: -20px
     opacity(0)
     transition(opacity, 0.4s)
     &.active
       opacity(1)
       &:hover
         opacity(0.7)
+
+
 
   .share
     avant-garde()
