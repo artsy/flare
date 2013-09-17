@@ -17,6 +17,7 @@ module.exports = class HomePageView extends Backbone.View
   headerTextMargin: 45
   heroAnimationsActive: true
   minSupportedWidth: 770
+  splashImageAnimationSpeed: 4000
 
   events:
     'click header .links a' : 'sectionNavClick'
@@ -130,7 +131,7 @@ module.exports = class HomePageView extends Backbone.View
       activeSplashImage.addClass 'active'
     , 300
 
-  animateSplashImages: -> @splashInterval = window.setInterval @showNextImage, 3000
+  animateSplashImages: -> @splashInterval = window.setInterval @showNextImage, @splashImageAnimationSpeed
 
   animate: =>
     newScrollTop = @$window.scrollTop()
