@@ -1,7 +1,22 @@
 doctype 5
 html( class=htmlClass )
   head
-    title Artsy - Discover Fine Art
+    title Download the New Artsy iPhone App
+    meta( name="og:title" content="Download the New Artsy iPhone App" )
+    meta( name="description" content="The art world in your pocket. Explore current shows and fairs, discover 60,000 artworks connected by The Art Genome Project, and collect your favorites." )
+    meta( name="og:description" content="The art world in your pocket. Explore current shows and fairs, discover 60,000 artworks connected by The Art Genome Project, and collect your favorites." )
+    meta( name="twitter:description" content="The art world in your pocket. Explore current shows and fairs, discover 60,000 artworks connected by The Art Genome Project, and collect your favorites." )
+
+    meta( content=(sd.CDN_URL + 'og_image.png') property='og:image' )
+    meta( content='website' property='og:type' )
+    meta( content='summary' property='twitter:card' )
+    meta( content='Artsy' property='og:site_name' )
+    meta( content='20317' property='fb:admins' )
+    meta( content='308278682573501' property='fb:app_id' )
+    meta( content='@artsy' property='twitter:site' )
+    meta( content='Artsy' name='author' )
+    meta( content='Copyright (c) 2013, by Artsy LLC., All Rights Reserved.' name='copyright' )
+
     meta( name='viewport', content='width=device-width', initial-scale='1.0,user-scalable=no' )
     link( type='text/css', rel='stylesheet', href=(sd.CDN_URL + 'all' + sd.CSS_EXT) )
     link( rel='icon', type='image/x-icon', href=(sd.CDN_URL + 'favicon.ico' ) )

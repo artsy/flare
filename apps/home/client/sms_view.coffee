@@ -10,6 +10,12 @@ module.exports = class SmsView extends Backbone.View
     'click button' : 'submit'
     "keyup input"  : 'submitOnEnter'
 
+  initialize: ->
+    _.delay =>
+      @$('input').focus()
+    , 1000
+
+
   submit: ->
     @sending()
     phoneNumber = @$('input.phone_number').val()
@@ -21,6 +27,7 @@ module.exports = class SmsView extends Backbone.View
       data:
         phone_number: phoneNumber
       success: (data, status, xhr) =>
+        @$('input').addClass 'active'
         @$('.success').show().text JSON.parse(xhr.responseText)?.message
         @sent()
       error: (xhr, status, error) =>

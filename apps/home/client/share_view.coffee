@@ -5,7 +5,7 @@ sd = require '../../../lib/shared_data.coffee'
 
 module.exports = class ShareView extends Backbone.View
 
-  text: "Share me!"
+  text: "Check out Artsy for iPhone: the art world in your pocket."
 
   initialize: ->
     @url = sd.CANONICAL_URL
