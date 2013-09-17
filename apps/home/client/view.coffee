@@ -12,7 +12,7 @@ module.exports = class HomePageView extends Backbone.View
 
   el: 'body'
 
-  headerHeight: 32
+  headerHeight: 40
   arrowHeight: 40
   headerTextMargin: 45
   heroAnimationsActive: true
