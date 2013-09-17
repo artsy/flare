@@ -54,9 +54,9 @@ module.exports = class SectionBase extends Backbone.View
   contentAreaOnScroll: (scrollTop, browserHeight) ->
     height = @contentHeight
     top = 0
-    top = 1
     bottom = 'auto'
     backgroundPositionY = 'auto'
+    opacity = 1
 
     if scrollTop > @phoneActiveTop && scrollTop < @phoneBottom
 
@@ -71,7 +71,7 @@ module.exports = class SectionBase extends Backbone.View
         height = @phoneBottom - scrollTop
         top = 0
         bottom = 'auto'
-        opacity = (height / @contentHeight)
+        opacity = ((height * 1.5) / @contentHeight)
 
       @makeContentAreaActive()
     else
@@ -82,10 +82,10 @@ module.exports = class SectionBase extends Backbone.View
     height = if height > @contentHeight then @contentHeight else height
 
     newState =
-      height: "#{height}px"
+      height: height
       top: top
       bottom: bottom
-      padderPositionTop: height - @contentHeight
+      padderPositionTop: Math.round(height - @contentHeight)
       padderOpacity: opacity
     @applyNewState newState
 
@@ -102,13 +102,13 @@ module.exports = class SectionBase extends Backbone.View
       @$phoneContentArea.css(diff).show()
       @state = newState
 
+      @$video.css
+        opacity: @state.padderOpacity
+
       # bit of a hack - refactor
       if @state.top
         @$phoneContentPadder.css
           top: @state.padderPositionTop
-      else
-        @$phoneContentPadder.find('video').css
-          opacity: @state.padderOpacity
 
   playVideo: ->
     if @supportsHtml5Video and @video and !@playing
