@@ -6,6 +6,8 @@ module.exports = class SmsView extends Backbone.View
   ENTER: 13
   NUMPAD_ENTER: 108
 
+  successText: "Great! Thanks for downloading Artsy."
+
   events:
     'click button' : 'submit'
     "keyup input"  : 'submitOnEnter'
@@ -29,7 +31,7 @@ module.exports = class SmsView extends Backbone.View
         phone_number: phoneNumber
       success: (data, status, xhr) =>
         @$('input').addClass 'active'
-        @$('.success').show().text JSON.parse(xhr.responseText)?.message
+        @$('.success').show().text @successText
         window?.mixpanel?.track? "sent sms"
         @sent()
       error: (xhr, status, error) =>

@@ -22,7 +22,7 @@ describe 'SmsView', ->
     $.ajax.restore()
 
   describe '#submit', ->
-    
+
     it 'sends a twilio API call upon submit', ->
       @view.$('input.phone_number').val '555 102 2432'
       @view.$('button').trigger 'click'
