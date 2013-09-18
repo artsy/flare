@@ -9,8 +9,11 @@ describe '#index', ->
   beforeEach ->
     sinon.stub Backbone, 'sync'
     routes.index(
-      {}
-      { render: renderStub = sinon.stub() }
+      {},
+      {
+        render: renderStub = sinon.stub()
+        setHeader: setHeaderStub = sinon.stub()
+      }
     )
     @templateName = renderStub.args[0][0]
     @templateOptions = renderStub.args[0][1]
