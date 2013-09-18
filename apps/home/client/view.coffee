@@ -6,6 +6,8 @@ CollectView = require './collect_view.coffee'
 SmsView = require './sms_view.coffee'
 iPhoneView = require './iphone_view.coffee'
 ShareView = require './share_view.coffee'
+CarouselView = require './carousel_view.coffee'
+NavView = require './nav_view.coffee'
 
 module.exports = class HomePageView extends Backbone.View
 
@@ -16,11 +18,6 @@ module.exports = class HomePageView extends Backbone.View
   headerTextMargin: 45
   heroAnimationsActive: true
   minSupportedWidth: 500
-  splashImageAnimationSpeed: 4000
-
-  events:
-    'click header .links a' : 'sectionNavClick'
-    'click .hero .arrow'    : 'nextSectionClick'
 
   sections:
     "explore" : (-> new ExploreView(el: $('#explore'), $phoneContentArea: $('.explore-content-area') ) )
@@ -30,11 +27,9 @@ module.exports = class HomePageView extends Backbone.View
   sectionViews: {}
 
   initialize: ->
-    @$headerItems = @$('.app-header a')
     @$window = $(window)
     @$document = $(document)
     @$hero = @$('.hero')
-    @$arrow = @$hero.find('.arrow-container')
     @$header = @$('.app-header')
     @$largeHeaderText = @$hero.find('.content')
     @$rightHeaders = @$('#content section .right-text')
@@ -45,17 +40,25 @@ module.exports = class HomePageView extends Backbone.View
     @smsForm = new SmsView(parent: @, el: @$('#sms'), isTouchDevice: @isTouchDevice)
     @iphone = new iPhoneView(parent: @, el: @$('#iphone'), $window: @$window, isTouchDevice: @isTouchDevice)
     @shareView = new ShareView(parent: @, el: @$('.share'))
+    @carouselView = new CarouselView(parent: @, el: @$('.splash-images'), $hero: @$hero)
+    @navView = new NavView(parent: @, el: @$el, iphone: @iphone, $arrow: @$hero.find('.arrow-container'))
+
     @iphone.on 'repositioned', @onResize
     @throttledAnimations = _.throttle((=> @delayableOnScrollEvents()), 70)
+    _.defer (=> @render() )
 
+  render: ->
+    @initializeSections()
+    @onResize()
+    @show()
     _.defer =>
-      @initializeSections()
-      @onResize()
-      @show()
-      @animateSplashImages()
-      _.defer =>
-        @initializePopLockit() if @browserWidth > @minSupportedWidth
-        @newAnimationFrame() if window.requestAnimationFrame
+      @initializePopLockit() if @browserWidth > @minSupportedWidth
+      @newAnimationFrame() if window.requestAnimationFrame
+
+  show: ->
+    @iphone.$el.addClass 'visible'
+    @$header.addClass 'visible'
+    @$largeHeaderText.addClass 'visible'
 
   initializePopLockit: ->
     @$content = $('#content')
@@ -69,11 +72,6 @@ module.exports = class HomePageView extends Backbone.View
     for sectionName in _.keys(@sections)
       @sectionViews[sectionName] = @sections[sectionName]()
 
-  show: ->
-    @iphone.$el.addClass 'visible'
-    @$header.addClass 'visible'
-    @$largeHeaderText.addClass 'visible'
-
   onResize: =>
     @browserHeight = @getHeight()
     @browserWidth = @getWidth()
@@ -84,7 +82,7 @@ module.exports = class HomePageView extends Backbone.View
     @documentHeight = @$document.height()
     @sizeHeaders()
     @positionHeaders()
-    @delayShowArrow()
+    @navView.delayShowArrow()
     for sectionName, sectionView of @sectionViews
       sectionView.onResize @browserHeight, @iphone.contentAreaTop, @iphone.contentAreaHeight, @iphone.top
     @$content?.popLockIt 'recompute'
@@ -103,9 +101,9 @@ module.exports = class HomePageView extends Backbone.View
       left: @iphone.left + @iphone.width + @headerTextMargin
 
     @$rightHeaders.css
-      width: "#{@iphone.left}px"
+      width: @iphone.left
     @$leftHeaders.css
-      width: "#{@iphone.left}px"
+      width: @iphone.left
 
   positionHeaders: ->
     browserHeight = @browserHeight
@@ -114,34 +112,6 @@ module.exports = class HomePageView extends Backbone.View
       $header.css
         'padding-top': (browserHeight - $header.height()) / 2
         'padding-bottom': (browserHeight - $header.height()) / 2
-
-  sectionNavClick: (event) =>
-    event.preventDefault()
-    section = $(event.target).attr 'data-section-name'
-    @smoothTransitionSection section
-    window?.mixpanel?.track? "click header item '#{section}'"
-    false
-
-  smoothTransitionSection: (section) ->
-    $section = $("##{section}")
-    $('html, body').animate(scrollTop: $section.offset().top, 400)
-
-  showNextImage: =>
-    return unless @heroAnimationsActive
-    activeSplashImage = @$('.splash-image.active').removeClass('active').next()
-    # wait for css fade out animation to finish
-    _.delay =>
-      unless @$hero.hasClass 'bottom-mode'
-        if activeSplashImage.length < 1
-          activeSplashImage = @$('.splash-image').first()
-        activeSplashImage.addClass 'active'
-    , 300
-
-  showFirstSplashImage: ->
-    @$('.splash-image.active').removeClass('active')
-    @$('.splash-image').first().addClass('active')
-
-  animateSplashImages: -> @splashInterval = window.setInterval @showNextImage, @splashImageAnimationSpeed
 
   # these events don't need to happen every animation frame
   delayableOnScrollEvents: ->
@@ -165,7 +135,7 @@ module.exports = class HomePageView extends Backbone.View
     if @scrollTop > @documentHeight - (@browserHeight * 2)
       unless @$hero.hasClass 'bottom-mode'
         @$hero.addClass 'bottom-mode'
-        @showFirstSplashImage()
+        @carouselView.showFirstSplashImage()
     else
       @$hero.removeClass 'bottom-mode'
 
@@ -183,24 +153,6 @@ module.exports = class HomePageView extends Backbone.View
     @newAnimationFrame()
 
   newAnimationFrame: -> window.requestAnimationFrame @animate
-
-  nextSectionClick: =>
-    window?.mixpanel?.track? "clicked down arrow"
-    @smoothTransitionSection 'explore'
-    return false
-
-  delayShowArrow: ->
-    bottom = (@iphone.top / 2) - 10
-    _.delay =>
-      @$arrow.css
-        bottom: bottom
-        left: @iphone.left
-        width: @iphone.width
-      @showArrow()
-    , 1000
-
-  showArrow: -> @$arrow.addClass 'active'
-  hideArrow: -> @$arrow.remove 'active'
 
   isTouchDevice: ->
     try
