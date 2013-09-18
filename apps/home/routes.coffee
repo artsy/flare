@@ -2,7 +2,7 @@ twilio = require 'twilio'
 { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_NUMBER, DEFAULT_CACHE_TIME, IPHONE_APP_URL } = require '../../config'
 
 module.exports.index = (req, res, next) ->
-  res.set "Cache-Control": "public, s-maxage=#{DEFAULT_CACHE_TIME}"
+  res.set? "Cache-Control": "public, s-maxage=#{DEFAULT_CACHE_TIME}"
   res.render 'page'
 
 @sendLinkViaSMS = (req, res, next) ->
