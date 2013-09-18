@@ -1,7 +1,8 @@
 twilio = require 'twilio'
-{ TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_NUMBER } = require '../../config'
+{ TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_NUMBER, DEFAULT_CACHE_TIME } = require '../../config'
 
 module.exports.index = (req, res, next) ->
+  res.setHeader "Cache-Control", "public, s-maxage=#{DEFAULT_CACHE_TIME}"
   res.render 'page'
 
 @sendLinkViaSMS = (req, res, next) ->
