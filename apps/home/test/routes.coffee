@@ -3,6 +3,7 @@ sinon = require 'sinon'
 Backbone = require 'backbone'
 rewire = require 'rewire'
 routes = rewire '../routes'
+sd = require '../../../lib/shared_data.coffee'
 
 describe '#index', ->
 
@@ -41,7 +42,7 @@ describe '#sendLinkViaSMS', ->
     twilioConstructorArgs[1].length.should.be.above 5
     twilioSendSmsArgs[0].to.should.equal '555 111 2222'
     twilioSendSmsArgs[0].from.should.equal '(917) 746-8750'
-    twilioSendSmsArgs[0].body.should.include 'Get the new Artsy iPhone app at http://artsy.net/sup'
+    twilioSendSmsArgs[0].body.should.include "Download the new Artsy iPhone app here: "
     twilioSendSmsArgs[1] null, 'SUCCESS!'
     resStub.args[0][1].message.should.include 'Message sent.'
   
