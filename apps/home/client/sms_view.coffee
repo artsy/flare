@@ -1,6 +1,5 @@
 Backbone = require 'backbone'
 _ = require 'underscore'
-Analytics = require '../../../lib/analytics.coffee'
 
 module.exports = class SmsView extends Backbone.View
 
@@ -31,12 +30,12 @@ module.exports = class SmsView extends Backbone.View
       success: (data, status, xhr) =>
         @$('input').addClass 'active'
         @$('.success').show().text JSON.parse(xhr.responseText)?.message
-        Analytics.track "sent sms"
+        window?.mixpanel?.track? "sent sms"
         @sent()
       error: (xhr, status, error) =>
         errorMessage = JSON.parse(xhr.responseText)?.message || status
         @$('.error').show().text errorMessage
-        Analytics.track "error sending sms: '#{errorMessage}'"
+        window?.mixpanel?.track? "error sending sms: '#{errorMessage}'"
         @sent()
 
   submitOnEnter: (event) ->

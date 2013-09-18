@@ -1,5 +1,4 @@
 Backbone = require 'backbone'
-Analytics = require '../../../lib/analytics.coffee'
 
 # base view for video sections
 module.exports = class SectionBase extends Backbone.View
@@ -120,7 +119,7 @@ module.exports = class SectionBase extends Backbone.View
   playVideo: ->
     if @supportsHtml5Video and @video and !@playing
       @video.play()
-      Analytics.track "playing video number #{@index}"
+      window?.mixpanel?.track? "playing video number #{@index}"
       @playing = true
 
   pauseVideo: ->
