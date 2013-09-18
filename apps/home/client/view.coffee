@@ -15,7 +15,7 @@ module.exports = class HomePageView extends Backbone.View
   arrowHeight: 40
   headerTextMargin: 45
   heroAnimationsActive: true
-  minSupportedWidth: 770
+  minSupportedWidth: 500
   splashImageAnimationSpeed: 4000
 
   events:
@@ -47,15 +47,17 @@ module.exports = class HomePageView extends Backbone.View
     @iphone.on 'repositioned', @onResize
     @throttledAnimations = _.throttle((=> @delayableOnScrollEvents()), 70)
 
-    @initializeSections()
-    @onResize()
-    @show()
-    @animateSplashImages()
     _.defer =>
-      @initializePopLockit() if @browserWidth > @minSupportedWidth
-      @newAnimationFrame()
+      @initializeSections()
+      @onResize()
+      @show()
+      @animateSplashImages()
+      _.defer =>
+        @initializePopLockit() if @browserWidth > @minSupportedWidth
+        @newAnimationFrame() if window.requestAnimationFrame
 
   initializePopLockit: ->
+    return if @isTouchDevice()
     @$content = $('#content')
     @$content.popLockIt({
       feedItems      : $('#content > section')
@@ -72,8 +74,8 @@ module.exports = class HomePageView extends Backbone.View
     @$largeHeaderText.addClass 'visible'
 
   onResize: =>
-    @browserHeight = @$window.height()
-    @browserWidth = @$window.width()
+    @browserHeight = if window.screen then window.screen.height else @$window.height()
+    @browserWidth = if window.screen then window.screen.width else @$window.width()
 
     return @$content?.popLockIt 'destroy' if @browserWidth < @minSupportedWidth
 
@@ -83,7 +85,7 @@ module.exports = class HomePageView extends Backbone.View
     @positionHeaders()
     @delayShowArrow()
     for sectionName, sectionView of @sectionViews
-        sectionView.onResize @browserHeight, @iphone.contentAreaTop, @iphone.contentAreaHeight, @iphone.top
+      sectionView.onResize @browserHeight, @iphone.contentAreaTop, @iphone.contentAreaHeight, @iphone.top
     @$content?.popLockIt 'recompute'
 
   sizeSections: ->

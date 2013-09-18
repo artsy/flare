@@ -15,8 +15,11 @@ highlight-color = #6a0bc1
 bad-red-color = #ff3f3f
 dark-gray-text-color = #555
 
-min-supported-width = 700px
-media-query = "screen and (max-width: " + min-supported-width + ")"
+handheld-break-width = 480px
+tablet-break-width = 768px
+
+tablet = "only screen and (device-width: " + tablet-break-width + ")"
+handheld = "only screen and (max-device-width: " + handheld-break-width + ")"
 
 mask-repeat()
   vendor('mask-repeat', arguments)

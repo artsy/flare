@@ -19,8 +19,8 @@ module.exports = class iPhoneView extends Backbone.View
     @$window.on 'resize.feed', _.throttle((=> @positionPhone()), 70)
 
   positionPhone: ->
-    windowHeight = @$window.height()
-    windowWidth = @$window.width()
+    windowHeight = if window.screen then window.screen.height else @$window.height()
+    windowWidth = if window.screen then window.screen.width else @$window.width()
 
     @height = windowHeight - (@minTop * 2)
     @height = if @height > @maxHeight then @maxHeight else @height
