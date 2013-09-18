@@ -15,3 +15,6 @@ module.exports = (options) =>
 module.exports.trackPageview = =>
   @ga? 'send', 'pageview'
   @mixpanel?.track? 'Viewed page', { path: @location.pathname }
+
+module.exports.track = (action) =>
+  @mixpanel?.track? action, { path: @location.pathname }
