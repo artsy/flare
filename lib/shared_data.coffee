@@ -17,7 +17,6 @@ module.exports =
   CSS_EXT: null
   NODE_ENV: null
   MIXPANEL_ID: null
-  SECURE_URL: null
   GOOGLE_ANALYTICS_ID: null
   IPHONE_APP_URL: null
   ARTSY_URL: null
