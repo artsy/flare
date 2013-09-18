@@ -40,9 +40,10 @@ module.exports = class HomePageView extends Backbone.View
     @$rightHeaders = @$('#content section .right-text')
     @$leftHeaders = @$('#content section .left-text')
     @scrollTop = @$window.scrollTop()
+    @isTouchDevice = @isTouchDevice()
 
-    @smsForm = new SmsView(parent: @, el: @$('#sms'), isTouchDevice: @isTouchDevice())
-    @iphone = new iPhoneView(parent: @, el: @$('#iphone'), $window: @$window)
+    @smsForm = new SmsView(parent: @, el: @$('#sms'), isTouchDevice: @isTouchDevice)
+    @iphone = new iPhoneView(parent: @, el: @$('#iphone'), $window: @$window, isTouchDevice: @isTouchDevice)
     @shareView = new ShareView(parent: @, el: @$('.share'))
     @iphone.on 'repositioned', @onResize
     @throttledAnimations = _.throttle((=> @delayableOnScrollEvents()), 70)
@@ -57,12 +58,12 @@ module.exports = class HomePageView extends Backbone.View
         @newAnimationFrame() if window.requestAnimationFrame
 
   initializePopLockit: ->
-    return if @isTouchDevice()
     @$content = $('#content')
     @$content.popLockIt({
       feedItems      : $('#content > section')
       columnSelector : '> .column'
     })
+    return @$content?.popLockIt 'destroy' if @isTouchDevice
 
   initializeSections: ->
     for sectionName in _.keys(@sections)
@@ -74,8 +75,8 @@ module.exports = class HomePageView extends Backbone.View
     @$largeHeaderText.addClass 'visible'
 
   onResize: =>
-    @browserHeight = if window.screen then window.screen.height else @$window.height()
-    @browserWidth = if window.screen then window.screen.width else @$window.width()
+    @browserHeight = @getHeight()
+    @browserWidth = @getWidth()
 
     return @$content?.popLockIt 'destroy' if @browserWidth < @minSupportedWidth
 
@@ -90,10 +91,10 @@ module.exports = class HomePageView extends Backbone.View
 
   sizeSections: ->
     @$('#content').css(
-      'margin-top'    : @browserHeight
-      'margin-bottom' : @browserHeight
+      'margin-top'    : if @isTouchDevice then @browserHeight else @browserHeight
+      'margin-bottom' : if @isTouchDevice then @browserHeight else @browserHeight
     ).find('section').css
-      'min-height'    : @browserHeight * 1.5
+      'min-height'    : if @isTouchDevice then @browserHeight else (@browserHeight * 1.5)
 
   sizeHeaders: ->
     @headerWidth = @$('#content section .left-text').width()
@@ -202,3 +203,6 @@ module.exports = class HomePageView extends Backbone.View
       return true
     catch
       return false
+
+  getHeight: -> if window.innerHeight then window.innerHeight else @$window.height()
+  getWidth: -> if window.innerWidth then window.innerWidth else @$window.width()

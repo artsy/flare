@@ -5,6 +5,7 @@ module.exports = class iPhoneView extends Backbone.View
 
   minTop: 120
   minLeft: 60
+  textWidth: 350
   maxHeight: 807
   phoneHeightToWidthRatio: 0.4733
   phoneContentAreaHeightRatio: 0.7026022
@@ -12,6 +13,7 @@ module.exports = class iPhoneView extends Backbone.View
   phoneAreaToLeftContentAreaToWidthRatio: 0.083769
 
   initialize: ->
+    @parent = @options.parent
     @$window = @options.$window
     @$phoneContent = @$('.iphone-content')
     @$splashImages = @$('.splash-image')
@@ -19,8 +21,8 @@ module.exports = class iPhoneView extends Backbone.View
     @$window.on 'resize.feed', _.throttle((=> @positionPhone()), 70)
 
   positionPhone: ->
-    windowHeight = if window.screen then window.screen.height else @$window.height()
-    windowWidth = if window.screen then window.screen.width else @$window.width()
+    windowHeight = @parent.getHeight()
+    windowWidth = @parent.getWidth()
 
     @height = windowHeight - (@minTop * 2)
     @height = if @height > @maxHeight then @maxHeight else @height
@@ -41,6 +43,10 @@ module.exports = class iPhoneView extends Backbone.View
 
     @sizeIphoneContentAreas()
     @trigger 'repositioned'
+
+    if @left < @textWidth and windowWidth > @textWidth * 2
+      @maxHeight = @maxHeight * 0.7
+      @positionPhone()
 
   sizeIphoneContentAreas: ->
     @contentAreaTop = @height * @phoneAreaAboveContentAreaToHeightRatio
