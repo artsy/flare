@@ -3,7 +3,6 @@ sinon = require 'sinon'
 Backbone = require 'backbone'
 rewire = require 'rewire'
 routes = rewire '../routes'
-sd = require '../../../lib/shared_data.coffee'
 
 describe '#index', ->
 
