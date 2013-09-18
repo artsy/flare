@@ -12,7 +12,7 @@ describe '#index', ->
       {},
       {
         render: renderStub = sinon.stub()
-        setHeader: setHeaderStub = sinon.stub()
+        set: setHeaderStub = sinon.stub()
       }
     )
     @templateName = renderStub.args[0][0]
