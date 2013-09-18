@@ -190,9 +190,12 @@ module.exports = class HomePageView extends Backbone.View
     return false
 
   delayShowArrow: ->
-    bottom = (@iphone.top / 2)
+    bottom = (@iphone.top / 2) - 10
     _.delay =>
-      @$arrow.css bottom: bottom
+      @$arrow.css
+        bottom: bottom
+        left: @iphone.left
+        width: @iphone.width
       @showArrow()
     , 1000
 
