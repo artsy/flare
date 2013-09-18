@@ -23,12 +23,24 @@
 global-reset()
 
 // General tag styles
-body
+html, body
   serif()
   font-size default-font-size
   line-height 1.4em
   text-rendering optimizeLegibility
   background: black
+  @media tablet
+    width: 100%
+    -webkit-text-size-adjust: none
+    zoom: 100%
+    min-width: 1024px
+  @media handheld
+    height: 100%
+    width: 100%
+    -webkit-text-size-adjust: none
+    -webkit-overflow-scrolling: touch
+    min-width: 480px
+    min-height: 1024px
 
 a
   color black

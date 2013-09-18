@@ -15,7 +15,7 @@ module.exports = class HomePageView extends Backbone.View
   arrowHeight: 40
   headerTextMargin: 45
   heroAnimationsActive: true
-  minSupportedWidth: 770
+  minSupportedWidth: 500
   splashImageAnimationSpeed: 4000
 
   events:
@@ -40,20 +40,22 @@ module.exports = class HomePageView extends Backbone.View
     @$rightHeaders = @$('#content section .right-text')
     @$leftHeaders = @$('#content section .left-text')
     @scrollTop = @$window.scrollTop()
+    @isTouchDevice = @isTouchDevice()
 
-    @smsForm = new SmsView(parent: @, el: @$('#sms'), isTouchDevice: @isTouchDevice())
-    @iphone = new iPhoneView(parent: @, el: @$('#iphone'), $window: @$window)
+    @smsForm = new SmsView(parent: @, el: @$('#sms'), isTouchDevice: @isTouchDevice)
+    @iphone = new iPhoneView(parent: @, el: @$('#iphone'), $window: @$window, isTouchDevice: @isTouchDevice)
     @shareView = new ShareView(parent: @, el: @$('.share'))
     @iphone.on 'repositioned', @onResize
     @throttledAnimations = _.throttle((=> @delayableOnScrollEvents()), 70)
 
-    @initializeSections()
-    @onResize()
-    @show()
-    @animateSplashImages()
     _.defer =>
-      @initializePopLockit() if @browserWidth > @minSupportedWidth
-      @newAnimationFrame()
+      @initializeSections()
+      @onResize()
+      @show()
+      @animateSplashImages()
+      _.defer =>
+        @initializePopLockit() if @browserWidth > @minSupportedWidth
+        @newAnimationFrame() if window.requestAnimationFrame
 
   initializePopLockit: ->
     @$content = $('#content')
@@ -61,6 +63,7 @@ module.exports = class HomePageView extends Backbone.View
       feedItems      : $('#content > section')
       columnSelector : '> .column'
     })
+    return @$content?.popLockIt 'destroy' if @isTouchDevice
 
   initializeSections: ->
     for sectionName in _.keys(@sections)
@@ -72,8 +75,8 @@ module.exports = class HomePageView extends Backbone.View
     @$largeHeaderText.addClass 'visible'
 
   onResize: =>
-    @browserHeight = @$window.height()
-    @browserWidth = @$window.width()
+    @browserHeight = @getHeight()
+    @browserWidth = @getWidth()
 
     return @$content?.popLockIt 'destroy' if @browserWidth < @minSupportedWidth
 
@@ -83,7 +86,7 @@ module.exports = class HomePageView extends Backbone.View
     @positionHeaders()
     @delayShowArrow()
     for sectionName, sectionView of @sectionViews
-        sectionView.onResize @browserHeight, @iphone.contentAreaTop, @iphone.contentAreaHeight, @iphone.top
+      sectionView.onResize @browserHeight, @iphone.contentAreaTop, @iphone.contentAreaHeight, @iphone.top
     @$content?.popLockIt 'recompute'
 
   sizeSections: ->
@@ -91,7 +94,7 @@ module.exports = class HomePageView extends Backbone.View
       'margin-top'    : @browserHeight
       'margin-bottom' : @browserHeight
     ).find('section').css
-      'min-height'    : @browserHeight * 1.5
+      'min-height'    : if @isTouchDevice then @browserHeight else (@browserHeight * 1.5)
 
   sizeHeaders: ->
     @headerWidth = @$('#content section .left-text').width()
@@ -200,3 +203,6 @@ module.exports = class HomePageView extends Backbone.View
       return true
     catch
       return false
+
+  getHeight: -> if window.innerHeight then window.innerHeight else @$window.height()
+  getWidth: -> if window.innerWidth then window.innerWidth else @$window.width()
