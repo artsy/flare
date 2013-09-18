@@ -20,12 +20,12 @@ module.exports = class iPhoneView extends Backbone.View
     @positionPhone()
     @$window.on 'resize.feed', _.throttle((=> @positionPhone()), 70)
 
-  positionPhone: ->
+  positionPhone: (maxHeight = @maxHeight) ->
     windowHeight = @parent.getHeight()
     windowWidth = @parent.getWidth()
 
     @height = windowHeight - (@minTop * 2)
-    @height = if @height > @maxHeight then @maxHeight else @height
+    @height = if @height > maxHeight then maxHeight else @height
 
     @$el.height @height
     @width = Math.floor(@height * @phoneHeightToWidthRatio)
@@ -45,8 +45,7 @@ module.exports = class iPhoneView extends Backbone.View
     @trigger 'repositioned'
 
     if @left < @textWidth and windowWidth > @textWidth * 2
-      @maxHeight = @maxHeight * 0.7
-      @positionPhone()
+      @positionPhone(maxHeight * 0.7)
 
   sizeIphoneContentAreas: ->
     @contentAreaTop = @height * @phoneAreaAboveContentAreaToHeightRatio
