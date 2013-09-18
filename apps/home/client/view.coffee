@@ -91,8 +91,8 @@ module.exports = class HomePageView extends Backbone.View
 
   sizeSections: ->
     @$('#content').css(
-      'margin-top'    : if @isTouchDevice then @browserHeight else @browserHeight
-      'margin-bottom' : if @isTouchDevice then @browserHeight else @browserHeight
+      'margin-top'    : @browserHeight
+      'margin-bottom' : @browserHeight
     ).find('section').css
       'min-height'    : if @isTouchDevice then @browserHeight else (@browserHeight * 1.5)
 
