@@ -6,7 +6,6 @@ CollectView = require './collect_view.coffee'
 SmsView = require './sms_view.coffee'
 iPhoneView = require './iphone_view.coffee'
 ShareView = require './share_view.coffee'
-Analytics = require '../../../lib/analytics.coffee'
 
 module.exports = class HomePageView extends Backbone.View
 
@@ -120,7 +119,7 @@ module.exports = class HomePageView extends Backbone.View
     event.preventDefault()
     section = $(event.target).attr 'data-section-name'
     @smoothTransitionSection section
-    Analytics.track "click header item '#{section}'"
+    window?.mixpanel?.track? "click header item '#{section}'"
     false
 
   smoothTransitionSection: (section) ->
@@ -186,7 +185,7 @@ module.exports = class HomePageView extends Backbone.View
   newAnimationFrame: -> window.requestAnimationFrame @animate
 
   nextSectionClick: =>
-    Analytics.track "clicked down arrow"
+    window?.mixpanel?.track? "clicked down arrow"
     @smoothTransitionSection 'explore'
     return false
 
