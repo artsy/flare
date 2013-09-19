@@ -133,11 +133,24 @@ module.exports = class HomePageView extends Backbone.View
 
     # add / remove the 'bottom mode' state
     if @scrollTop > @documentHeight - (@browserHeight * 2)
-      unless @$hero.hasClass 'bottom-mode'
-        @$hero.addClass 'bottom-mode'
-        @carouselView.showFirstSplashImage()
+      @setHeroBottomMode true
     else
-      @$hero.removeClass 'bottom-mode'
+      @setHeroBottomMode false
+
+  # we hide the element then add the class then defer a show.
+  # this fixes flickering in safari when modifying covered dom nodes
+  setHeroBottomMode: (enabled) ->
+    if enabled
+      unless @$hero.hasClass 'bottom-mode'
+        @$hero.hide().addClass 'bottom-mode'
+        _.defer =>
+          @$hero.show()
+        @carouselView.showFirstSplashImage()
+
+    else if @$hero.hasClass 'bottom-mode'
+      @$hero.hide().removeClass 'bottom-mode'
+      _.defer =>
+        @$hero.show()
 
   animate: =>
     newScrollTop = @$window.scrollTop()
