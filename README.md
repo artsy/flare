@@ -1,7 +1,7 @@
 Flare
 =====
 
-Artsy's iPhone app launch splash page.
+Artsy's iPhone app launch marketing splash page.
 
 ### Demo
 
