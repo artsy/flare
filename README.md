@@ -5,7 +5,7 @@ Artsy's iPhone app launch marketing splash page.
 
 ### Demo
 
-Check it out on [iphone.artsy.net](http://ipnone.artsy.net). Scroll down and watch the inside of the iPhone animate.
+Check it out on [iphone.artsy.net](http://iphone.artsy.net). Scroll down and watch the inside of the iPhone animate.
 
 ![Screenshot of Flare](public/images/screenshot.png)
 
