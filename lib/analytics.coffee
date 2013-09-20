@@ -9,7 +9,7 @@ sd = require './shared_data.coffee'
 module.exports = (options) =>
   { @mixpanel, @ga, @location } = options
   @location ?= window?.location
-  @ga? 'create', sd.GOOGLE_ANALYTICS_ID, 'artsy.net'
+  @ga? 'create', sd.GOOGLE_ANALYTICS_ID, sd.HOME_HOSTNAME
   @mixpanel?.init sd.MIXPANEL_ID
 
 module.exports.trackPageview = =>
