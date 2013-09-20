@@ -50,7 +50,7 @@
   .bordered-input
     width: 222px
 
-  .apple-copy
+  .apple-copy, .source-link
     text-align: center
     font-size: 12px
     width: 100%
@@ -64,6 +64,12 @@
     transition(opacity, 0.4s)
     &.active
       opacity(1)
+
+  .source-link
+    right: 5px
+    width: auto
+    text-align: right
+    text-decoration: none
 
   .arrow
     background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 33%, rgba(0,0,0,0.8) 66%, rgba(0,0,0,0.8) 100%)
@@ -128,5 +134,5 @@
   &.bottom-mode
     .arrow-container, .arrow-container.active
       display: none !important
-    .apple-copy
+    .apple-copy, .source-link
       opacity(1) !important

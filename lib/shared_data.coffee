@@ -19,5 +19,7 @@ module.exports =
   MIXPANEL_ID: null
   GOOGLE_ANALYTICS_ID: null
   IPHONE_APP_URL: null
-  ARTSY_URL: null
+  HOME_URL: null
+  HOME_HOSTNAME: null
   CANONICAL_URL: null
+  SOURCE_URL: null
