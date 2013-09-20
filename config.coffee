@@ -21,8 +21,10 @@ module.exports =
   TWILIO_NUMBER:           null
   TWILIO_ACCOUNT_SID:      null
   TWILIO_AUTH_TOKEN:       null
-  ARTSY_URL:               'http://artsy.net'
+  SOURCE_URL:              'https://github.com/artsy/flare'
   CANONICAL_URL:           'http://iphone.artsy.net'
+  HOME_URL:                'http://artsy.net'
+  HOME_HOSTNAME:           'artsy.net'
   DEFAULT_CACHE_TIME:      '1800' # 30 minutes in seconds
 
 # Override any values with env variables if they exist
