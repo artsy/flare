@@ -10,7 +10,7 @@ sd = require './shared_data'
 backboneServerSync = require './backbone_server_sync'
 localsMiddleware = require './locals_middleware'
 { pageNotFound, internalError } = require '../components/error_handler'
-{ CDN_URL, PORT, SESSION_SECRET } = config = require '../config'
+{ SESSION_SECRET } = config = require '../config'
 
 module.exports = (app) ->
 
