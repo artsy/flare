@@ -31,7 +31,7 @@ public/assets:
 # Quickly compile assets to public/assets for development
 assets: public/assets
 	$(BIN)/stylus components/asset_package/all.styl -o public/assets
-	$(BIN)/browserify components/asset_package/all.coffee -t coffeeify -t jadeify2 > public/assets/all.js
+	$(BIN)/browserify components/asset_package/all.coffee -t caching-coffeeify -t jadeify2 > public/assets/all.js
 
 # Compiles assets for production (minifying, embeddeding, gzipping)
 assets-production: assets
