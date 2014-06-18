@@ -16,5 +16,5 @@ module.exports = (req, res, next) ->
     sd: sd
     rd: requestData
     bootstrapData: _.extend sd, requestData
-  res.locals[key] = config[key] for key in ['WORKS_NUM', 'ARTISTS_NUM', 'GALLEIRES_NUM']
+  res.locals[key] = config[key] for key in ['WORKS_NUM', 'ARTISTS_NUM', 'GALLERIES_NUM']
   next()

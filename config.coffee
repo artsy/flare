@@ -28,7 +28,7 @@ module.exports =
   DEFAULT_CACHE_TIME:      '1800' # 30 minutes in seconds
   WORKS_NUM:               '160,000'
   ARTISTS_NUM:             '25,000'
-  GALLEIRES_NUM:           '2,000'
+  GALLERIES_NUM:           '2,000'
 
 # Override any values with env variables if they exist
 module.exports[key] = (process.env[key] or val) for key, val of module.exports
