@@ -1,34 +1,32 @@
-# 
-# Run a fake gravity server mounted to a test app (because of zombie.js lack of CORS). 
+#
+# Run a fake gravity server mounted to a test app (because of zombie.js lack of CORS).
 # Useful for integration tests.
 #
-# TODO - remove this as we don't use gravity in this repo?
 
-_ = require 'underscore'
+spawn = require('child_process').spawn
 express = require 'express'
-fabricate = require './fabricate'
-Backbone = require 'backbone'
-{ spawn } = require 'child_process'
-path = require 'path'
 
 # Convenience to start the test app server on 5000.
-@setup = (callback = ->) =>
-  Backbone.sync = Backbone._sync if Backbone._sync?
+@startServer = (callback) =>
   return callback() if @child?
-  @child = spawn 'make', ['s'],
+  envVars =
+    NODE_ENV: "test"
+    APP_URL: 'http://localhost:5000'
+    PORT: 5000
+  envVars[k] = val for k, val of process.env when not envVars[k]?
+  @child = spawn "make", ["s"],
     customFds: [0, 1, 2]
-    stdio: ['ipc']
-    env: _.extend process.env,
-      NODE_ENV: 'test'
-      PORT: 5000
-  @child.on 'message', callback
+    stdio: ["ipc"]
+    env: envVars
+  @child.on "message", -> callback()
+  @child.stdout.on "data", (data) -> console.log data.toString()
 
 # Convenience to close the app server
-@teardown = =>
-  @child.kill()
+@closeServer = =>
+  @child?.kill()
   @child = null
 
-process.on 'exit', => @child?.kill()
+process.on 'exit', @closeServer
 
 # Start the servers if run directly
 return unless module is require.main

@@ -14,11 +14,7 @@ CDN_DOMAIN_staging = d346buv1lzfvg9
 
 # Start the server
 s:
-	$(BIN)/coffee app.coffee
-
-# Start the server watching for file changes and restarting
-sw:
-	$(BIN)/nodemon $(BIN)/coffee app.coffee
+	$(BIN)/coffee index.coffee
 
 # Run all of the tests
 test: assets
@@ -30,8 +26,8 @@ public/assets:
 
 # Quickly compile assets to public/assets for development
 assets: public/assets
-	$(BIN)/stylus components/asset_package/all.styl -o public/assets
-	$(BIN)/browserify components/asset_package/all.coffee -t caching-coffeeify -t jadeify2 > public/assets/all.js
+	$(BIN)/stylus assets/all.styl -o public/assets
+	$(BIN)/browserify assets/all.coffee -t caching-coffeeify -t jadeify > public/assets/all.js
 
 # Compiles assets for production (minifying, embeddeding, gzipping)
 assets-production: assets
@@ -39,7 +35,6 @@ assets-production: assets
 	$(BIN)/coffee lib/assets/embed_datauri.coffee public/assets/all.min.css
 	$(BIN)/uglifyjs public/assets/all.js > public/assets/all.min.js
 	gzip -f public/assets/all.min.js public/assets/all.min.css
-	# keep only compressed assets
 	rm public/assets/*.js public/assets/*.css
 
 # Uploads assets to S3

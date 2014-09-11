@@ -12,9 +12,9 @@ module.exports = class iPhoneView extends Backbone.View
   phoneAreaAboveContentAreaToHeightRatio: 0.147459
   phoneAreaToLeftContentAreaToWidthRatio: 0.083769
 
-  initialize: ->
-    @parent = @options.parent
-    @$window = @options.$window
+  initialize: (options) ->
+    @parent = options.parent
+    @$window = options.$window
     @$phoneContent = @$('.iphone-content')
     @$splashImages = @$('.splash-image')
     @positionPhone()

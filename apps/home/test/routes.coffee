@@ -34,12 +34,12 @@ describe '#sendLinkViaSMS', ->
 
   it 'sends a link with a valid phone number', ->
     twilioSendSmsArgs[0].to.should.equal '555 111 2222'
-    twilioSendSmsArgs[0].body.should.include "Download the new Artsy iPhone app here: "
+    twilioSendSmsArgs[0].body.should.containEql "Download the new Artsy iPhone app here: "
     twilioSendSmsArgs[1] null, 'SUCCESS!'
-    resStub.args[0][1].message.should.include 'Message sent.'
+    resStub.args[0][1].message.should.containEql 'Message sent.'
 
   it 'throws an error if twilio doesnt like it', ->
     twilioSendSmsArgs[1] 'fail', { message: 'You suck!' }
-    resStub.args[0][1].message.should.include 'You suck!'
+    resStub.args[0][1].message.should.containEql 'You suck!'
 
   xit 'POST returns an error with an invalid phone number'

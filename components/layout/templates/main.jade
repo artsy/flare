@@ -34,35 +34,35 @@ mixin iphone
     .black-background
     .iphone-content
       .phone-content-area.splash-images
-        img.splash-image.splash-image-1.active( src=(sd.CDN_URL + "01intro.jpg" ) )
-        img.splash-image.splash-image-2( src=(sd.CDN_URL + "02intro.jpg" ) )
-        img.splash-image.splash-image-3( src=(sd.CDN_URL + "03intro.jpg" ) )
-        img.splash-image.splash-image-4( src=(sd.CDN_URL + "04intro.jpg" ) )
-        img.splash-image.splash-image-5( src=(sd.CDN_URL + "05intro.jpg" ) )
-        img.splash-image.splash-image-6( src=(sd.CDN_URL + "06intro.jpg" ) )
-        img.splash-image.splash-image-7( src=(sd.CDN_URL + "07intro.jpg" ) )
-        img.splash-image.splash-image-8( src=(sd.CDN_URL + "08intro.jpg" ) )
+        img.splash-image.splash-image-1.active( src=(sd.ASSET_PATH + "01intro.jpg" ) )
+        img.splash-image.splash-image-2( src=(sd.ASSET_PATH + "02intro.jpg" ) )
+        img.splash-image.splash-image-3( src=(sd.ASSET_PATH + "03intro.jpg" ) )
+        img.splash-image.splash-image-4( src=(sd.ASSET_PATH + "04intro.jpg" ) )
+        img.splash-image.splash-image-5( src=(sd.ASSET_PATH + "05intro.jpg" ) )
+        img.splash-image.splash-image-6( src=(sd.ASSET_PATH + "06intro.jpg" ) )
+        img.splash-image.splash-image-7( src=(sd.ASSET_PATH + "07intro.jpg" ) )
+        img.splash-image.splash-image-8( src=(sd.ASSET_PATH + "08intro.jpg" ) )
       .phone-content-area.browse-content-area
         .content-padder
           .black-background.browse-black-background
-          video.splash-image.browse-placeholder( preload="auto" muted="true" loop="true" width=320 height=570 poster=(sd.CDN_URL + "browse-placeholder.jpg" ) )
-            source( src=(sd.CDN_URL + "browse.mp4" ) )
-            source( src=(sd.CDN_URL + "browse.webm" ) )
-          img.splash-image.browse-placeholder( src=(sd.CDN_URL + "browse-fallback.jpg" ) )
+          video.splash-image.browse-placeholder( preload="auto" muted="true" loop="true" width=320 height=570 poster=(sd.ASSET_PATH + "browse-placeholder.jpg" ) )
+            source( src=(sd.ASSET_PATH + "browse.mp4" ) )
+            source( src=(sd.ASSET_PATH + "browse.webm" ) )
+          img.splash-image.browse-placeholder( src=(sd.ASSET_PATH + "browse-fallback.jpg" ) )
       .phone-content-area.explore-content-area
         .content-padder
           .black-background.explore-black-background
-          video.splash-image.explore-placeholder( preload="auto" muted="true" loop="true" width=320 height=570 poster=(sd.CDN_URL + "explore-placeholder.jpg" ) )
-            source( src=(sd.CDN_URL + "explore.mp4" ) )
-            source( src=(sd.CDN_URL + "explore.webm" ) )
-          img.splash-image.explore-placeholder( src=(sd.CDN_URL + "explore-fallback.jpg" ) )
+          video.splash-image.explore-placeholder( preload="auto" muted="true" loop="true" width=320 height=570 poster=(sd.ASSET_PATH + "explore-placeholder.jpg" ) )
+            source( src=(sd.ASSET_PATH + "explore.mp4" ) )
+            source( src=(sd.ASSET_PATH + "explore.webm" ) )
+          img.splash-image.explore-placeholder( src=(sd.ASSET_PATH + "explore-fallback.jpg" ) )
       .phone-content-area.collect-content-area
         .content-padder
           .black-background.browse-black-background
-          video.splash-image.collect-placeholder( preload="auto" muted="true" loop="true" width=320 height=570 poster=(sd.CDN_URL + "collect-placeholder.jpg" ) )
-            source( src=(sd.CDN_URL + "collect.mp4" ) )
-            source( src=(sd.CDN_URL + "collect.webm" ) )
-          img.splash-image.collect-placeholder( src=(sd.CDN_URL + "collect-fallback.jpg" ) )
+          video.splash-image.collect-placeholder( preload="auto" muted="true" loop="true" width=320 height=570 poster=(sd.ASSET_PATH + "collect-placeholder.jpg" ) )
+            source( src=(sd.ASSET_PATH + "collect.mp4" ) )
+            source( src=(sd.ASSET_PATH + "collect.webm" ) )
+          img.splash-image.collect-placeholder( src=(sd.ASSET_PATH + "collect-fallback.jpg" ) )
 
 block body
   mixin hero

@@ -1,50 +1,57 @@
 {
-  "name": "flare",
-  "version": "0.0.1",
-  "private": true,
-  "engines": {
-	  "node": "0.10.x"
-  },
-  "scripts": {
-    "start": "make s",
-	  "test": "make test"
-  },
-  "dependencies": {
-    "express": "3.x",
-    "jade": "*",
-    "stylus": "git://github.com/craigspaeth/stylus.git",
-    "coffee-script": "*",
-    "backbone": "*",
-    "underscore": "*",
-    "underscore.string": "*",
-    "inflection": "*",
-    "superagent": "*",
-    "node-uuid": "*",
-    "validator": "*",
-    "moment": "*",
-    "showdown": "git://github.com/craigspaeth/showdown.git",
-    "strong-agent": "*",
-    "ua-parser": "*",
-    "twilio": "*"
-  },
-  "devDependencies": {
-    "browserify": "*",
-    "nodemon": "*",
-    "mocha": "*",
-    "should": "*",
-    "sinon": "*",
-    "rewire": "*",
-    "nib": "git://github.com/visionmedia/nib.git",
-    "caching-coffeeify": "*",
-    "uglify-js": "*",
-    "jadeify2": "*",
-    "jsdom": "*",
-    "supertest": "*",
-    "zombie": "2.0.0-alpha19",
-    "glob": "*",
-    "knox": "*",
-    "sqwish": "*",
-    "uglify-js": "*",
-    "portscanner": "*"
-  }
+    "name": "flare",
+    "version": "0.0.1",
+    "private": true,
+    "engines": {
+        "node": "0.10.x"
+    },
+    "scripts": {
+        "start": "make s",
+        "test": "make test"
+    },
+    "dependencies": {
+        "express": "*",
+        "jade": "*",
+        "coffee-script": "*",
+        "backbone": "*",
+        "underscore": "*",
+        "underscore.string": "*",
+        "node-uuid": "*",
+        "validator": "*",
+        "strong-agent": "*",
+        "body-parser": "*",
+        "cookie-parser": "*",
+        "ua-parser": "*",
+        "serve-favicon": "*",
+        "sharify": "*",
+        "morgan": "*",
+        "twilio": "*"
+    },
+    "devDependencies": {
+        "browserify": "*",
+        "stylus": "*",
+        "nodemon": "*",
+        "mocha": "*",
+        "should": "*",
+        "sinon": "*",
+        "rewire": "*",
+        "nib": "*",
+        "coffeeify": "*",
+        "superagent": "*",
+        "browserify-dev-middleware": "*",
+        "caching-coffeeify": "*",
+        "uglify-js": "*",
+        "jadeify": "*",
+        "jsdom": "*",
+        "supertest": "*",
+        "zombie": "*",
+        "jquery": "2.1.0",
+        "jquery.poplockit": "*",
+        "glob": "*",
+        "knox": "*",
+        "benv": "*",
+        "sqwish": "*",
+        "uglify-js": "*",
+        "portscanner": "*"
+    }
 }

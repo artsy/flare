@@ -7,4 +7,4 @@ it 'embeds assets via data-uri from a string of css', ->
       background: url('images/artsy-logotype-white.svg')
     }
   """, path.resolve(__dirname, '../../public/')
-  embedded.should.include('data:image/svg+xml;base64,PD94bWwgdmVyc2l')
+  embedded.should.containEql('data:image/svg+xml;base64,PD94bWwgdmVyc2l')

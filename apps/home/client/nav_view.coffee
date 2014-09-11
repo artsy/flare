@@ -13,10 +13,11 @@ module.exports = class NavView extends Backbone.View
   events:
     'click header .links a' : 'sectionNavClick'
     'click .hero .arrow'    : 'nextSectionClick'
-    
-  initialize: ->
+
+  initialize: (options) ->
+    @options = options
     @bindPageUpDownEvents()
-  
+
   sectionNavClick: (event) =>
     event.preventDefault()
     section = $(event.target).attr 'data-section-name'

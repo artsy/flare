@@ -1,9 +1,9 @@
-// 
+//
 // A library of mixins and variables commonly used throughout stylesheets.
-// 
+//
 // Do NOT put any actual style declarations here. We don't want this to impact
 // CSS size.
-// 
+//
 
 @import '../../node_modules/nib'
 
@@ -30,25 +30,20 @@ mask-size()
 mask-image()
   vendor('mask-image', arguments)
 
-font-smoothing()
-  vendor('font-smoothing', arguments)
-
-font-face(family, filename, style = normal, weight = normal)
-  @font-face
-    font-family family
-    font-weight weight
-    font-style style
-    src url("/fonts/" + filename + ".woff") format("woff")
-    
 avant-garde()
-  font-family 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif'
+  font-family 'ITC Avant Garde Gothic W04', 'AvantGardeGothicITCW01D 731075', 'AvantGardeGothicITCW01Dm', 'Helvetica', 'sans-serif'
   font-smoothing antialiased
   text-transform uppercase
-  
+  letter-spacing 1px
+
+serif()
+  font-family 'Adobe Garamond W08', 'adobe-garamond-pro', 'AGaramondPro-Regular', 'Times New Roman', 'Times', 'serif'
+  font-smoothing antialiased
+
 serif()
   font-family 'adobe-garamond-pro', 'AGaramondPro-Regular', 'Times New Roman', 'Times', 'serif'
   font-smoothing antialiased
-  
+
 faux-underline(spacing=5px)
   display inline-block
   position relative
@@ -63,7 +58,7 @@ faux-underline(spacing=5px)
     margin-top spacing
   &:hover
     text-decoration none
-  
+
 ellipsis()
   text-overflow ellipsis
   white-space nowrap
