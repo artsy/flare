@@ -25,7 +25,8 @@
         "serve-favicon": "*",
         "sharify": "*",
         "morgan": "*",
-        "twilio": "*"
+        "twilio": "*",
+        "memjs": "*"
     },
     "devDependencies": {
         "browserify": "*",
