@@ -24,4 +24,4 @@ make deploy-staging
 
 ## S3 Buckets and CloudFront
 
-Assets are deployed to S3 to *flare-staging* and *flare-production* buckets and accessed by setting `CDN_URL` during deploy. The URLs of the CloudFront distributions are located in [Makefile](../Makefile) as well.
+Assets are deployed to S3 to *flare-staging* and *flare-production* buckets and accessed by setting `ASSET_PATH` during deploy. The URLs of the CloudFront distributions are located in [Makefile](../Makefile) as well.

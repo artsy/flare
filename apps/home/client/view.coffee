@@ -1,5 +1,5 @@
-Backbone = require 'backbone'
 _ = require 'underscore'
+Backbone = require 'backbone'
 BrowseView = require './browse_view.coffee'
 ExploreView = require './explore_view.coffee'
 CollectView = require './collect_view.coffee'
@@ -8,6 +8,8 @@ iPhoneView = require './iphone_view.coffee'
 ShareView = require './share_view.coffee'
 CarouselView = require './carousel_view.coffee'
 NavView = require './nav_view.coffee'
+
+redirectIphone = require '../../../lib/redirect_iphone.coffee'
 
 module.exports = class HomePageView extends Backbone.View
 
@@ -27,6 +29,8 @@ module.exports = class HomePageView extends Backbone.View
   sectionViews: {}
 
   initialize: ->
+    redirectIphone()
+
     @$window = $(window)
     @$document = $(document)
     @$hero = @$('.hero')
@@ -176,3 +180,7 @@ module.exports = class HomePageView extends Backbone.View
 
   getHeight: -> if window.innerHeight then window.innerHeight else @$window.height()
   getWidth: -> if window.innerWidth then window.innerWidth else @$window.width()
+
+module.exports.init = ->
+  $ ->
+    new HomePageView el: $('body')

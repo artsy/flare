@@ -8,7 +8,7 @@
 module.exports =
 
   NODE_ENV:                'development'
-  CDN_URL:                 '/assets/'
+  ASSET_PATH:              '/assets/'
   PORT:                    3003
   S3_KEY:                  null
   S3_SECRET:               null

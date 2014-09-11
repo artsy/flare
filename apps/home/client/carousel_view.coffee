@@ -5,15 +5,18 @@ module.exports = class CarouselView extends Backbone.View
 
   splashImageAnimationSpeed: 4000
 
-  initialize: -> @animateSplashImages()
+  initialize: (options) ->
+    @parent = options.parent
+    @$hero = options.$hero
+    @animateSplashImages()
 
   showNextImage: =>
-    return unless @options.parent.heroAnimationsActive
+    return unless @parent.heroAnimationsActive
 
     activeSplashImage = @$('.splash-image.active').removeClass('active').next()
     # wait for css fade out animation to finish
     _.delay =>
-      unless @options.$hero.hasClass 'bottom-mode'
+      unless @$hero.hasClass 'bottom-mode'
         if activeSplashImage.length < 1
           activeSplashImage = @$('.splash-image').first()
         activeSplashImage.addClass 'active'

@@ -12,7 +12,7 @@
 #
 
 module.exports =
-  CDN_URL: null
+  ASSET_PATH: null
   JS_EXT: null
   CSS_EXT: null
   NODE_ENV: null

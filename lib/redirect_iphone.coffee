@@ -1,5 +1,5 @@
 # redirects iPhone to the app store
-sd = require './shared_data.coffee'
+sd = require('sharify').data
 
 module.exports = (options) =>
   IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)

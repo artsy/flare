@@ -7,10 +7,10 @@ lib-cov
 *.pid
 *.gz
 *.DS_Store
-/node_modules
 pids
 logs
 results
 npm-debug.log
 public/assets/all.css
 public/assets/all.js
+/node_modules

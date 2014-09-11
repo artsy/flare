@@ -9,14 +9,14 @@ module.exports = class SectionBase extends Backbone.View
   state: {}
   cssProperties: ['height', 'top', 'bottom', 'padderPositionTop', 'padderOpacity']
 
-  initialize: ->
+  initialize: (options) ->
     @$headerLink = $(".links a:eq(#{@index})")
-    @$phoneContentArea = @options.$phoneContentArea
+    @$phoneContentArea = options.$phoneContentArea
     @$phoneContentPadder = @$phoneContentArea.find('.content-padder')
     @$video = @$phoneContentArea.find('video')
     if @$video.length
       @video = @$video.show()[0]
-    @parent = @options.parent
+    @parent = options.parent
     @detectHtml5VideoSupport()
     unless @supportsHtml5Video
       @displayFallbackImage()
