@@ -3,7 +3,7 @@
 # such as overriding Backbone.sync and populating ./shared_data
 #
 
-{ NODE_ENV, PORT, ASSET_PATH, APPLICATION_NAME, DEFAULT_CACHE_TIME, WORKS_NUM, ARTISTS_NUM, GALLERIES_NUM  } = config = require "../config"
+{ NODE_ENV, PORT, ASSET_PATH, APPLICATION_NAME, DEFAULT_CACHE_TIME, WORKS_NUM, ARTISTS_NUM, GALLERIES_NUM, IPHONE_APP_URL  } = config = require "../config"
 
 express = require 'express'
 sharify = require "sharify"
@@ -14,7 +14,7 @@ cookieParser = require 'cookie-parser'
 favicon = require 'serve-favicon'
 sd = require './shared_data'
 logger = require 'morgan'
-unsupportedBrowserCheck = require "./unsupported_browser"
+redirectIphone = require "./redirect_iphone"
 
 { pageNotFound, internalError } = require '../components/error_handler'
 
@@ -27,6 +27,7 @@ sharify.data =
   WORKS_NUM: WORKS_NUM
   ARTISTS_NUM: ARTISTS_NUM
   GALLERIES_NUM: GALLERIES_NUM
+  IPHONE_APP_URL: IPHONE_APP_URL
 
 module.exports = (app) ->
 
@@ -50,7 +51,8 @@ module.exports = (app) ->
   app.use cookieParser()
 
   app.use logger('dev')
-  app.use unsupportedBrowserCheck
+
+  app.use redirectIphone
 
   # Mount apps
   app.use require '../apps/home'
