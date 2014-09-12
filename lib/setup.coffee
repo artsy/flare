@@ -20,8 +20,8 @@ unsupportedBrowserCheck = require "./unsupported_browser"
 
 # Setup sharify constants & require dependencies that use sharify data
 sharify.data =
-  JS_EXT: (if ("production" is NODE_ENV or "staging" is NODE_ENV) then ".min.js.cgz" else ".js")
-  CSS_EXT: (if ("production" is NODE_ENV or "staging" is NODE_ENV) then ".min.css.cgz" else ".css")
+  JS_EXT: (if ("production" is NODE_ENV or "staging" is NODE_ENV) then ".min.js.gz" else ".js")
+  CSS_EXT: (if ("production" is NODE_ENV or "staging" is NODE_ENV) then ".min.css.gz" else ".css")
   ASSET_PATH: ASSET_PATH
   DEFAULT_CACHE_TIME: DEFAULT_CACHE_TIME
   WORKS_NUM: WORKS_NUM
