@@ -44,7 +44,7 @@ assets-to-cdn: assets-production
 # Runs all the necessary build tasks to push to staging or production
 deploy: assets-production
 	APPLICATION_NAME=flare-$(env) make assets-to-cdn
-	heroku config:add CDN_URL=//$(CDN_DOMAIN_$(env)).cloudfront.net/assets/$(shell git rev-parse --short HEAD)/ --app=flare-$(env)
+	heroku config:add ASSET_PATH=//$(CDN_DOMAIN_$(env)).cloudfront.net/assets/$(shell git rev-parse --short HEAD)/ --app=flare-$(env)
 	git push -f git@heroku.com:flare-$(env).git master
 
 deploy-staging:
