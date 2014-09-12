@@ -1,6 +1,12 @@
-# redirects iPhone to the app store
-sd = require('sharify').data
+#
+# Redirect iphone to iphone app
+#
+sd = require('sharify')
 
-module.exports = (options) =>
-  IS_IPHONE = (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null)
-  window.location = sd.IPHONE_APP_URL if IS_IPHONE
+module.exports = (req, res, next) ->
+  ua = req.headers['user-agent']
+  res.locals.sd.BROWSER = ua unless res.locals.sd.BROWSER
+  if sd.data.IPHONE_APP_URL and ((ua.match(/iPhone/i) != null) || (ua.match(/iPod/i) != null))
+    res.redirect sd.data.IPHONE_APP_URL
+  else
+    next()

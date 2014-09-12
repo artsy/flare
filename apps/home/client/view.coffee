@@ -9,8 +9,6 @@ ShareView = require './share_view.coffee'
 CarouselView = require './carousel_view.coffee'
 NavView = require './nav_view.coffee'
 
-redirectIphone = require '../../../lib/redirect_iphone.coffee'
-
 module.exports = class HomePageView extends Backbone.View
 
   el: 'body'
@@ -29,8 +27,6 @@ module.exports = class HomePageView extends Backbone.View
   sectionViews: {}
 
   initialize: ->
-    redirectIphone()
-
     @$window = $(window)
     @$document = $(document)
     @$hero = @$('.hero')
