@@ -51,8 +51,10 @@ describe '#sendLinkViaSMS', ->
       resStub.args[0][1].message.should.containEql 'Message sent.'
 
     it 'throws an error if twilio doesnt like it', ->
-      twilioSendSmsArgs[1] 'fail', { message: 'Error!' }
-      resStub.args[0][1].message.should.containEql 'Error!'
+      twilioSendSmsArgs[1] { status: 400, code: 21606, message: 'The phone number is not valid.' }
+      resStub.args[0][1].success.should.equal false
+      resStub.args[0][1].code.should.equal 21606
+      resStub.args[0][1].message.should.equal 'The phone number is not valid.'
 
     it 'sets sent in the cache', ->
       memJsSetArgs[0].should.equal '+5551112222'

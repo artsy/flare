@@ -21,7 +21,7 @@ module.exports.index = (req, res, next) ->
         body: "Download the new Artsy iPhone app here: #{IPHONE_APP_URL}"
       }, (error, data) ->
         if error
-          res.json data.status || 400, { success: false, code: data.code, message: data.message }
+          res.json error.status || 400, { success: false, code: error.code, message: error.message }
         else
           currTime = new Date().getTime()
           cache.set phone_number, currTime.toString(), null, 300
