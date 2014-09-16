@@ -47,7 +47,6 @@
         "supertest": "*",
         "zombie": "*",
         "jquery": "2.1.0",
-        "jquery.poplockit": "*",
         "glob": "*",
         "knox": "*",
         "benv": "*",

@@ -58,10 +58,10 @@
       @marginLeft = settings.marginLeft if settings.marginLeft
 
     setDimensions: ->
-      @height = Math.floor Number(@$el.css('height').replace('px',""))
+      @height = @$el.outerHeight()
       @top = Math.floor(@$el.offset().top - @marginTop)
       @left = Math.floor(@$el.offset().left)
-      @bottom = Math.floor(@top + @parentHeight - @height)
+      @bottom = Math.floor(@top + @height)
       @top = 1 if @top < 1
 
     setPosition: (pos = 'absolute', direction = 'north') ->
@@ -111,9 +111,7 @@
           return @setPosition('absolute', 'south')
         return @setPosition('fixed', 'south') if @height > viewportHeight and @height < @parentHeight and (scrollTop + viewportHeight) >= (@top + @height) and (scrollTop + viewportHeight) < (@parentHeight + @top)
 
-      if @height >= viewportHeight
-        if scrollTop >= @top + @height
-          return @setPosition('absolute', 'south')
+      return @setPosition('absolute', 'south') if (scrollTop + viewportHeight) >= @bottom && @height >= viewportHeight
       @setPosition('absolute', 'north')
 
     # return to default state on destroy
@@ -151,7 +149,6 @@
 
       @resetColumnPositioning()
       @$el.css height: 'auto'
-
       height = @$el.css('height')
       @height = Number(height.replace('px',""))
 
@@ -217,10 +214,10 @@
       throw "PopLockIt must be called on one element" unless @$el?.length == 1
       super(@$el, @settings)
 
-      @$window = $(window)
       @settings = $.extend @defaults, @settings
       @settings.active = true
       @initRequestAnimationFrame()
+      @$window = $(window)
       @viewportHeight = @$window.outerHeight(true)
       @$el.css
         'box-sizing': 'border-box' # to make dimensions measurements consistent across different sites
@@ -250,6 +247,7 @@
 
     # recomputes height / top / bottom etc of each feed item and its columns
     recompute: ->
+      @viewportHeight = @$window.outerHeight(true)
       @settings.active = true
       feedItem.recompute() for feedItem in @feedItems
 

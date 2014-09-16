@@ -5,7 +5,7 @@ sd = require('sharify').data
 analytics = require '../../lib/analytics.coffee'
 
 module.exports = ->
-  require 'jquery.poplockit'
+  require '../poplockit/jquery.poplockit.coffee'
 
 setupAnalytics = ->
   # Initialize analytics & track page view if we included mixpanel
