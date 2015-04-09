@@ -26,8 +26,8 @@ module.exports =
   HOME_URL:                'http://artsy.net'
   HOME_HOSTNAME:           'artsy.net'
   DEFAULT_CACHE_TIME:      '1800' # 30 minutes in seconds
-  WORKS_NUM:               '160,000'
-  ARTISTS_NUM:             '25,000'
+  WORKS_NUM:               '230,000'
+  ARTISTS_NUM:             '40,000'
   GALLERIES_NUM:           '2,000'
 
 # Override any values with env variables if they exist
