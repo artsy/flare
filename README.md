@@ -1,7 +1,7 @@
 Flare
 =====
 
-[![Build Status](https://travis-ci.org/artsy/flare.png)](https://travis-ci.org/artsy/flare)
+[![Build Status](https://travis-ci.org/artsy/flare.svg)](https://travis-ci.org/artsy/flare)
 
 Artsy's iPhone app launch marketing splash page.
 

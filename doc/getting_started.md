@@ -6,19 +6,19 @@
 
 It is recommended to use the [nvm](https://github.com/creationix/nvm) tool to manage node versions and install node.
 
-First install NVM
+First install NVM. See [this page](https://github.com/creationix/nvm) for latest information.
 
 ````
-curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
 ````
 
-Then install the latest node
+Reopen a shell and install node.js.
 
 ````
 nvm install 0.10
 ````
 
-Then tell nvm to use the latest version of node by default and to update your PATH
+Then tell nvm to use the latest version of node by default and to update your PATH.
 
 ````
 nvm alias default 0.10
@@ -45,8 +45,6 @@ Run the server, and open flare at [localhost:3003](http://localhost:3003).
 make s
 ````
 
-If you would like to watch for changes and restart the server to reload code using [nodemon](https://github.com/remy/nodemon).
+## See It
 
-````
-make sw
-````
+Navigate to http://localhost:3003 with a browser to see the website.
