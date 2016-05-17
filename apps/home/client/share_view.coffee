@@ -1,7 +1,7 @@
 Backbone = require 'backbone'
 TwitterShare = require './twitter_share.coffee'
 FacebookShare = require './facebook_share.coffee'
-sd = require '../../../lib/shared_data.coffee'
+sd = require('sharify').data
 
 module.exports = class ShareView extends Backbone.View
 
