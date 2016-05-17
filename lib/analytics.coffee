@@ -4,7 +4,7 @@
 # services like Google Analytics are integrated.
 #
 
-sd = require './shared_data.coffee'
+sd = require('sharify').data
 
 module.exports = (options) =>
   { @mixpanel, @ga, @location } = options

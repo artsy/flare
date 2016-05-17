@@ -1,6 +1,6 @@
 fs = require 'fs'
 jade = require 'jade'
-sd = require '../../lib/shared_data'
+sd = require('sharify').data
 
 renderTemplate = jade.compile(
   fs.readFileSync(__dirname + '/template.jade')

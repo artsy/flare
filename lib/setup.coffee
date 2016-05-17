@@ -1,9 +1,9 @@
 #
 # Sets up intial project settings, middleware, mounted apps, and global configuration
-# such as overriding Backbone.sync and populating ./shared_data
+# such as overriding Backbone.sync
 #
 
-{ NODE_ENV, PORT, ASSET_PATH, APPLICATION_NAME, DEFAULT_CACHE_TIME, WORKS_NUM, ARTISTS_NUM, GALLERIES_NUM, IPHONE_APP_URL  } = config = require "../config"
+{ NODE_ENV, PORT, ASSET_PATH, APPLICATION_NAME, DEFAULT_CACHE_TIME, WORKS_NUM, ARTISTS_NUM, GALLERIES_NUM, IPHONE_APP_URL, CANONICAL_URL } = config = require "../config"
 
 express = require 'express'
 sharify = require "sharify"
@@ -12,7 +12,7 @@ Backbone = require 'backbone'
 bodyParser = require 'body-parser'
 cookieParser = require 'cookie-parser'
 favicon = require 'serve-favicon'
-sd = require './shared_data'
+sd = require('sharify').data
 logger = require 'morgan'
 redirectIphone = require "./redirect_iphone"
 
@@ -28,6 +28,7 @@ sharify.data =
   ARTISTS_NUM: ARTISTS_NUM
   GALLERIES_NUM: GALLERIES_NUM
   IPHONE_APP_URL: IPHONE_APP_URL
+  CANONICAL_URL: CANONICAL_URL
 
 module.exports = (app) ->
 
