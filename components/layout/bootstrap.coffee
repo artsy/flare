@@ -2,16 +2,15 @@ Backbone = require 'backbone'
 Backbone.$ = $
 _ = require 'underscore'
 sd = require('sharify').data
-analytics = require '../../lib/analytics.coffee'
+{SEGMENT_API_KEY} = require '../../config.coffee'
 
 module.exports = ->
   require '../poplockit/jquery.poplockit.coffee'
 
 setupAnalytics = ->
-  # Initialize analytics & track page view if we included mixpanel
   # (not included in test environment).
-  return if not mixpanel? or mixpanel is 'undefined'
-  analytics(mixpanel: mixpanel, ga: ga)
-  analytics.trackPageview()
+  return if not analytics? or analytics is 'undefined'
+  analytics.load(SEGMENT_API_KEY);
+  analytics.page();
 
 setupAnalytics()

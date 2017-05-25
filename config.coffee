@@ -14,9 +14,8 @@ module.exports =
   S3_SECRET:               null
   APPLICATION_NAME:        'flare-development'
   SESSION_SECRET:          'session-secret'
-  MIXPANEL_ID:             null
+  SEGMENT_API_KEY:         null
   STRONGLOOP_KEY:          null
-  GOOGLE_ANALYTICS_ID:     null
   IPHONE_APP_URL:          'https://itunes.apple.com/us/app/artsy-art-world-in-your-pocket/id703796080?ls=1&mt=8'
   TWILIO_NUMBER:           null
   TWILIO_ACCOUNT_SID:      null

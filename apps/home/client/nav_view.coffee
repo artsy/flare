@@ -22,7 +22,7 @@ module.exports = class NavView extends Backbone.View
     event.preventDefault()
     section = $(event.target).attr 'data-section-name'
     @smoothTransitionSection section
-    window?.mixpanel?.track? "click header item '#{section}'"
+    window?.analytics?.track? "click header item '#{section}'"
     false
 
   smoothTransitionSection: (section) ->
@@ -30,7 +30,7 @@ module.exports = class NavView extends Backbone.View
     $('html, body').animate(scrollTop: $section.offset().top, @scrollSpeed)
 
   nextSectionClick: =>
-    window?.mixpanel?.track? "clicked down arrow"
+    window?.analytics?.track? "clicked down arrow"
     @smoothTransitionSection 'explore'
     return false
 
