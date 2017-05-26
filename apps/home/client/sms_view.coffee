@@ -33,12 +33,12 @@ module.exports = class SmsView extends Backbone.View
       success: (data, status, xhr) =>
         @$('input').addClass 'active'
         @$('.success').show().text @successText
-        window?.mixpanel?.track? "sent sms"
+        window?.analytics.track? "sent sms"
         @sent()
       error: (xhr, status, error) =>
         errorMessage = JSON.parse(xhr.responseText)?.message || status
         @$('.error').show().text errorMessage
-        window?.mixpanel?.track? "error sending sms: '#{errorMessage}'"
+        window?.analytics.track? "error sending sms: '#{errorMessage}'"
         @sent()
 
   submitOnEnter: (event) ->

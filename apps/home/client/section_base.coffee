@@ -119,7 +119,7 @@ module.exports = class SectionBase extends Backbone.View
   playVideo: ->
     if @supportsHtml5Video and @video and !@playing
       @video.play()
-      window?.mixpanel?.track? "playing video number #{@index}"
+      window?.analytics?.track? "playing video number #{@index}"
       @playing = true
 
   pauseVideo: ->
