@@ -3,11 +3,11 @@ twilio = require 'twilio'
 
 memjs = require('memjs')
 
-module.exports.index = (req, res, next) ->
+index = (req, res, next) ->
   res.set? "Cache-Control": "public, s-maxage=#{DEFAULT_CACHE_TIME}"
   res.render 'page'
 
-@sendLinkViaSMS = (req, res, next) ->
+sendLinkViaSMS = (req, res, next) ->
   phone_number = req.body.phone_number.replace(/[^\d\+]/g, "")
   cache = memjs.Client.create()
   cache.get phone_number, (err, ts) ->
@@ -27,3 +27,5 @@ module.exports.index = (req, res, next) ->
           cache.set phone_number, currTime.toString(), null, 300
           res.json 201, { success: true, message: "Message sent.", sid: data.sid }
       )
+
+module.exports = { index, sendLinkViaSMS }

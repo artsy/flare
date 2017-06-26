@@ -1,7 +1,7 @@
 
 /*!
  * Stylus - Node
- * Copyright(c) 2010 LearnBoost <dev@learnboost.com>
+ * Copyright (c) Automattic <developer.wordpress.com>
  * MIT Licensed
  */
 
@@ -174,7 +174,7 @@ Node.prototype = {
   operate: function(op, right){
     switch (op) {
       case 'is a':
-        if ('string' == right.nodeName) {
+        if ('string' == right.first.nodeName) {
           return nodes.Boolean(this.nodeName == right.val);
         } else {
           throw new Error('"is a" expects a string, got ' + right.toString());

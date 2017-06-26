@@ -1,6 +1,6 @@
 /*!
  * Stylus - middleware
- * Copyright(c) 2010 LearnBoost <dev@learnboost.com>
+ * Copyright (c) Automattic <developer.wordpress.com>
  * MIT Licensed
  */
 
@@ -119,10 +119,10 @@ module.exports = function(options){
     var path = url.parse(req.url).pathname;
     if (/\.css$/.test(path)) {
 
-      if (typeof dest == 'string' || typeof dest == 'function') {
+      if (typeof dest == 'string') {
         // check for dest-path overlap
-        var overlap = compare((typeof dest == 'function' ? dest(path) : dest), path).length;
-        if (sep == path.charAt(0)) overlap++;
+        var overlap = compare(dest, path).length;
+        if ('/' == path.charAt(0)) overlap++;
         path = path.slice(overlap);
       }
 
@@ -156,7 +156,7 @@ module.exports = function(options){
             if (err) return next(err);
             debug('render %s', stylusPath);
             imports[stylusPath] = paths;
-            mkdirp(dirname(cssPath), 0700, function(err){
+            mkdirp(dirname(cssPath), parseInt('0700', 8), function(err){
               if (err) return error(err);
               fs.writeFile(cssPath, css, 'utf8', next);
             });
@@ -243,7 +243,7 @@ function checkImports(path, fn) {
 
 function compare(pathA, pathB) {
   pathA = pathA.split(sep);
-  pathB = pathB.split(sep);
+  pathB = pathB.split('/');
   if (!pathA[pathA.length - 1]) pathA.pop();
   if (!pathB[0]) pathB.shift();
   var overlap = [];
@@ -252,5 +252,5 @@ function compare(pathA, pathB) {
     overlap.push(pathA.pop());
     pathB.shift();
   }
-  return overlap.join(sep);
+  return overlap.join('/');
 }

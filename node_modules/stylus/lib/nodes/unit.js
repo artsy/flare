@@ -1,7 +1,7 @@
 
 /*!
  * Stylus - Unit
- * Copyright(c) 2010 LearnBoost <dev@learnboost.com>
+ * Copyright (c) Automattic <developer.wordpress.com>
  * MIT Licensed
  */
 
@@ -38,7 +38,7 @@ var FACTOR_TABLE = {
 
 var Unit = module.exports = function Unit(val, type){
   Node.call(this);
-  this.val = parseFloat( val.toFixed( 15 ) );
+  this.val = val;
   this.type = type;
 };
 
@@ -69,9 +69,7 @@ Unit.prototype.toBoolean = function(){
  */
 
 Unit.prototype.toString = function(){
-  var n = this.val;
-  if ('px' == this.type) n = n.toFixed(0);
-  return n + (this.type || '');
+  return this.val + (this.type || '');
 };
 
 /**

@@ -1,7 +1,7 @@
 
 /*!
  * Stylus - Arguments
- * Copyright(c) 2010 LearnBoost <dev@learnboost.com>
+ * Copyright (c) Automattic <developer.wordpress.com>
  * MIT Licensed
  */
 
@@ -64,6 +64,7 @@ Arguments.prototype.clone = function(parent){
   for (var key in this.map) {
     clone.map[key] = this.map[key].clone(parent, clone);
   }
+  clone.isList = this.isList;
   clone.lineno = this.lineno;
   clone.column = this.column;
   clone.filename = this.filename;
