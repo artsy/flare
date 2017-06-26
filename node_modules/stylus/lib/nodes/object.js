@@ -1,7 +1,7 @@
 
 /*!
  * Stylus - Object
- * Copyright(c) 2010 LearnBoost <dev@learnboost.com>
+ * Copyright (c) Automattic <developer.wordpress.com>
  * MIT Licensed
  */
 
@@ -93,6 +93,21 @@ Object.prototype.operate = function(op, right){
     case '.':
     case '[]':
       return this.get(right.hash);
+    case '==':
+      var vals = this.vals
+        , a
+        , b;
+      if ('object' != right.nodeName || this.length != right.length)
+        return nodes.false;
+      for (var key in vals) {
+        a = vals[key];
+        b = right.vals[key];
+        if (a.operate(op, b).isFalse)
+          return nodes.false;
+      }
+      return nodes.true;
+    case '!=':
+      return this.operate('==', right).negate();
     default:
       return Node.prototype.operate.call(this, op, right);
   }
@@ -123,19 +138,28 @@ Object.prototype.toBlock = function(){
   for (key in this.vals) {
     val = this.get(key);
     if ('object' == val.first.nodeName) {
-      str += key + ' ' + this.toBlock.call(val.first);
+      str += key + ' ' + val.first.toBlock();
     } else {
       switch (key) {
         case '@charset':
           str += key + ' ' + val.first.toString() + ';';
           break;
         default:
-          str += key + ':' + val.toString().replace(/ , /g, '\\,') + ';';
+          str += key + ':' + toString(val) + ';';
       }
     }
   }
   str += '}';
   return str;
+
+  function toString(node) {
+    if (node.nodes) {
+      return node.nodes.map(toString).join(node.isList ? ',' : ' ');
+    } else if ('literal' == node.nodeName && ',' == node.val) {
+      return '\\,';
+    }
+    return node.toString();
+  }
 };
 
 /**
