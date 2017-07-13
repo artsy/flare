@@ -27,7 +27,8 @@
     "underscore": "*",
     "underscore.string": "*",
     "validator": "*",
-    "x-frame-options": "^1.0.0"
+    "x-frame-options": "^1.0.0",
+    "uglify-js": "*"
   },
   "devDependencies": {
     "benv": "*",
@@ -51,7 +52,6 @@
     "stylus": "*",
     "superagent": "*",
     "supertest": "*",
-    "uglify-js": "*",
     "zombie": "*"
   }
 }
