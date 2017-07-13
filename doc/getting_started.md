@@ -15,19 +15,19 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | b
 Reopen a shell and install node.js.
 
 ````
-nvm install 0.10
+nvm install 7
 ````
 
 Then tell nvm to use the latest version of node by default and to update your PATH.
 
 ````
-nvm alias default 0.10
+nvm alias default 7
 ````
 
 ## Install Node Modules
 
 ````
-npm install
+yarn install
 ````
 
 Although not necessary, it's recommended to install mocha and coffeescript globally for debugging.
