@@ -1,4 +1,4 @@
-twilio = require 'twilio'
+Twilio = require 'twilio'
 { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_NUMBER, DEFAULT_CACHE_TIME, IPHONE_APP_URL } = require '../../config'
 
 memjs = require('memjs')
@@ -14,8 +14,8 @@ sendLinkViaSMS = (req, res, next) ->
     if !err and ts?
       res.json 400, { success: false, message: 'You have already sent a download link to this number.' }
     else
-      twilioClient = new twilio.RestClient TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
-      twilioClient.sendSms({
+      twilioClient = new Twilio TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
+      twilioClient.messages.create({
         to: phone_number
         from: TWILIO_NUMBER
         body: "Download the new Artsy iPhone app here: #{IPHONE_APP_URL}"
