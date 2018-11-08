@@ -24,7 +24,7 @@ sendLinkViaSMS = (req, res, next) ->
           res.json error.status || 400, { success: false, code: error.code, message: error.message }
         else
           currTime = new Date().getTime()
-          cache.set phone_number, currTime.toString(), null, 300
+          cache.set phone_number, currTime.toString(), { expires: 300 }
           res.status(201).json({ success: true, message: "Message sent.", sid: data.sid })
       )
 
