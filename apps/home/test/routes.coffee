@@ -38,10 +38,12 @@ describe '#sendLinkViaSMS', ->
           set: (key, value, callback, expiration) ->
             memJsSetArgs = arguments
 
-      twilio = routes.__get__ 'twilio'
-      twilio.RestClient = class TwilioClientStub
+      class TwilioStub
         constructor: -> twilioConstructorArgs = arguments
-        sendSms: -> twilioSendSmsArgs = arguments
+        messages: {
+          create: -> twilioSendSmsArgs = arguments
+        }
+      routes.__set__ 'Twilio', TwilioStub
       routes.sendLinkViaSMS { body: { phone_number: '+(555) 111 2222' } }, { json: resStub = sinon.stub() }
 
     it 'sends a link with a valid phone number', ->

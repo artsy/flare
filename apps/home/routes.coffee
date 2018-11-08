@@ -33,7 +33,7 @@ sendLinkViaSMS = (req, res, next) ->
         else
           currTime = new Date().getTime()
           cache.set phone_number, currTime.toString(), { expires: 300 }
-          res.status(201).json({ success: true, message: "Message sent.", sid: data.sid })
+          res.json 201, { success: true, message: "Message sent.", sid: data.sid }
       )
 
 module.exports = { index, sendLinkViaSMS }
