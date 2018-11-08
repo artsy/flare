@@ -1,10 +1,15 @@
 Twilio = require 'twilio'
-{ TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_NUMBER, DEFAULT_CACHE_TIME, IPHONE_APP_URL } = require '../../config'
-
 memjs = require('memjs')
+{
+  TWILIO_ACCOUNT_SID,
+  TWILIO_AUTH_TOKEN,
+  TWILIO_NUMBER,
+  DEFAULT_CACHE_TIME,
+  IPHONE_APP_URL
+} = require '../../config'
 
 index = (req, res, next) ->
-  res.set? "Cache-Control": "public, s-maxage=#{DEFAULT_CACHE_TIME}"
+  res.set? { "Cache-Control": "public, s-maxage=#{DEFAULT_CACHE_TIME}" }
   res.render 'page'
 
 sendLinkViaSMS = (req, res, next) ->
@@ -12,7 +17,10 @@ sendLinkViaSMS = (req, res, next) ->
   cache = memjs.Client.create()
   cache.get phone_number, (err, ts) ->
     if !err and ts?
-      res.json 400, { success: false, message: 'You have already sent a download link to this number.' }
+      res.json 400, {
+        success: false,
+        message: 'You have already sent a download link to this number.'
+      }
     else
       twilioClient = new Twilio TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
       twilioClient.messages.create({
