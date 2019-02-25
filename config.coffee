@@ -30,7 +30,7 @@ module.exports =
   GALLERIES_NUM:           '2,000'
   FAIRS_NUM:               '80'
   MUSEUMS_NUM:             '800'
-  PARTNER_HIGHLIGHT_COPY:  'Gagosian Gallery, Pace Gallery, White Cube, The Guggenheim, SFMOMA, The British Museum, TEFAF, and The Armory Show.'
+  PARTNER_HIGHLIGHT_COPY:  'X, Y and Z'
 
 # Override any values with env variables if they exist
 module.exports[key] = (process.env[key] or val) for key, val of module.exports
